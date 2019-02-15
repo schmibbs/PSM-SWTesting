@@ -16,148 +16,699 @@ public class DBConnectionUnitTest {
 	public void tearDown() throws Exception {
 	}
 
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
 	@Test
-	public void testDBConnection() {
+	public void testDBConnection1() {
+		fail("Not yet implemented");
+	}
+	
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
+	@Test
+	public void testDBConnection2() {
 		fail("Not yet implemented");
 	}
 
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
 	@Test
-	public void testConnectStringStringString() {
+	public void testConnectStringStringString1() {
+		fail("Not yet implemented");
+	}
+	
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
+	@Test
+	public void testConnectStringStringString2() {
 		fail("Not yet implemented");
 	}
 
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
 	@Test
-	public void testConnectStringString() {
+	public void testConnectStringString1() {
+		fail("Not yet implemented");
+	}
+	
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
+	@Test
+	public void testConnectStringString2() {
 		fail("Not yet implemented");
 	}
 
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
 	@Test
-	public void testDisconnect() {
+	public void testDisconnect1() {
 		fail("Not yet implemented");
 	}
 
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
 	@Test
-	public void testFetchCourseID() {
+	public void testDisconnect2() {
+		fail("Not yet implemented");
+	}
+	
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
+	@Test
+	public void testFetchCourseID1() {
+		fail("Not yet implemented");
+	}
+	
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
+	@Test
+	public void testFetchCourseID2() {
 		fail("Not yet implemented");
 	}
 
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
 	@Test
-	public void testGetEndDates() {
+	public void testGetEndDates1() {
+		fail("Not yet implemented");
+	}
+	
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
+	@Test
+	public void testGetEndDates2() {
 		fail("Not yet implemented");
 	}
 
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
 	@Test
-	public void testGetCourses() {
+	public void testGetCourses1() {
+		fail("Not yet implemented");
+	}
+	
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
+	@Test
+	public void testGetCourses2() {
 		fail("Not yet implemented");
 	}
 
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
 	@Test
-	public void testFetchCourses() {
+	public void testFetchCourses1() {
+		fail("Not yet implemented");
+	}
+	
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
+	@Test
+	public void testFetchCourses2() {
 		fail("Not yet implemented");
 	}
 
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
 	@Test
-	public void testFetchCourseSubj() {
+	public void testFetchCourseSubj1() {
+		fail("Not yet implemented");
+	}
+	
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
+	@Test
+	public void testFetchCourseSubj2() {
 		fail("Not yet implemented");
 	}
 
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
 	@Test
-	public void testFetchCourseName() {
+	public void testFetchCourseName1() {
+		fail("Not yet implemented");
+	}
+	
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
+	@Test
+	public void testFetchCourseName2() {
 		fail("Not yet implemented");
 	}
 
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
 	@Test
-	public void testFetchCourseSemester() {
+	public void testFetchCourseSemester1() {
+		fail("Not yet implemented");
+	}
+	
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
+	@Test
+	public void testFetchCourseSemester2() {
 		fail("Not yet implemented");
 	}
 
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
 	@Test
-	public void testFetchCourseStart() {
+	public void testFetchCourseStart1() {
+		fail("Not yet implemented");
+	}
+	
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
+	@Test
+	public void testFetchCourseStart2() {
 		fail("Not yet implemented");
 	}
 
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
 	@Test
-	public void testFetchCourseEnd() {
+	public void testFetchCourseEnd1() {
 		fail("Not yet implemented");
 	}
 
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
 	@Test
-	public void testFetchStartMon() {
+	public void testFetchCourseEnd2() {
+		fail("Not yet implemented");
+	}
+	
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
+	@Test
+	public void testFetchStartMon1() {
+		fail("Not yet implemented");
+	}
+	
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
+	@Test
+	public void testFetchStartMon2() {
 		fail("Not yet implemented");
 	}
 
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
 	@Test
-	public void testFetchEndMon() {
+	public void testFetchEndMon1() {
+		fail("Not yet implemented");
+	}
+	
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
+	@Test
+	public void testFetchEndMon2() {
 		fail("Not yet implemented");
 	}
 
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
 	@Test
-	public void testFetchStartTue() {
+	public void testFetchStartTue1() {
+		fail("Not yet implemented");
+	}
+	
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
+	@Test
+	public void testFetchStartTue2() {
 		fail("Not yet implemented");
 	}
 
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
 	@Test
-	public void testFetchEndTue() {
+	public void testFetchEndTue1() {
+		fail("Not yet implemented");
+	}
+	
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
+	@Test
+	public void testFetchEndTue2() {
 		fail("Not yet implemented");
 	}
 
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
 	@Test
-	public void testFetchStartWed() {
+	public void testFetchStartWed1() {
+		fail("Not yet implemented");
+	}
+	
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
+	@Test
+	public void testFetchStartWed2() {
 		fail("Not yet implemented");
 	}
 
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
 	@Test
-	public void testFetchEndWed() {
+	public void testFetchEndWed1() {
+		fail("Not yet implemented");
+	}
+	
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
+	@Test
+	public void testFetchEndWed2() {
 		fail("Not yet implemented");
 	}
 
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
 	@Test
-	public void testFetchStartThu() {
+	public void testFetchStartThu1() {
+		fail("Not yet implemented");
+	}
+	
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
+	@Test
+	public void testFetchStartThu2() {
 		fail("Not yet implemented");
 	}
 
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
 	@Test
-	public void testFetchEndThu() {
+	public void testFetchEndThu1() {
+		fail("Not yet implemented");
+	}
+	
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
+	@Test
+	public void testFetchEndThu2() {
 		fail("Not yet implemented");
 	}
 
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
 	@Test
-	public void testFetchStartFri() {
+	public void testFetchStartFri1() {
+		fail("Not yet implemented");
+	}
+	
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
+	@Test
+	public void testFetchStartFri2() {
 		fail("Not yet implemented");
 	}
 
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
 	@Test
-	public void testFetchEndFri() {
+	public void testFetchEndFri1() {
+		fail("Not yet implemented");
+	}
+	
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
+	@Test
+	public void testFetchEndFri2() {
 		fail("Not yet implemented");
 	}
 
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
 	@Test
-	public void testFetchStartSat() {
+	public void testFetchStartSat1() {
+		fail("Not yet implemented");
+	}
+	
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
+	@Test
+	public void testFetchStartSat2() {
 		fail("Not yet implemented");
 	}
 
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
 	@Test
-	public void testFetchEndSat() {
+	public void testFetchEndSat1() {
+		fail("Not yet implemented");
+	}
+	
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
+	@Test
+	public void testFetchEndSat2() {
 		fail("Not yet implemented");
 	}
 
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
 	@Test
-	public void testStoreClassInfo() {
+	public void testStoreClassInfo1() {
+		fail("Not yet implemented");
+	}
+	
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
+	@Test
+	public void testStoreClassInfo2() {
 		fail("Not yet implemented");
 	}
 
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
 	@Test
-	public void testStoreClassSched() {
+	public void testStoreClassSched1() {
+		fail("Not yet implemented");
+	}
+	
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
+	@Test
+	public void testStoreClassSched2() {
 		fail("Not yet implemented");
 	}
 
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
 	@Test
-	public void testClearDatabase() {
+	public void testClearDatabase1() {
+		fail("Not yet implemented");
+	}
+	
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
+	@Test
+	public void testClearDatabase2() {
 		fail("Not yet implemented");
 	}
 
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
 	@Test
-	public void testCreateClassTable() {
+	public void testCreateClassTable1() {
+		fail("Not yet implemented");
+	}
+	
+	/*
+	 * Test Id: DBC_001
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
+	@Test
+	public void testCreateClassTable2() {
 		fail("Not yet implemented");
 	}
 
