@@ -10,90 +10,86 @@ public class DBConnectionUnitTest {
 
 	@Before
 	public void setUp() throws Exception {
+		String[][] dbCred = {{"jdbc:mysql://localhost:3306/mydb", "PeterClarke", "12345"}};
+		String[][] dbTable = {{"1234", "FOO", "BAR", "Spring", "1/1/1900", "7/8/1901", "am",
+								"12:00", "13:00", "12:00", "13:00","12:00", "13:00","12:00", 
+								"13:00","12:00", "13:00","12:00", "13:00"}};
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		
 	}
 
 	/*
 	 * Test Id: DBC_001
-	 * Test Purpose: 
+	 * Test Purpose: Use DBConnection to create a DBConnection object
+	 * Setup: 
+	 * Input: none
+	 * Expected Output: new DBConnection object
+	 */
+	@Test
+	public void testDBConnection() {
+		DBConnection db = new DBConnection();
+		assertEquals("DBConnection Obj established", db, db);
+	}
+
+	/*
+	 * Test Id: DBC_002
+	 * Test Purpose: Test connection using a known database
 	 * Setup: 
 	 * Input:
 	 * Expected Output: 
 	 */
 	@Test
-	public void testDBConnection1() {
+	public void testConnectDbUserPw1() {
+		DBConnection db = new DBConnection();
+		
+		db.connect("CCCP", "AAAA", "BBBBB");
+	}
+	
+	/*
+	 * Test Id: DBC_003
+	 * Test Purpose: Test connection using a known database with incorrect credentials
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
+	@Test
+	public void testConnectDbUserPw2() {
+		fail("Not yet implemented");
+	}
+
+	/*
+	 * Test Id: DBC_004
+	 * Test Purpose: Test connection using localhost
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
+	@Test
+	public void testConnectUserPw1() {
 		fail("Not yet implemented");
 	}
 	
 	/*
-	 * Test Id: DBC_001
-	 * Test Purpose: 
+	 * Test Id: DBC_005
+	 * Test Purpose: Test connection using localhost with incorrect credentials
 	 * Setup: 
 	 * Input:
 	 * Expected Output: 
 	 */
 	@Test
-	public void testDBConnection2() {
+	public void testConnectUserPw2() {
 		fail("Not yet implemented");
 	}
 
 	/*
-	 * Test Id: DBC_001
-	 * Test Purpose: 
+	 * Test Id: DBC_006
+	 * Test Purpose: Test if users can dc properly
 	 * Setup: 
-	 * Input:
-	 * Expected Output: 
-	 */
-	@Test
-	public void testConnectStringStringString1() {
-		fail("Not yet implemented");
-	}
-	
-	/*
-	 * Test Id: DBC_001
-	 * Test Purpose: 
-	 * Setup: 
-	 * Input:
-	 * Expected Output: 
-	 */
-	@Test
-	public void testConnectStringStringString2() {
-		fail("Not yet implemented");
-	}
-
-	/*
-	 * Test Id: DBC_001
-	 * Test Purpose: 
-	 * Setup: 
-	 * Input:
-	 * Expected Output: 
-	 */
-	@Test
-	public void testConnectStringString1() {
-		fail("Not yet implemented");
-	}
-	
-	/*
-	 * Test Id: DBC_001
-	 * Test Purpose: 
-	 * Setup: 
-	 * Input:
-	 * Expected Output: 
-	 */
-	@Test
-	public void testConnectStringString2() {
-		fail("Not yet implemented");
-	}
-
-	/*
-	 * Test Id: DBC_001
-	 * Test Purpose: 
-	 * Setup: 
-	 * Input:
-	 * Expected Output: 
+	 * Input: none
+	 * Expected Output: user is disconnected from database
 	 */
 	@Test
 	public void testDisconnect1() {
@@ -101,11 +97,11 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_001
-	 * Test Purpose: 
+	 * Test Id: DBC_006
+	 * Test Purpose: Test if users cannot dc 
 	 * Setup: 
-	 * Input:
-	 * Expected Output: 
+	 * Input: none
+	 * Expected Output: user is connected from database
 	 */
 	@Test
 	public void testDisconnect2() {
@@ -113,11 +109,11 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_001
-	 * Test Purpose: 
+	 * Test Id: DBC_007
+	 * Test Purpose: retrieve the course associated with the four digit int supplied
 	 * Setup: 
-	 * Input:
-	 * Expected Output: 
+	 * Input: course_id = 1234
+	 * Expected Output: the course associated with 1234
 	 */
 	@Test
 	public void testFetchCourseID1() {
@@ -125,11 +121,11 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_001
-	 * Test Purpose: 
+	 * Test Id: DBC_008
+	 * Test Purpose: attempt to retrieve a course with a 1 digit int
 	 * Setup: 
-	 * Input:
-	 * Expected Output: 
+	 * Input: course_id = 1
+	 * Expected Output: error message
 	 */
 	@Test
 	public void testFetchCourseID2() {
@@ -137,11 +133,11 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_001
-	 * Test Purpose: 
+	 * Test Id: DBC_009
+	 * Test Purpose: Test if users can get the end date of a semester
 	 * Setup: 
-	 * Input:
-	 * Expected Output: 
+	 * Input: none
+	 * Expected Output: date when semester ends
 	 */
 	@Test
 	public void testGetEndDates1() {
@@ -149,7 +145,7 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_001
+	 * Test Id: DBC_010
 	 * Test Purpose: 
 	 * Setup: 
 	 * Input:
@@ -161,11 +157,11 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_001
-	 * Test Purpose: 
+	 * Test Id: DBC_011
+	 * Test Purpose: Test if Peter Clarke can get courses for a summer semester
 	 * Setup: 
-	 * Input:
-	 * Expected Output: 
+	 * Input: none
+	 * Expected Output: courses for a summer semester
 	 */
 	@Test
 	public void testGetCourses1() {
@@ -173,11 +169,11 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_001
-	 * Test Purpose: 
+	 * Test Id: DBC_012
+	 * Test Purpose: Test if Peter Clarke cannot get courses for a summer semester
 	 * Setup: 
-	 * Input:
-	 * Expected Output: 
+	 * Input: none
+	 * Expected Output: error
 	 */
 	@Test
 	public void testGetCourses2() {
@@ -185,8 +181,8 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_001
-	 * Test Purpose: 
+	 * Test Id: DBC_013
+	 * Test Purpose: test if Peter Clarke can 
 	 * Setup: 
 	 * Input:
 	 * Expected Output: 
@@ -197,7 +193,7 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_001
+	 * Test Id: DBC_014
 	 * Test Purpose: 
 	 * Setup: 
 	 * Input:
@@ -209,7 +205,7 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_001
+	 * Test Id: DBC_015
 	 * Test Purpose: 
 	 * Setup: 
 	 * Input:
@@ -221,7 +217,7 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_001
+	 * Test Id: DBC_016
 	 * Test Purpose: 
 	 * Setup: 
 	 * Input:
@@ -233,7 +229,7 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_001
+	 * Test Id: DBC_017
 	 * Test Purpose: 
 	 * Setup: 
 	 * Input:
@@ -245,7 +241,7 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_001
+	 * Test Id: DBC_018
 	 * Test Purpose: 
 	 * Setup: 
 	 * Input:
@@ -257,7 +253,7 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_001
+	 * Test Id: DBC_019
 	 * Test Purpose: 
 	 * Setup: 
 	 * Input:
@@ -269,7 +265,7 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_001
+	 * Test Id: DBC_020
 	 * Test Purpose: 
 	 * Setup: 
 	 * Input:
@@ -281,7 +277,7 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_001
+	 * Test Id: DBC_021
 	 * Test Purpose: 
 	 * Setup: 
 	 * Input:
@@ -293,7 +289,7 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_001
+	 * Test Id: DBC_022
 	 * Test Purpose: 
 	 * Setup: 
 	 * Input:
@@ -305,7 +301,7 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_001
+	 * Test Id: DBC_023
 	 * Test Purpose: 
 	 * Setup: 
 	 * Input:
@@ -317,7 +313,7 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_001
+	 * Test Id: DBC_024
 	 * Test Purpose: 
 	 * Setup: 
 	 * Input:
@@ -329,7 +325,7 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_001
+	 * Test Id: DBC_025
 	 * Test Purpose: 
 	 * Setup: 
 	 * Input:
@@ -341,7 +337,7 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_001
+	 * Test Id: DBC_026
 	 * Test Purpose: 
 	 * Setup: 
 	 * Input:
@@ -353,7 +349,7 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_001
+	 * Test Id: DBC_027
 	 * Test Purpose: 
 	 * Setup: 
 	 * Input:
@@ -365,7 +361,7 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_001
+	 * Test Id: DBC_028
 	 * Test Purpose: 
 	 * Setup: 
 	 * Input:
@@ -377,7 +373,7 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_001
+	 * Test Id: DBC_029
 	 * Test Purpose: 
 	 * Setup: 
 	 * Input:
@@ -389,7 +385,7 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_001
+	 * Test Id: DBC_030
 	 * Test Purpose: 
 	 * Setup: 
 	 * Input:
@@ -401,7 +397,7 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_001
+	 * Test Id: DBC_031
 	 * Test Purpose: 
 	 * Setup: 
 	 * Input:
@@ -413,7 +409,7 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_001
+	 * Test Id: DBC_032
 	 * Test Purpose: 
 	 * Setup: 
 	 * Input:
@@ -425,7 +421,7 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_001
+	 * Test Id: DBC_033
 	 * Test Purpose: 
 	 * Setup: 
 	 * Input:
@@ -437,7 +433,7 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_001
+	 * Test Id: DBC_034
 	 * Test Purpose: 
 	 * Setup: 
 	 * Input:
@@ -449,7 +445,7 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_001
+	 * Test Id: DBC_035
 	 * Test Purpose: 
 	 * Setup: 
 	 * Input:
@@ -461,7 +457,7 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_001
+	 * Test Id: DBC_036
 	 * Test Purpose: 
 	 * Setup: 
 	 * Input:
@@ -473,7 +469,7 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_001
+	 * Test Id: DBC_037
 	 * Test Purpose: 
 	 * Setup: 
 	 * Input:
@@ -485,7 +481,7 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_001
+	 * Test Id: DBC_038
 	 * Test Purpose: 
 	 * Setup: 
 	 * Input:
@@ -497,7 +493,7 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_001
+	 * Test Id: DBC_039
 	 * Test Purpose: 
 	 * Setup: 
 	 * Input:
@@ -509,7 +505,7 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_001
+	 * Test Id: DBC_040
 	 * Test Purpose: 
 	 * Setup: 
 	 * Input:
@@ -521,7 +517,7 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_001
+	 * Test Id: DBC_041
 	 * Test Purpose: 
 	 * Setup: 
 	 * Input:
@@ -533,7 +529,7 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_001
+	 * Test Id: DBC_042
 	 * Test Purpose: 
 	 * Setup: 
 	 * Input:
@@ -545,7 +541,7 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_001
+	 * Test Id: DBC_043
 	 * Test Purpose: 
 	 * Setup: 
 	 * Input:
@@ -557,7 +553,7 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_001
+	 * Test Id: DBC_044
 	 * Test Purpose: 
 	 * Setup: 
 	 * Input:
@@ -569,7 +565,7 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_001
+	 * Test Id: DBC_045
 	 * Test Purpose: 
 	 * Setup: 
 	 * Input:
@@ -581,7 +577,7 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_001
+	 * Test Id: DBC_046
 	 * Test Purpose: 
 	 * Setup: 
 	 * Input:
@@ -593,7 +589,7 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_001
+	 * Test Id: DBC_047
 	 * Test Purpose: 
 	 * Setup: 
 	 * Input:
@@ -605,7 +601,7 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_001
+	 * Test Id: DBC_048
 	 * Test Purpose: 
 	 * Setup: 
 	 * Input:
@@ -617,7 +613,7 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_001
+	 * Test Id: DBC_049
 	 * Test Purpose: 
 	 * Setup: 
 	 * Input:
@@ -629,7 +625,7 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_001
+	 * Test Id: DBC_050
 	 * Test Purpose: 
 	 * Setup: 
 	 * Input:
@@ -641,7 +637,7 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_001
+	 * Test Id: DBC_051
 	 * Test Purpose: 
 	 * Setup: 
 	 * Input:
@@ -653,7 +649,7 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_001
+	 * Test Id: DBC_052
 	 * Test Purpose: 
 	 * Setup: 
 	 * Input:
@@ -665,7 +661,7 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_001
+	 * Test Id: DBC_053
 	 * Test Purpose: 
 	 * Setup: 
 	 * Input:
@@ -677,7 +673,7 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_001
+	 * Test Id: DBC_054
 	 * Test Purpose: 
 	 * Setup: 
 	 * Input:
@@ -689,7 +685,7 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_001
+	 * Test Id: DBC_055
 	 * Test Purpose: 
 	 * Setup: 
 	 * Input:
@@ -701,7 +697,7 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_001
+	 * Test Id: DBC_056
 	 * Test Purpose: 
 	 * Setup: 
 	 * Input:
