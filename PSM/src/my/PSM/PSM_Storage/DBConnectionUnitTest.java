@@ -46,7 +46,7 @@ public class DBConnectionUnitTest {
 	public void testConnectDbUserPw1() {
 		DBConnection db = new DBConnection();
 		
-		db.connect("CCCP", "AAAA", "BBBBB");
+		db.connect("CCCC", "AAAA", "BBBBB");
 	}
 	
 	/*
