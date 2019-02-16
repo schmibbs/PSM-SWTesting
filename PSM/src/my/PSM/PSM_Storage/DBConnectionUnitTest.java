@@ -1,11 +1,12 @@
 package my.PSM.PSM_Storage;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
+import org.mockito.*;
 public class DBConnectionUnitTest {
 
 	@Before
