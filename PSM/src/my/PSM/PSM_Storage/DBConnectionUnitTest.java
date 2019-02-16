@@ -9,12 +9,15 @@ import org.junit.Test;
 import org.mockito.*;
 public class DBConnectionUnitTest {
 
+	DBConnection db = mock(DBConnection.class);
+	String[][] dbCred = {{"jdbc:mysql://localhost:3306/mydb", "PeterClarke", "12345"}};
+	String[][] dbTable = {{"1234", "FOO", "BAR", "Spring", "1/1/1900", "7/8/1901", "am",
+							"12:00", "13:00", "12:00", "13:00","12:00", "13:00","12:00", 
+							"13:00","12:00", "13:00","12:00", "13:00"}};
+	
 	@Before
 	public void setUp() throws Exception {
-		String[][] dbCred = {{"jdbc:mysql://localhost:3306/mydb", "PeterClarke", "12345"}};
-		String[][] dbTable = {{"1234", "FOO", "BAR", "Spring", "1/1/1900", "7/8/1901", "am",
-								"12:00", "13:00", "12:00", "13:00","12:00", "13:00","12:00", 
-								"13:00","12:00", "13:00","12:00", "13:00"}};
+
 	}
 
 	@After
@@ -31,7 +34,7 @@ public class DBConnectionUnitTest {
 	 */
 	@Test
 	public void testDBConnection() {
-		DBConnection db = new DBConnection();
+		DBConnection db = mock(DBConnection.class);
 		assertEquals("DBConnection Obj established", db, db);
 	}
 
@@ -44,9 +47,9 @@ public class DBConnectionUnitTest {
 	 */
 	@Test
 	public void testConnectDbUserPw1() {
-		DBConnection db = new DBConnection();
+		DBConnection db = mock(DBConnection.class);
 		
-		db.connect("CCCC", "AAAA", "BBBBB");
+		assertEquals("DBConnection success", db.connect(dbCred[0][0], dbCred[0][1], dbCred[0][2]), 0);
 	}
 	
 	/*
@@ -58,7 +61,9 @@ public class DBConnectionUnitTest {
 	 */
 	@Test
 	public void testConnectDbUserPw2() {
-		fail("Not yet implemented");
+		DBConnection db = mock(DBConnection.class);
+		
+		assertEquals("DBConnection success", db.connect(dbCred[0][0], "notPeterClarke", dbCred[0][2]), -1);
 	}
 
 	/*
@@ -70,7 +75,9 @@ public class DBConnectionUnitTest {
 	 */
 	@Test
 	public void testConnectUserPw1() {
-		fail("Not yet implemented");
+		DBConnection db = mock(DBConnection.class);
+		
+		assertEquals("Local DBConnection success", db.connect(dbCred[0][1], dbCred[0][2]), 0);
 	}
 	
 	/*
@@ -82,7 +89,9 @@ public class DBConnectionUnitTest {
 	 */
 	@Test
 	public void testConnectUserPw2() {
-		fail("Not yet implemented");
+		DBConnection db = mock(DBConnection.class);
+		
+		assertEquals("Local DBConnection failure", db.connect("notPeterClarke", dbCred[0][2]), -1);
 	}
 
 	/*
@@ -94,7 +103,8 @@ public class DBConnectionUnitTest {
 	 */
 	@Test
 	public void testDisconnect1() {
-		fail("Not yet implemented");
+		db.connect(dbCred[0][1], dbCred[0][1]);
+		assertEquals("DC Successful", db.disconnect(), 0);
 	}
 
 	/*
@@ -106,7 +116,7 @@ public class DBConnectionUnitTest {
 	 */
 	@Test
 	public void testDisconnect2() {
-		fail("Not yet implemented");
+		assertEquals("DC Successful", db.disconnect(), -1);	
 	}
 	
 	/*
@@ -118,7 +128,9 @@ public class DBConnectionUnitTest {
 	 */
 	@Test
 	public void testFetchCourseID1() {
-		fail("Not yet implemented");
+		db.connect(dbCred[0][1], dbCred[0][2]);
+		int testIDInt = db.fetchCourseID(Integer.parseInt(dbTable[0][0]));
+		assertEquals("Fetch Course ID Test success", testIDInt, 1234);
 	}
 	
 	/*
@@ -130,7 +142,9 @@ public class DBConnectionUnitTest {
 	 */
 	@Test
 	public void testFetchCourseID2() {
-		fail("Not yet implemented");
+		db.connect(dbCred[0][1], dbCred[0][2]);
+		int testIDInt = db.fetchCourseID(5);
+		assertEquals("Fetch Course ID Test success", testIDInt, -1);
 	}
 
 	/*
