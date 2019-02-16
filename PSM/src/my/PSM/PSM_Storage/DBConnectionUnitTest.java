@@ -7,13 +7,15 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.*;
+import java.util.ArrayList;
 public class DBConnectionUnitTest {
 
 	DBConnection db = mock(DBConnection.class);
 	String[][] dbCred = {{"jdbc:mysql://localhost:3306/mydb", "PeterClarke", "12345"}};
-	String[][] dbTable = {{"1234", "FOO", "BAR", "Spring", "1/1/1900", "7/8/1901", "am",
+	String[][] dbTable = {{"1234", "FOO", "BAR", "Spring", "01/01/1900", "07/08/1901", "am",
 							"12:00", "13:00", "12:00", "13:00","12:00", "13:00","12:00", 
 							"13:00","12:00", "13:00","12:00", "13:00"}};
+	int cid = Integer.parseInt(dbTable[0][0]);	//course id
 	
 	@Before
 	public void setUp() throws Exception {
@@ -26,7 +28,7 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_001
+	 * Test Id: DBC_DBConnection_001
 	 * Test Purpose: Use DBConnection to create a DBConnection object
 	 * Setup: 
 	 * Input: none
@@ -39,7 +41,7 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_002
+	 * Test Id: DBC_Connect_002
 	 * Test Purpose: Test connection using a known database
 	 * Setup: 
 	 * Input:
@@ -53,7 +55,7 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_003
+	 * Test Id: DBC_Connect_003
 	 * Test Purpose: Test connection using a known database with incorrect credentials
 	 * Setup: 
 	 * Input:
@@ -67,7 +69,7 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_004
+	 * Test Id: DBC_ConnectLocal_004
 	 * Test Purpose: Test connection using localhost
 	 * Setup: 
 	 * Input:
@@ -81,7 +83,7 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_005
+	 * Test Id: DBC_DontConnectLocal_005
 	 * Test Purpose: Test connection using localhost with incorrect credentials
 	 * Setup: 
 	 * Input:
@@ -95,7 +97,7 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_006
+	 * Test Id: DBC_Disconnect_006
 	 * Test Purpose: Test if users can dc properly
 	 * Setup: 
 	 * Input: none
@@ -108,7 +110,7 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_006
+	 * Test Id: DBC_Disconnect_006
 	 * Test Purpose: Test if users cannot dc 
 	 * Setup: 
 	 * Input: none
@@ -120,7 +122,7 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_007
+	 * Test Id: DBC_FetchCourseID_007
 	 * Test Purpose: retrieve the course associated with the four digit int supplied
 	 * Setup: 
 	 * Input: course_id = 1234
@@ -134,7 +136,7 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_008
+	 * Test Id: DBC_FetchCourseID_008
 	 * Test Purpose: attempt to retrieve a course with a 1 digit int
 	 * Setup: 
 	 * Input: course_id = 1
@@ -148,7 +150,7 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_009
+	 * Test Id: DBC_GetEndDates_009
 	 * Test Purpose: Test if users can get the end date of a semester
 	 * Setup: 
 	 * Input: none
@@ -156,9 +158,12 @@ public class DBConnectionUnitTest {
 	 */
 	@Test
 	public void testGetEndDates1() {
-		fail("Not yet implemented");
+		ArrayList<String> results = new ArrayList<>();
+		
+		results = db.getEndDates();
+		assertEquals("getEndDatesTest success", results, ArrayList.class);
 	}
-	
+	@Test
 	/*
 	 * Test Id: DBC_010
 	 * Test Purpose: 
@@ -166,13 +171,13 @@ public class DBConnectionUnitTest {
 	 * Input:
 	 * Expected Output: 
 	 */
-	@Test
+	
 	public void testGetEndDates2() {
 		fail("Not yet implemented");
 	}
 
 	/*
-	 * Test Id: DBC_011
+	 * Test Id: DBC_GetCourses_011
 	 * Test Purpose: Test if Peter Clarke can get courses for a summer semester
 	 * Setup: 
 	 * Input: none
@@ -180,7 +185,11 @@ public class DBConnectionUnitTest {
 	 */
 	@Test
 	public void testGetCourses1() {
-		fail("Not yet implemented");
+		ArrayList<Integer> results = db.getCourses();
+		int inputCourse = Integer.parseInt(dbTable[0][2]);
+		int firstCourse = results.get(0);
+		
+		assertEquals("getCourses success", firstCourse, inputCourse);
 	}
 	
 	/*
@@ -196,16 +205,19 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_013
-	 * Test Purpose: test if Peter Clarke can 
+	 * Test Id: DBC_FetchCourses_013
+	 * Test Purpose: test if Peter Clarke can retrieve a course's name
 	 * Setup: 
 	 * Input:
 	 * Expected Output: 
 	 */
 	@Test
 	public void testFetchCourses1() {
-		fail("Not yet implemented");
-	}
+		String courses = db.fetchCourses();
+		String testInput = dbTable[0][1] + ",";
+		
+		assertEquals("Fetch Course Success", courses, testInput);
+	}         
 	
 	/*
 	 * Test Id: DBC_014
@@ -216,127 +228,157 @@ public class DBConnectionUnitTest {
 	 */
 	@Test
 	public void testFetchCourses2() {
-		fail("Not yet implemented");
+		fail("cannot implement");
 	}
 
 	/*
-	 * Test Id: DBC_015
-	 * Test Purpose: 
-	 * Setup: 
-	 * Input:
-	 * Expected Output: 
+	 * Test Id: DBC_FetchCourseSubj_015
+	 * Test Purpose: test if Peter Clarke can retrieve a course's subject with a specific int course ID
+	 * Setup: dbTable
+	 * Input: dbTable[0][1], dbTable[0][0]
+	 * Expected Output: FOO
 	 */
 	@Test
 	public void testFetchCourseSubj1() {
-		fail("Not yet implemented");
+		int cid = Integer.parseInt(dbTable[0][0]);
+		String subj = db.fetchCourseSubj(cid);
+		
+		assertEquals("Couse subject fetch successful", subj, "FOO");
 	}
 	
 	/*
-	 * Test Id: DBC_016
-	 * Test Purpose: 
-	 * Setup: 
-	 * Input:
-	 * Expected Output: 
+	 * Test Id: DBC_FetchCouseFubj_016
+	 * Test Purpose: test if Peter Clarke can fail to retrieve a course with a specific int course ID
+	 * Setup: dbTable
+	 * Input: dbTable[0][1], dbTable[0][0]
+	 * Expected Output: BAR
 	 */
 	@Test
 	public void testFetchCourseSubj2() {
-		fail("Not yet implemented");
+		int cid = 8;
+		String subj = db.fetchCourseSubj(cid);
+		
+		assertEquals("Couse subject failure to fetch, successful", subj, null);
 	}
 
 	/*
-	 * Test Id: DBC_017
-	 * Test Purpose: 
-	 * Setup: 
-	 * Input:
-	 * Expected Output: 
+	 * Test Id: DBC_FetchCourseName_017
+	 * Test Purpose: test if Peter Clarke can retrieve a course's name with a specific int course ID
+	 * Setup: dbTable
+	 * Input: dbTable[0][0]
+	 * Expected Output: FOO
 	 */
 	@Test
 	public void testFetchCourseName1() {
-		fail("Not yet implemented");
+		int cid = Integer.parseInt(dbTable[0][0]);
+		String name = db.fetchCourseSubj(cid);
+		
+		assertEquals("Couse name fetch successful", name, "BAR");
 	}
 	
 	/*
-	 * Test Id: DBC_018
-	 * Test Purpose: 
-	 * Setup: 
-	 * Input:
-	 * Expected Output: 
+	 * Test Id: DBC__FetchCourseName_018
+	 * Test Purpose: test if Peter Clarke cannot retrieve a course's name with an incorrect int course ID
+	 * Setup: dbTable
+	 * Input: 4
+	 * Expected Output: null
 	 */
 	@Test
 	public void testFetchCourseName2() {
-		fail("Not yet implemented");
+		cid = 4;
+		String name = db.fetchCourseSubj(cid);
+		
+		assertEquals("Couse name fetch unsuccessful", name, null);
 	}
 
 	/*
-	 * Test Id: DBC_019
-	 * Test Purpose: 
-	 * Setup: 
-	 * Input:
-	 * Expected Output: 
+	 * Test Id: DBC_FetchCourseSemester_019
+	 * Test Purpose: test if Peter Clarke can retrieve the semester a course takes place in with an int course ID
+	 * Setup: dbTable
+	 * Input: dbTable[0][0]
+	 * Expected Output: Spring
 	 */
 	@Test
 	public void testFetchCourseSemester1() {
-		fail("Not yet implemented");
+		cid = Integer.parseInt(dbTable[0][0]);
+		String sem = db.fetchCourseSemester(cid);
+		
+		assertEquals("Couse semester fetch successful", sem, "Spring");
 	}
 	
 	/*
-	 * Test Id: DBC_020
-	 * Test Purpose: 
-	 * Setup: 
-	 * Input:
-	 * Expected Output: 
+	 * Test Id: DBC_FetchCourseSemester_020
+	 * Test Purpose: test if Peter Clarke cannot retrieve the semester a course takes place in with an incorrect int course ID
+	 * Setup: dbTable
+	 * Input: dbTable[0][3], dbTable[0][0]
+	 * Expected Output: null
 	 */
 	@Test
 	public void testFetchCourseSemester2() {
-		fail("Not yet implemented");
+		cid = 8;
+		String sem = db.fetchCourseSemester(cid);
+		
+		assertEquals("Couse semester fetch successful", sem, null);
 	}
 
 	/*
-	 * Test Id: DBC_021
-	 * Test Purpose: 
-	 * Setup: 
-	 * Input:
-	 * Expected Output: 
+	 * Test Id: DBC_FetchCourseStart_021
+	 * Test Purpose: test if Peter Clarke can retrieve the starting data a semester takes place in with an int course ID
+	 * Setup: dbTable
+	 * Input: dbTable[0][4], dbTable[0][0]
+	 * Expected Output: 01/01/1900
 	 */
 	@Test
 	public void testFetchCourseStart1() {
-		fail("Not yet implemented");
+		cid = Integer.parseInt(dbTable[0][0]);
+		String sDate = db.fetchCourseStart(cid);
+		
+		assertEquals("Couse start date fetch successful", sDate, "01/01/1900");
 	}
 	
 	/*
-	 * Test Id: DBC_022
-	 * Test Purpose: 
-	 * Setup: 
-	 * Input:
-	 * Expected Output: 
+	 * Test Id: DBC_FetchCourseStart_022
+	 * Test Purpose: test if Peter Clarke cannot retrieve the starting date a semester takes place in with an incorrect int course ID
+	 * Setup: dbTable
+	 * Input: 15
+	 * Expected Output: null
 	 */
 	@Test
 	public void testFetchCourseStart2() {
-		fail("Not yet implemented");
+		cid = 15;
+		String sDate = db.fetchCourseStart(cid);
+		
+		assertEquals("Couse start date fetch unsuccessful", sDate, null);
 	}
 
 	/*
-	 * Test Id: DBC_023
-	 * Test Purpose: 
-	 * Setup: 
-	 * Input:
-	 * Expected Output: 
+	 * Test Id: DBC_FetchCourseEnd_023
+	 * Test Purpose: test if Peter Clarke can retrieve the ending date of a semester with a correct int course ID
+	 * Setup: dbTable
+	 * Input: dbTable[0][0]
+	 * Expected Output: 07/08/1901
 	 */
 	@Test
 	public void testFetchCourseEnd1() {
-		fail("Not yet implemented");
+		cid = Integer.parseInt(dbTable[0][0]);
+		String eDate = db.fetchCourseEnd(cid);
+		
+		assertEquals("Couse end date fetch successful", eDate, "07/08/1901");
 	}
 
 	/*
-	 * Test Id: DBC_024
-	 * Test Purpose: 
-	 * Setup: 
-	 * Input:
-	 * Expected Output: 
+	 * Test Id: DBC_FetchCourseEnd_024
+	 * Test Purpose: test if Peter Clarke cannot retrieve the ending date of a semester with an incorrect int course ID
+	 * Setup: dbTable
+	 * Input: 16
+	 * Expected Output: null
 	 */
 	@Test
 	public void testFetchCourseEnd2() {
-		fail("Not yet implemented");
+		cid = 16;
+		String eDate = db.fetchCourseEnd(cid);
+		
+		assertEquals("Couse end date fetch successful", eDate, null);
 	}
 	
 	/*
