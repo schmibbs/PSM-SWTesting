@@ -1,12 +1,23 @@
 package my.PSM.PSM_Storage;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.*;
+import java.util.ArrayList;
+
 
 public class DBConnectionUnitTest {
+	
+	DBConnection db = mock(DBConnection.class);
+	String[][] dbCred = {{"jdbc:mysql://localhost:3306/mydb", "PeterClarke", "12345"}};
+	String[][] dbTable = {{"1234", "FOO", "BAR", "Spring", "01/01/1900", "07/08/1901", "am",
+							"12:00", "13:00", "12:00", "13:00","12:00", "13:00","12:00", 
+							"13:00","12:00", "13:00","12:00", "13:00"}};
+	int cid = Integer.parseInt(dbTable[0][0]);	//course id
 
 	@Before
 	public void setUp() throws Exception {
