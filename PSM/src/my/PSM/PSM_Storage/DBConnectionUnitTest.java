@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 public class DBConnectionUnitTest {
 
 	DBConnection db = mock(DBConnection.class);
@@ -21,7 +22,7 @@ public class DBConnectionUnitTest {
 	public void setUp() throws Exception {
 
 	}
-
+	
 	@After
 	public void tearDown() throws Exception {
 		
@@ -390,6 +391,7 @@ public class DBConnectionUnitTest {
 	 */
 	@Test
 	public void testFetchStartMon1() {
+		
 		fail("Not yet implemented");
 	}
 	
@@ -527,7 +529,7 @@ public class DBConnectionUnitTest {
 
 	/*
 	 * Test Id: DBC_037
-	 * Test Purpose: 
+	 * Test Purpose: Test if Peter Clarke can 
 	 * Setup: 
 	 * Input:
 	 * Expected Output: 
@@ -546,6 +548,7 @@ public class DBConnectionUnitTest {
 	 */
 	@Test
 	public void testFetchStartThu2() {
+
 		fail("Not yet implemented");
 	}
 
@@ -670,27 +673,37 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_049
-	 * Test Purpose: 
-	 * Setup: 
-	 * Input:
-	 * Expected Output: 
+	 * Test Id: DBC_StoreClassInfo_049
+	 * Test Purpose: Test if Peter Clarke can save a course's info into a db with a legal course id, subject, name and semester
+	 * Setup: dbTable
+	 * Input: dbTable[0][0], dbTable[0][1], dbTable[0][2], dbTable[0][3]
+	 * Expected Output: 0
 	 */
 	@Test
 	public void testStoreClassInfo1() {
-		fail("Not yet implemented");
+		cid = Integer.parseInt(dbTable[0][0]);
+		String subject = dbTable[0][1]; 
+		String name = dbTable[0][2];
+		String sem = dbTable[0][3];
+		
+		int result = db.storeClassInfo(cid, subject, name, sem);
+		
+		assertEquals("Successful class storage", result, 0);
 	}
 	
+	
 	/*
-	 * Test Id: DBC_050
-	 * Test Purpose: 
-	 * Setup: 
-	 * Input:
-	 * Expected Output: 
+	 * Test Id: DBC_StoreClassInfo_050
+	 * Test Purpose: Test if Peter Clarke cannot save a course's info into a db with an illegal parameter                                     
+	 * Setup: dbTable
+	 * Input: 1, "a", "s", "d"
+	 * Expected Output: 0
 	 */
 	@Test
 	public void testStoreClassInfo2() {
-		fail("Not yet implemented");
+		int result = db.storeClassInfo(1, "a", "s", "d");
+		
+		assertEquals("Successful class storage", result, -1);
 	}
 
 	/*
