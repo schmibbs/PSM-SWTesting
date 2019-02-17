@@ -78,4 +78,18 @@ public class AuthenticateTest {
 		assertEquals(false, logAuth.validate_Login());
 		assertEquals(false, logAuth.logout());
 	}
+	/*
+	 * Test Id: PSM_002-Logout_002
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
+	@Test
+	public void testlogout_usingAStub3() {
+		Authenticate logAuth = new Authenticate("clarkep", "12345");
+		assertEquals(true, logAuth.validate_Login());
+		assertEquals(true, logAuth.logout());
+		assertEquals(false, logAuth.logout());
+	}
 }
