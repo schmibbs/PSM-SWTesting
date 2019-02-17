@@ -6,12 +6,34 @@ import static org.mockito.Mockito.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.Rule;
+
 import org.mockito.*;
+import org.mockito.junit.*;
+
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import com.mysql.jdbc.*;
+import java.sql.SQLException;
+
 public class DBConnectionUnitTest {
 
-	DBConnection db = mock(DBConnection.class);
+	
+	@Mock
+	Statement statementMock;
+	@Mock
+	ResultSet resultMock;
+	@Mock
+	Connection connectMock;
+	
+	
+	@Rule 
+	public MockitoRule mockitoRule = MockitoJUnit.rule();
+	
+	private DBConnection db;
+	
+	//DBConnection db = mock(DBConnection.class);
 	String[][] dbCred = {{"jdbc:mysql://localhost:3306/mydb", "PeterClarke", "12345"}};
 	String[][] dbTable = {{"1234", "FOO", "BAR", "Spring", "01/01/1900", "07/08/1901", "am",
 							"12:00", "13:00", "12:00", "13:00","12:00", "13:00","12:00", 
@@ -20,12 +42,18 @@ public class DBConnectionUnitTest {
 	
 	@Before
 	public void setUp() throws Exception {
-
+		statementMock = mock(Statement.class);
+		resultMock = mock(ResultSet.class);
+		connectMock = mock(Connection.class);
+		
+		db = new DBConnection();		
+		
+		db.setDependency(connectMock);
 	}
 	
 	@After
 	public void tearDown() throws Exception {
-		
+		db = null;
 	}
 
 	/*
@@ -390,9 +418,11 @@ public class DBConnectionUnitTest {
 	 * Expected Output: 
 	 */
 	@Test
-	public void testFetchStartMon1() {
-		
-		fail("Not yet implemented");
+	public void testFetchStartMon1() throws SQLException {
+		when(connectMock.createStatement()).thenReturn(statementMock);
+		when(statementMock.getResultSet()).thenReturn(resultMock);
+		when(resultMock.getString("start_mon")).thenReturn("11:00");
+		assertEquals("11:00", db.fetchStartMon(0));
 	}
 	
 	/*
@@ -403,8 +433,12 @@ public class DBConnectionUnitTest {
 	 * Expected Output: 
 	 */
 	@Test
-	public void testFetchStartMon2() {
-		fail("Not yet implemented");
+	public void testFetchStartMon2() throws SQLException {
+		when(connectMock.createStatement()).thenReturn(statementMock);
+		when(statementMock.getResultSet()).thenReturn(resultMock);
+		when(resultMock.getString("start_mon")).thenReturn("11:00");
+		String temp = db.fetchStartMon(0);
+		assertFalse("12:00"==temp);
 	}
 
 	/*
@@ -415,8 +449,11 @@ public class DBConnectionUnitTest {
 	 * Expected Output: 
 	 */
 	@Test
-	public void testFetchEndMon1() {
-		fail("Not yet implemented");
+	public void testFetchEndMon1() throws SQLException{
+		when(connectMock.createStatement()).thenReturn(statementMock);
+		when(statementMock.getResultSet()).thenReturn(resultMock);
+		when(resultMock.getString("end_mon")).thenReturn("12:00");
+		assertEquals("12:00", db.fetchEndMon(0));
 	}
 	
 	/*
@@ -427,8 +464,12 @@ public class DBConnectionUnitTest {
 	 * Expected Output: 
 	 */
 	@Test
-	public void testFetchEndMon2() {
-		fail("Not yet implemented");
+	public void testFetchEndMon2() throws SQLException{
+		when(connectMock.createStatement()).thenReturn(statementMock);
+		when(statementMock.getResultSet()).thenReturn(resultMock);
+		when(resultMock.getString("end_mon")).thenReturn("11:00");
+		String temp = db.fetchEndMon(0);
+		assertFalse("12:00"==temp);
 	}
 
 	/*
@@ -439,8 +480,11 @@ public class DBConnectionUnitTest {
 	 * Expected Output: 
 	 */
 	@Test
-	public void testFetchStartTue1() {
-		fail("Not yet implemented");
+	public void testFetchStartTue1() throws SQLException{
+		when(connectMock.createStatement()).thenReturn(statementMock);
+		when(statementMock.getResultSet()).thenReturn(resultMock);
+		when(resultMock.getString("start_tue")).thenReturn("11:00");
+		assertEquals("11:00", db.fetchStartTue(0));
 	}
 	
 	/*
@@ -451,8 +495,12 @@ public class DBConnectionUnitTest {
 	 * Expected Output: 
 	 */
 	@Test
-	public void testFetchStartTue2() {
-		fail("Not yet implemented");
+	public void testFetchStartTue2() throws SQLException{
+		when(connectMock.createStatement()).thenReturn(statementMock);
+		when(statementMock.getResultSet()).thenReturn(resultMock);
+		when(resultMock.getString("start_tue")).thenReturn("11:00");
+		String temp = db.fetchStartTue(0);
+		assertFalse("12:00"==temp);
 	}
 
 	/*
@@ -463,8 +511,11 @@ public class DBConnectionUnitTest {
 	 * Expected Output: 
 	 */
 	@Test
-	public void testFetchEndTue1() {
-		fail("Not yet implemented");
+	public void testFetchEndTue1() throws SQLException{
+		when(connectMock.createStatement()).thenReturn(statementMock);
+		when(statementMock.getResultSet()).thenReturn(resultMock);
+		when(resultMock.getString("end_tue")).thenReturn("12:00");
+		assertEquals("12:00", db.fetchEndTue(0));
 	}
 	
 	/*
@@ -475,8 +526,12 @@ public class DBConnectionUnitTest {
 	 * Expected Output: 
 	 */
 	@Test
-	public void testFetchEndTue2() {
-		fail("Not yet implemented");
+	public void testFetchEndTue2() throws SQLException{
+		when(connectMock.createStatement()).thenReturn(statementMock);
+		when(statementMock.getResultSet()).thenReturn(resultMock);
+		when(resultMock.getString("end_tue")).thenReturn("11:00");
+		String temp = db.fetchEndTue(0);
+		assertFalse("12:00"==temp);
 	}
 
 	/*
@@ -487,8 +542,11 @@ public class DBConnectionUnitTest {
 	 * Expected Output: 
 	 */
 	@Test
-	public void testFetchStartWed1() {
-		fail("Not yet implemented");
+	public void testFetchStartWed1() throws SQLException{
+		when(connectMock.createStatement()).thenReturn(statementMock);
+		when(statementMock.getResultSet()).thenReturn(resultMock);
+		when(resultMock.getString("start_wed")).thenReturn("11:00");
+		assertEquals("11:00", db.fetchStartWed(0));
 	}
 	
 	/*
@@ -499,8 +557,12 @@ public class DBConnectionUnitTest {
 	 * Expected Output: 
 	 */
 	@Test
-	public void testFetchStartWed2() {
-		fail("Not yet implemented");
+	public void testFetchStartWed2() throws SQLException{
+		when(connectMock.createStatement()).thenReturn(statementMock);
+		when(statementMock.getResultSet()).thenReturn(resultMock);
+		when(resultMock.getString("start_wed")).thenReturn("11:00");
+		String temp = db.fetchStartWed(0);
+		assertFalse("12:00"==temp);
 	}
 
 	/*
@@ -511,8 +573,11 @@ public class DBConnectionUnitTest {
 	 * Expected Output: 
 	 */
 	@Test
-	public void testFetchEndWed1() {
-		fail("Not yet implemented");
+	public void testFetchEndWed1() throws SQLException{
+		when(connectMock.createStatement()).thenReturn(statementMock);
+		when(statementMock.getResultSet()).thenReturn(resultMock);
+		when(resultMock.getString("end_wed")).thenReturn("12:00");
+		assertEquals("12:00", db.fetchEndWed(0));
 	}
 	
 	/*
@@ -523,8 +588,12 @@ public class DBConnectionUnitTest {
 	 * Expected Output: 
 	 */
 	@Test
-	public void testFetchEndWed2() {
-		fail("Not yet implemented");
+	public void testFetchEndWed2() throws SQLException{
+		when(connectMock.createStatement()).thenReturn(statementMock);
+		when(statementMock.getResultSet()).thenReturn(resultMock);
+		when(resultMock.getString("end_wed")).thenReturn("11:00");
+		String temp = db.fetchEndWed(0);
+		assertFalse("12:00"==temp);
 	}
 
 	/*
@@ -535,8 +604,11 @@ public class DBConnectionUnitTest {
 	 * Expected Output: 
 	 */
 	@Test
-	public void testFetchStartThu1() {
-		fail("Not yet implemented");
+	public void testFetchStartThu1() throws SQLException{
+		when(connectMock.createStatement()).thenReturn(statementMock);
+		when(statementMock.getResultSet()).thenReturn(resultMock);
+		when(resultMock.getString("start_thu")).thenReturn("11:00");
+		assertEquals("11:00", db.fetchStartThu(0));
 	}
 	
 	/*
@@ -547,9 +619,12 @@ public class DBConnectionUnitTest {
 	 * Expected Output: 
 	 */
 	@Test
-	public void testFetchStartThu2() {
-
-		fail("Not yet implemented");
+	public void testFetchStartThu2() throws SQLException{
+		when(connectMock.createStatement()).thenReturn(statementMock);
+		when(statementMock.getResultSet()).thenReturn(resultMock);
+		when(resultMock.getString("start_thu")).thenReturn("11:00");
+		String temp = db.fetchStartThu(0);
+		assertFalse("12:00"==temp);
 	}
 
 	/*
@@ -560,8 +635,11 @@ public class DBConnectionUnitTest {
 	 * Expected Output: 
 	 */
 	@Test
-	public void testFetchEndThu1() {
-		fail("Not yet implemented");
+	public void testFetchEndThu1() throws SQLException{
+		when(connectMock.createStatement()).thenReturn(statementMock);
+		when(statementMock.getResultSet()).thenReturn(resultMock);
+		when(resultMock.getString("end_thu")).thenReturn("12:00");
+		assertEquals("12:00", db.fetchEndThu(0));
 	}
 	
 	/*
@@ -572,8 +650,12 @@ public class DBConnectionUnitTest {
 	 * Expected Output: 
 	 */
 	@Test
-	public void testFetchEndThu2() {
-		fail("Not yet implemented");
+	public void testFetchEndThu2() throws SQLException{
+		when(connectMock.createStatement()).thenReturn(statementMock);
+		when(statementMock.getResultSet()).thenReturn(resultMock);
+		when(resultMock.getString("end_thu")).thenReturn("11:00");
+		String temp = db.fetchStartThu(0);
+		assertFalse("12:00"==temp);
 	}
 
 	/*
@@ -584,8 +666,11 @@ public class DBConnectionUnitTest {
 	 * Expected Output: 
 	 */
 	@Test
-	public void testFetchStartFri1() {
-		fail("Not yet implemented");
+	public void testFetchStartFri1() throws SQLException{
+		when(connectMock.createStatement()).thenReturn(statementMock);
+		when(statementMock.getResultSet()).thenReturn(resultMock);
+		when(resultMock.getString("start_fri")).thenReturn("11:00");
+		assertEquals("11:00", db.fetchStartFri(0));
 	}
 	
 	/*
@@ -596,8 +681,12 @@ public class DBConnectionUnitTest {
 	 * Expected Output: 
 	 */
 	@Test
-	public void testFetchStartFri2() {
-		fail("Not yet implemented");
+	public void testFetchStartFri2() throws SQLException{
+		when(connectMock.createStatement()).thenReturn(statementMock);
+		when(statementMock.getResultSet()).thenReturn(resultMock);
+		when(resultMock.getString("start_fri")).thenReturn("11:00");
+		String temp = db.fetchStartFri(0);
+		assertFalse("12:00"==temp);
 	}
 
 	/*
@@ -608,8 +697,11 @@ public class DBConnectionUnitTest {
 	 * Expected Output: 
 	 */
 	@Test
-	public void testFetchEndFri1() {
-		fail("Not yet implemented");
+	public void testFetchEndFri1() throws SQLException{
+		when(connectMock.createStatement()).thenReturn(statementMock);
+		when(statementMock.getResultSet()).thenReturn(resultMock);
+		when(resultMock.getString("end_fri")).thenReturn("12:00");
+		assertEquals("12:00", db.fetchEndFri(0));
 	}
 	
 	/*
@@ -620,8 +712,12 @@ public class DBConnectionUnitTest {
 	 * Expected Output: 
 	 */
 	@Test
-	public void testFetchEndFri2() {
-		fail("Not yet implemented");
+	public void testFetchEndFri2() throws SQLException{
+		when(connectMock.createStatement()).thenReturn(statementMock);
+		when(statementMock.getResultSet()).thenReturn(resultMock);
+		when(resultMock.getString("end_fri")).thenReturn("11:00");
+		String temp = db.fetchEndFri(0);
+		assertFalse("12:00"==temp);
 	}
 
 	/*
@@ -632,8 +728,11 @@ public class DBConnectionUnitTest {
 	 * Expected Output: 
 	 */
 	@Test
-	public void testFetchStartSat1() {
-		fail("Not yet implemented");
+	public void testFetchStartSat1() throws SQLException{
+		when(connectMock.createStatement()).thenReturn(statementMock);
+		when(statementMock.executeQuery("SELECT start_sat FROM Class100 WHERE course_id = " +0 +";")).thenReturn(resultMock);
+		when(resultMock.getString("start_sat")).thenReturn("11:00");
+		assertEquals("11:00", db.fetchStartSat(0));
 	}
 	
 	/*
@@ -644,8 +743,12 @@ public class DBConnectionUnitTest {
 	 * Expected Output: 
 	 */
 	@Test
-	public void testFetchStartSat2() {
-		fail("Not yet implemented");
+	public void testFetchStartSat2() throws SQLException {
+		when(connectMock.createStatement()).thenReturn(statementMock);
+		when(statementMock.executeQuery("SELECT start_sat FROM Class100 WHERE course_id = " +0 +";")).thenReturn(resultMock);
+		when(resultMock.getString("start_sat")).thenReturn("11:00");
+		String temp = db.fetchStartSat(0);
+		assertFalse("12:00"==temp);
 	}
 
 	/*
@@ -656,8 +759,11 @@ public class DBConnectionUnitTest {
 	 * Expected Output: 
 	 */
 	@Test
-	public void testFetchEndSat1() {
-		fail("Not yet implemented");
+	public void testFetchEndSat1() throws SQLException{
+		when(connectMock.createStatement()).thenReturn(statementMock);
+		when(statementMock.executeQuery("SELECT end_sat FROM Class100 WHERE course_id = " +0 +";")).thenReturn(resultMock);
+		when(resultMock.getString("end_sat")).thenReturn("12:00");
+		assertEquals("12:00", db.fetchEndSat(0));
 	}
 	
 	/*
@@ -668,8 +774,12 @@ public class DBConnectionUnitTest {
 	 * Expected Output: 
 	 */
 	@Test
-	public void testFetchEndSat2() {
-		fail("Not yet implemented");
+	public void testFetchEndSat2() throws SQLException{
+		when(connectMock.createStatement()).thenReturn(statementMock);
+		when(statementMock.executeQuery("SELECT end_sat FROM Class100 WHERE course_id = " +0 +";")).thenReturn(resultMock);
+		when(resultMock.getString("end_sat")).thenReturn("12:00");
+		String temp = db.fetchEndSat(0);
+		assertFalse("12:00"==temp);
 	}
 
 	/*
