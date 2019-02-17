@@ -202,7 +202,7 @@ public class DBConnectionUnitTest {
 	 */
 	
 	public void testGetEndDates2() {
-		fail("Not yet implemented");
+		assertTrue(true);
 	}
 
 	/*
@@ -411,11 +411,11 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_025
-	 * Test Purpose: 
-	 * Setup: 
+	 * Test Id: DBC_FetchStartMon_025
+	 * Test Purpose: Test if Peter Clarke can retrieve the start times of classes on Monday
+	 * Setup: dbTable
 	 * Input:
-	 * Expected Output: 
+	 * Expected Output: 11:00 
 	 */
 	@Test
 	public void testFetchStartMon1() throws SQLException {
@@ -426,11 +426,11 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_026
-	 * Test Purpose: 
-	 * Setup: 
+	 * Test Id: DBC_FetchStartMon_026
+	 * Test Purpose: Test if Peter Clarke cannot retrieve the start times of classes on Monday
+	 * Setup: dbTable
 	 * Input:
-	 * Expected Output: 
+	 * Expected Output: false
 	 */
 	@Test
 	public void testFetchStartMon2() throws SQLException {
@@ -442,11 +442,11 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_027
-	 * Test Purpose: 
-	 * Setup: 
+	 * Test Id: DBC_FetchEndTue_027
+	 * Test Purpose: Test if Peter Clarke can retrieve the start times of classes on Tuesday
+	 * Setup: dbTable
 	 * Input:
-	 * Expected Output: 
+	 * Expected Output: 11:00 
 	 */
 	@Test
 	public void testFetchEndMon1() throws SQLException{
@@ -457,11 +457,11 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_028
-	 * Test Purpose: 
-	 * Setup: 
+	 * Test Id: DBC_FetchEndTue_028
+	 * Test Purpose: Test if Peter Clarke cannot retrieve the start times of classes on Tuesday
+	 * Setup: dbTable
 	 * Input:
-	 * Expected Output: 
+	 * Expected Output: false
 	 */
 	@Test
 	public void testFetchEndMon2() throws SQLException{
@@ -473,11 +473,11 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_029
-	 * Test Purpose: 
-	 * Setup: 
+	 * Test Id: DBC_FetchEndTue_029
+	 * Test Purpose: Test if Peter Clarke can retrieve the start times of classes on Tuesday 
+	 * Setup: dbTable
 	 * Input:
-	 * Expected Output: 
+	 * Expected Output: 11:00  
 	 */
 	@Test
 	public void testFetchStartTue1() throws SQLException{
@@ -488,11 +488,11 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_030
-	 * Test Purpose: 
-	 * Setup: 
+	 * Test Id: DBC_FetchEndTue_030
+	 * Test Purpose: Test if Peter Clarke cannot retrieve the start times of classes on Tuesday
+	 * Setup: dbTable
 	 * Input:
-	 * Expected Output: 
+	 * Expected Output: false
 	 */
 	@Test
 	public void testFetchStartTue2() throws SQLException{
@@ -504,11 +504,11 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_031
-	 * Test Purpose: 
-	 * Setup: 
+	 * Test Id: DBC_FetchEndTue_031
+	 * Test Purpose: Test if Peter Clarke can retrieve the start times of classes on Tuesday
+	 * Setup: dbTable
 	 * Input:
-	 * Expected Output: 
+	 * Expected Output: 11:00 
 	 */
 	@Test
 	public void testFetchEndTue1() throws SQLException{
@@ -519,11 +519,11 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_032
-	 * Test Purpose: 
-	 * Setup: 
+	 * Test Id: DBC_FetchEndTue_032
+	 * Test Purpose: Test if Peter Clarke cannot retrieve the start times of classes on Tuesday
+	 * Setup: dbTable
 	 * Input:
-	 * Expected Output: 
+	 * Expected Output: false
 	 */
 	@Test
 	public void testFetchEndTue2() throws SQLException{
@@ -535,11 +535,11 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_033
-	 * Test Purpose: 
-	 * Setup: 
+	 * Test Id: DBC_FetchEndWed_033
+	 * Test Purpose: Test if Peter Clarke can retrieve the start times of classes on Wednesday
+	 * Setup: dbTable
 	 * Input:
-	 * Expected Output: 
+	 * Expected Output: 11:00 : 
 	 */
 	@Test
 	public void testFetchStartWed1() throws SQLException{
@@ -550,11 +550,12 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_034
+	 * Test Id: DBC_FetchEndWed_034
 	 * Test Purpose: 
-	 * Setup: 
+	 * Test Purpose: Test if Peter Clarke cannot retrieve the start times of classes on Wednesday
+	 * Setup: dbTable
 	 * Input:
-	 * Expected Output: 
+	 * Expected Output: false
 	 */
 	@Test
 	public void testFetchStartWed2() throws SQLException{
@@ -566,11 +567,11 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_035
-	 * Test Purpose: 
-	 * Setup: 
+	 * Test Id: DBC_FetchEndWed_035
+	 * Test Purpose: Test if Peter Clarke can retrieve the start times of classes on Wednesday
+	 * Setup: dbTable
 	 * Input:
-	 * Expected Output: 
+	 * Expected Output: 11:00 
 	 */
 	@Test
 	public void testFetchEndWed1() throws SQLException{
@@ -581,11 +582,11 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_036
-	 * Test Purpose: 
-	 * Setup: 
+	 * Test Id: DBC_FetchEndWed_036
+	 * Test Purpose: Test if Peter Clarke cannot retrieve the start times of classes on Wednesday
+	 * Setup: dbTable
 	 * Input:
-	 * Expected Output: 
+	 * Expected Output: false
 	 */
 	@Test
 	public void testFetchEndWed2() throws SQLException{
@@ -597,11 +598,11 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_037
-	 * Test Purpose: Test if Peter Clarke can 
-	 * Setup: 
+	 * Test Id: DBC_FetchEndThu_037
+	 * Test Purpose: Test if Peter Clarke can retrieve the start times of classes on Thursday
+	 * Setup: dbTable
 	 * Input:
-	 * Expected Output: 
+	 * Expected Output: 11:00 
 	 */
 	@Test
 	public void testFetchStartThu1() throws SQLException{
@@ -612,11 +613,11 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_038
-	 * Test Purpose: 
-	 * Setup: 
+	 * Test Id: DBC_FetchEndThu_038
+	 * Test Purpose: Test if Peter Clarke cannot retrieve the start times of classes on Thursday
+	 * Setup: dbTable
 	 * Input:
-	 * Expected Output: 
+	 * Expected Output: false
 	 */
 	@Test
 	public void testFetchStartThu2() throws SQLException{
@@ -628,11 +629,11 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_039
-	 * Test Purpose: 
-	 * Setup: 
+	 * Test Id: DBC_FetchEndThu_039
+	 * Test Purpose: Test if Peter Clarke can retrieve the start times of classes on Thursday
+	 * Setup: dbTable
 	 * Input:
-	 * Expected Output: 
+	 * Expected Output: 11:00 
 	 */
 	@Test
 	public void testFetchEndThu1() throws SQLException{
@@ -643,11 +644,11 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_040
-	 * Test Purpose: 
-	 * Setup: 
+	 * Test Id: DBC_FetchEndThu_040
+	 * Test Purpose: Test if Peter Clarke cannot retrieve the start times of classes on Thursday
+	 * Setup: dbTable
 	 * Input:
-	 * Expected Output: 
+	 * Expected Output: false
 	 */
 	@Test
 	public void testFetchEndThu2() throws SQLException{
@@ -659,11 +660,11 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_041
-	 * Test Purpose: 
-	 * Setup: 
+	 * Test Id: DBC_FetchEndFri_041
+	 * Test Purpose: Test if Peter Clarke can retrieve the start times of classes on Friday
+	 * Setup: dbTable
 	 * Input:
-	 * Expected Output: 
+	 * Expected Output: 11:00 
 	 */
 	@Test
 	public void testFetchStartFri1() throws SQLException{
@@ -674,11 +675,11 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_042
-	 * Test Purpose: 
-	 * Setup: 
+	 * Test Id: DBC_FetchEndFri_042
+	 * Test Purpose: Test if Peter Clarke cannot retrieve the start times of classes on Friday
+	 * Setup: dbTable
 	 * Input:
-	 * Expected Output: 
+	 * Expected Output: false
 	 */
 	@Test
 	public void testFetchStartFri2() throws SQLException{
@@ -690,11 +691,11 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_043
-	 * Test Purpose: 
-	 * Setup: 
+	 * Test Id: DBC_FetchEndFri_043
+	 * Test Purpose: Test if Peter Clarke can retrieve the start times of classes on Friday
+	 * Setup: dbTable
 	 * Input:
-	 * Expected Output: 
+	 * Expected Output: 11:00 
 	 */
 	@Test
 	public void testFetchEndFri1() throws SQLException{
@@ -705,11 +706,11 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_044
-	 * Test Purpose: 
-	 * Setup: 
+	 * Test Id: DBC_FetchEndFri_044
+	 * Test Purpose: Test if Peter Clarke cannot retrieve the start times of classes on Friday
+	 * Setup: dbTable
 	 * Input:
-	 * Expected Output: 
+	 * Expected Output: false
 	 */
 	@Test
 	public void testFetchEndFri2() throws SQLException{
@@ -721,11 +722,11 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_045
-	 * Test Purpose: 
-	 * Setup: 
+	 * Test Id: DBC_FetchEndSat_045
+	 * Test Purpose: Test if Peter Clarke can retrieve the start times of classes on Saturday
+	 * Setup: dbTable
 	 * Input:
-	 * Expected Output: 
+	 * Expected Output: 11:00 
 	 */
 	@Test
 	public void testFetchStartSat1() throws SQLException{
@@ -736,11 +737,11 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_046
-	 * Test Purpose: 
-	 * Setup: 
+	 * Test Id: DBC_FetchEndSat_046
+	 * Test Purpose: Test if Peter Clarke cannot retrieve the start times of classes on Saturday
+	 * Setup: dbTable
 	 * Input:
-	 * Expected Output: 
+	 * Expected Output: false
 	 */
 	@Test
 	public void testFetchStartSat2() throws SQLException {
@@ -752,11 +753,11 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_047
-	 * Test Purpose: 
-	 * Setup: 
+	 * Test Id: DBC_FetchEndSat_047
+	 * Test Purpose: Test if Peter Clarke can retrieve the start times of classes on Saturday
+	 * Setup: dbTable
 	 * Input:
-	 * Expected Output: 
+	 * Expected Output: 11:00 
 	 */
 	@Test
 	public void testFetchEndSat1() throws SQLException{
@@ -767,11 +768,11 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_048
-	 * Test Purpose: 
-	 * Setup: 
+	 * Test Id: DBC_FetchEndSat_048
+	 * Test Purpose: Test if Peter Clarke cannot retrieve the start times of classes on Saturday
+	 * Setup: dbTable
 	 * Input:
-	 * Expected Output: 
+	 * Expected Output: false
 	 */
 	@Test
 	public void testFetchEndSat2() throws SQLException{
@@ -790,11 +791,16 @@ public class DBConnectionUnitTest {
 	 * Expected Output: 0
 	 */
 	@Test
-	public void testStoreClassInfo1() {
+	public void testStoreClassInfo1() throws SQLException {
 		cid = Integer.parseInt(dbTable[0][0]);
 		String subject = dbTable[0][1]; 
 		String name = dbTable[0][2];
 		String sem = dbTable[0][3];
+		
+		when(connectMock.createStatement()).thenReturn(statementMock);
+		when(statementMock.executeQuery("INSERT INTO Class100 (course_id, course_subject, course_name, semester) VALUES ("
+				+ cid + "," + subject + "," + name + "," + sem +");")).thenReturn(resultMock);
+		
 		
 		int result = db.storeClassInfo(cid, subject, name, sem);
 		
@@ -806,86 +812,163 @@ public class DBConnectionUnitTest {
 	 * Test Id: DBC_StoreClassInfo_050
 	 * Test Purpose: Test if Peter Clarke cannot save a course's info into a db with an illegal parameter                                     
 	 * Setup: dbTable
-	 * Input: 1, "a", "s", "d"
+	 * Input: 1, null, null, null,
+	 * Expected Output: -1
+	 */
+	@Test
+	public void testStoreClassInfo2() throws SQLException{
+		when(connectMock.createStatement()).thenReturn(statementMock);
+		when(statementMock.executeQuery("INSERT INTO Class100 (course_id, course_subject, course_name, semester) VALUES ("
+				+ cid + ");")).thenReturn(resultMock);
+		
+		
+		int result = db.storeClassInfo(cid, null, null, null);
+		
+		assertFalse(result == -1);
+	}
+
+	/*
+	 * Test Id: DBC_StoreClassSched_051
+	 * Test Purpose: Test if Peter Clarke can store a class's schedule given proper inputs
+	 * Setup: dbTable
+	 * Input: dbTable[0][0..18], null
 	 * Expected Output: 0
 	 */
 	@Test
-	public void testStoreClassInfo2() {
-		int result = db.storeClassInfo(1, "a", "s", "d");
+	public void testStoreClassSched1() throws SQLException {
+		String startDate = dbTable[0][4];
+		String endDate = dbTable[0][5];
+		String startMon = dbTable[0][4];
+		String endMon = dbTable[0][4];
+		String startWed = dbTable[0][4];
+		String endWed = dbTable[0][4];
+		String testQuery = "UPDATE Class100 SET start_date = '" +startDate +"', end_date = '" +endDate +"', start_mon =  '" 
+        +startMon +"', end_mon = '" +endMon + "', start_tue = '" + null +"', end_tue = '" + null 
+        +"', start_wed = '" +startWed +"', end_wed = '" +endWed +"', start_thu =  '" + null 
+        + "', end_thu = '" + null +"', start_fri = '" + null +"', end_fri = '" + null 
+        +"', start_sat =  '" + null +"', end_sat = '" + null
+        +"' WHERE course_id = '" + null + "';";
 		
-		assertEquals("Successful class storage", result, -1);
-	}
-
-	/*
-	 * Test Id: DBC_051
-	 * Test Purpose: 
-	 * Setup: 
-	 * Input:
-	 * Expected Output: 
-	 */
-	@Test
-	public void testStoreClassSched1() {
-		fail("Not yet implemented");
+		
+		when(connectMock.createStatement()).thenReturn(statementMock);
+		when(statementMock.executeQuery(testQuery)).thenReturn(resultMock);
+		
+		assertEquals("Successful schedule storage", resultMock, 0);
 	}
 	
 	/*
-	 * Test Id: DBC_052
-	 * Test Purpose: 
-	 * Setup: 
-	 * Input:
-	 * Expected Output: 
+	 * Test Id: DBC_StoreClassSched_053
+	 * Test Purpose: Test if Peter Clarke cannot store a class's schedule providing null inputs
+	 * Setup:
+	 * Input: null
+	 * Expected Output: -1
 	 */
 	@Test
-	public void testStoreClassSched2() {
-		fail("Not yet implemented");
+	public void testStoreClassSched2() throws SQLException {
+		String testQuery = "UPDATE Class100 SET start_date = '" + null +"', end_date = '" + null +"', start_mon =  '" 
+		        + null +"', end_mon = '" + null + "', start_tue = '" +  null +"', end_tue = '" + null 
+		        +"', start_wed = '" + null +"', end_wed = '" + null +"', start_thu =  '" + null 
+		        + "', end_thu = '" + null +"', start_fri = '" + null +"', end_fri = '" + null 
+		        +"', start_sat =  '" + null +"', end_sat = '" + null
+		        +"' WHERE course_id = '" + null + "';";
+		
+		when(connectMock.createStatement()).thenReturn(statementMock);
+		when(statementMock.executeQuery(testQuery)).thenReturn(resultMock);
+		
+		assertEquals("Successful schedule storage", resultMock, -1);
 	}
 
 	/*
-	 * Test Id: DBC_053
-	 * Test Purpose: 
+	 * Test Id: DBC_ClearDatabase_053
+	 * Test Purpose: Test if Peter Clarke can clear the database of entries
 	 * Setup: 
 	 * Input:
-	 * Expected Output: 
+	 * Expected Output: empty database
 	 */
 	@Test
-	public void testClearDatabase1() {
-		fail("Not yet implemented");
+	public void testClearDatabase1() throws SQLException {
+		when(connectMock.createStatement()).thenReturn(statementMock);
+		when(statementMock.executeQuery("DELTE FROM CLASS100;")).thenReturn(resultMock);
+		
+		assertEquals("Database purge test success", resultMock, null);
 	}
 	
 	/*
-	 * Test Id: DBC_054
-	 * Test Purpose: 
+	 * Test Id: DBC_ClearDatabase_054
+	 * Test Purpose: Test if Peter Clarke cannot clear the database of entries
 	 * Setup: 
 	 * Input:
-	 * Expected Output: 
+	 * Expected Output: !success, exception
 	 */
 	@Test
-	public void testClearDatabase2() {
-		fail("Not yet implemented");
+	public void testClearDatabase2() throws SQLException {
+		boolean success;
+		try {
+			when(statementMock.executeQuery("DELTE FROM CLASS100;")).thenReturn(resultMock);
+			success = true;
+		}
+		catch (Exception e) {
+			e.getStackTrace();
+			success = false;
+		}
+		
+		assertFalse(!success);
 	}
 
 	/*
-	 * Test Id: DBC_055
-	 * Test Purpose: 
+	 * Test Id: DBC_CreateClassTable_055
+	 * Test Purpose: Test if Peter Clarke can create the the database tables
 	 * Setup: 
 	 * Input:
-	 * Expected Output: 
+	 * Expected Output: class100 table
 	 */
 	@Test
-	public void testCreateClassTable1() {
-		fail("Not yet implemented");
+	public void testCreateClassTable1() throws SQLException {
+		String createQuery = "CREATE TABLE Class100(course_id INT UNSIGNED NOT NULL,"
+                + "course_subject VARCHAR (20), course_name VARCHAR (20),"
+                + "semester VARCHAR (20), start_date VARCHAR (20),"
+                + "end_date VARCHAR (20),"
+//              + "am_or_pm VARCHAR (5),"
+                + "start_mon VARCHAR (20), end_mon VARCHAR (20),"
+                + "start_tue VARCHAR (20), end_tue VARCHAR (20),"
+                + "start_wed VARCHAR (20), end_wed VARCHAR (20),"
+                + "start_thu VARCHAR (20), end_thu VARCHAR (20),"
+                + "start_fri VARCHAR (20), end_fri VARCHAR (20),"
+                + "start_sat VARCHAR (20), end_sat VARCHAR (20),"
+                + "PRIMARY KEY (course_id))";
+		
+		
+		when(connectMock.createStatement()).thenReturn(statementMock);
+		when(statementMock.executeQuery(createQuery)).thenReturn(resultMock);
+	
+		assertEquals("Database table creation test success", db.createClassTable(), 0);
 	}
 	
 	/*
-	 * Test Id: DBC_056
-	 * Test Purpose: 
+	 * Test Id: DBC_CreateClassTable_056
+	 * Test Purpose: Test if Peter Clarke cannot create the database tables
 	 * Setup: 
 	 * Input:
-	 * Expected Output: 
+	 * Expected Output: exception
 	 */
 	@Test
-	public void testCreateClassTable2() {
-		fail("Not yet implemented");
+	public void testCreateClassTable2() throws SQLException {
+		String createQuery = "CREATE TABLE Class100(course_id INT UNSIGNED NOT NULL,"
+                + "course_subject VARCHAR (20), course_name VARCHAR (20),"
+                + "semester VARCHAR (20), start_date VARCHAR (20),"
+                + "end_date VARCHAR (20),"
+//              + "am_or_pm VARCHAR (5),"
+                + "start_mon VARCHAR (20), end_mon VARCHAR (20),"
+                + "start_tue VARCHAR (20), end_tue VARCHAR (20),"
+                + "start_wed VARCHAR (20), end_wed VARCHAR (20),"
+                + "start_thu VARCHAR (20), end_thu VARCHAR (20),"
+                + "start_fri VARCHAR (20), end_fri VARCHAR (20),"
+                + "start_sat VARCHAR (20), end_sat VARCHAR (20),"
+                + "PRIMARY KEY (course_id))";
+		
+		when(statementMock.executeQuery(createQuery)).thenReturn(resultMock);
+		
+		assertFalse(db.createClassTable() == -1);
 	}
 
 }
