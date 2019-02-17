@@ -1,12 +1,10 @@
 package my.PSM.PSM_Logic;
-import my.PSM.TestDriver;
-//import my.PSM.PSM_Interface.LogOutConfirm;
-//import my.PSM.PSM_Interface.LoginForm;
-//import my.PSM.PSM_Interface.MainMenu;
-//import my.PSM.PSM_Interface.Messages;
-//import my.PSM.PSM_Interface.courseSelect;
-//import my.PSM.PSM_Interface.PrefilledScheduleForm;
-//import my.PSM.PSM_Interface.ScheduleForm;
+
+import my.PSM.PSM_Interface.LogOutConfirm;
+import my.PSM.PSM_Interface.LoginForm;
+import my.PSM.PSM_Interface.MainMenu;
+import my.PSM.PSM_Interface.Messages;
+import my.PSM.PSM_Interface.courseSelect;
 
 //
 //
@@ -21,14 +19,14 @@ import my.PSM.TestDriver;
 
 class InterfaceController {
     
-    public TestDriver msg = new TestDriver();
+    public Messages msg = new Messages();
     
-    public TestDriver log = new TestDriver();
-    public TestDriver sched = new TestDriver();
-    public TestDriver edSched = new TestDriver();
-    public TestDriver mm = new TestDriver();
-    public TestDriver logout = new TestDriver();
-    public TestDriver cs;
+    public LoginForm log = new LoginForm();
+    public ScheduleForm sched = new ScheduleForm();
+    public PrefilledScheduleForm edSched = new PrefilledScheduleForm();
+    public MainMenu mm = new MainMenu();
+    public LogOutConfirm logout = new LogOutConfirm();
+    public courseSelect cs;
     
     public InterfaceController()
     {
@@ -75,7 +73,7 @@ class InterfaceController {
     }
     
     public void Course_Select_Form(){
-        cs = new TestDriver();
+        cs = new courseSelect();
         cs.launchCourse();
     }
     public void Initiate_Login_Form() {
@@ -89,7 +87,7 @@ class InterfaceController {
     }
 
     public void Initiate_MainMenu() {
-        mm.launchFormMenu();
+        mm.launchForm();
 
     }
 }

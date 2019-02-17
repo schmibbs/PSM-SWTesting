@@ -5,27 +5,25 @@ import java.util.ArrayList;
 
 public class DBConnection
 {
-	public boolean loggedIn;
+	public boolean loggedIn = false;
     
 	public int connect(String db, String user, String pw) {
 		if(user.equals("clarkep")  && pw.equals("12345") && db.contentEquals("mydb")) {
-			System.out.println("Connected (" + db + ", " + user + ", " + pw + ")!");
+			System.out.println("Connected (db, user, pw)!");
 			loggedIn = true;
 			return 0;
 		}
 		System.out.println("Failed to connect!");
-		loggedIn = false;
 		return -1;
 	}
 
 	public int connect(String user, String pw) {
 		if(user.equals("clarkep")  && pw.equals("12345")) {
-			System.out.println("Connected (" + user + ", " + pw + ")!");
+			System.out.println("Connected (user, pw)!");
 			loggedIn = true;
 			return 0;
 		}
 		System.out.println("Failed to Connect!");
-		loggedIn = false;
 		return -1;
 	}
 
@@ -44,16 +42,12 @@ public class DBConnection
 
 	public int fetchCourseID(int courseID) {
 		System.out.println("Fetched CourseID!");
-	    return 4072;
+	    return 100;
 	}
 
 	public ArrayList<String> getEndDates() {
 		ArrayList<String> endDates = new ArrayList<String>();
 		endDates.add("08/20/15");
-        System.out.println("EndDatesSize: " + endDates.size());
-        for(int i = 0; i < endDates.size(); i++) {
-            System.out.println("EndDates: " + endDates.get(i));
-        }
         return endDates;
 	}
 
@@ -64,15 +58,15 @@ public class DBConnection
 	}
 
 	public String fetchCourses() {
-		return "CEN 4072";
+		return "TestCourse";
 	}
 
 	public String fetchCourseSubj(int courseID) {
-		return "CEN";
+		return "TestSubject";
 	}
 
 	public String fetchCourseName(int courseID) {
-		return "Software Testing";
+		return "CourseName";
 	}
 
 	public String fetchCourseSemester(int courseID) {
@@ -88,51 +82,51 @@ public class DBConnection
 	}
 
 	public String fetchStartMon(int courseID) {
-		return "07:30";
+		return "7:30";
 	}
 
 	public String fetchEndMon(int courseID) {
-		return "07:31";
+		return "7:31";
 	}
 
 	public String fetchStartTue(int courseID) {
-		return "07:30";
+		return "7:30";
 	}
 
 	public String fetchEndTue(int courseID) {
-		return "07:31";
+		return "7:31";
 	}
 
 	public String fetchStartWed(int courseID) {
-		return "07:30";
+		return "7:30";
 	}
 
 	public String fetchEndWed(int courseID) {
-		return "07:31";
+		return "7:31";
 	}
 
 	public String fetchStartThu(int courseID) {
-		return "07:30";
+		return "7:30";
 	}
 
 	public String fetchEndThu(int courseID) {
-		return "07:31";
+		return "7:31";
 	}
 
 	public String fetchStartFri(int courseID) {
-		return "07:30";
+		return "7:30";
 	}
 
 	public String fetchEndFri(int courseID) {
-		return "07:31";
+		return "7:31";
 	}
 
 	public String fetchStartSat(int courseID) {
-		return "07:30";
+		return "7:30";
 	}
 
 	public String fetchEndSat(int courseID) {
-		return "07:31";
+		return "7:31";
 	}
 
 	public int storeClassInfo(int courseID, String courseSubj, String courseName, String semester) {

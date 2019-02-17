@@ -170,8 +170,7 @@ public class appController {
            if(logoutSel)
            {
                // Logout 
-        	   db.disconnect();
-               //auth.logout();
+               auth.logout();
                ic.Initiate_Logout();
 
            }
@@ -199,7 +198,7 @@ public class appController {
                
                while(!dataReceived)
                {
-                   dataReceived = ic.edSched.dataRec3(); 
+                   dataReceived = ic.edSched.dataRec(); 
                    sleep(300);
                }
                
@@ -245,6 +244,11 @@ public class appController {
     public static boolean checkClear()
     {
         ArrayList<String> endDates = db.getEndDates();
+        System.out.println("Cleared");
+        System.out.println("Size: " + endDates.size());
+        for(int i = 0; i < endDates.size(); i++) {
+            System.out.println("EndDates: " + endDates.get(i));
+        }
         Calendar endCal = new GregorianCalendar();
         Calendar now = Calendar.getInstance();
         

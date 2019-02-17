@@ -17,7 +17,7 @@ public class FutureTimerTest {
 	}
 
 	@Test
-	public void testSchedule() {
+	public void test() {
 		fail("Not yet implemented");
 	}
 
