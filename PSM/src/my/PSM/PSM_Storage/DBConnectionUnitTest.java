@@ -2,6 +2,7 @@ package my.PSM.PSM_Storage;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
+import static org.mockito.plugins.MockMaker.*;
 
 import org.junit.After;
 import org.junit.Before;
@@ -49,6 +50,8 @@ public class DBConnectionUnitTest {
 		db = new DBConnection();		
 		
 		db.setDependency(connectMock);
+		
+		MockitoAnnotations.initMocks(this);
 	}
 	
 	@After
