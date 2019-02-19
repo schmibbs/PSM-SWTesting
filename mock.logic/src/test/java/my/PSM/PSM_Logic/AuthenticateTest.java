@@ -1,10 +1,14 @@
 package my.PSM.PSM_Logic;
 
 import static org.junit.Assert.*;
-
+import static org.mockito.Mockito.*;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
 
 import my.PSM.PSM_Storage.DBConnection;
 //Using Stub
@@ -12,6 +16,11 @@ public class AuthenticateTest {
 
     private String username;
     private String password;
+	
+	@Mock
+	DBConnection mydb;
+	
+	@Rule public MockitoRule mockitoRule = MockitoJUnit.rule(); 
     
 	@Before
 	public void setUp() throws Exception {
@@ -27,7 +36,7 @@ public class AuthenticateTest {
 	
 	/*
 	 * Test Id: PSM_001-Login_002
-	 * Test Purpose: 
+	 * Test Purpose: Testing login
 	 * Setup: 
 	 * Input:
 	 * Expected Output: 
@@ -35,9 +44,29 @@ public class AuthenticateTest {
 	@Test
 	public void testValidate_Login_usingAStub() {
 		Authenticate logAuth = new Authenticate(username, password);
-		assertEquals(true, logAuth.validate_Login());
+		boolean check = logAuth.validate_Login();
+		assertTrue(check);
 	}
 	
+	/*
+	 * Test Id: PSM_001-Login_003
+	 * Test Purpose: 
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
+	@Test
+	public void testValidate_Login_usingAMock() {
+		mydb = mock(DBConnection.class);
+		String username = "clarkeep";
+		String password = "123455";
+		when(mydb.connect(username, password)).thenReturn(0);
+		Authenticate logAuth = new Authenticate(username, password);
+		logAuth.db = mydb;
+		boolean check = logAuth.validate_Login();
+		assertTrue(check);
+	}	
+
 	/*
 	 * Test Id: PSM_001-Login_002
 	 * Test Purpose: 
@@ -50,7 +79,6 @@ public class AuthenticateTest {
 		Authenticate logAuth = new Authenticate("clarkeep", "1234");
 		assertEquals(false, logAuth.validate_Login());
 	}	
-	
 	/*
 	 * Test Id: PSM_002-Logout_001
 	 * Test Purpose: 

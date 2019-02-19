@@ -86,6 +86,7 @@ public class appController {
 //       now.set(2008, 3, 15, 13, 29);
 //       date = now.getTime();
 //               
+
        while(!loggedin)
        {           
            ic.Initiate_Login_Form();            
@@ -170,8 +171,7 @@ public class appController {
            if(logoutSel)
            {
                // Logout 
-        	   db.disconnect();
-               //auth.logout();
+               auth.logout();
                ic.Initiate_Logout();
 
            }
@@ -199,7 +199,7 @@ public class appController {
                
                while(!dataReceived)
                {
-                   dataReceived = ic.edSched.dataRec3(); 
+                   dataReceived = ic.edSched.dataRec(); 
                    sleep(300);
                }
                

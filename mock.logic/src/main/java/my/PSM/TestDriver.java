@@ -9,22 +9,26 @@ public class TestDriver {
     private static String username;
     private static String password;
 	Scanner scanner = new Scanner(System.in);
+	public void setScanner(Scanner sc) {
+		scanner = sc;
+	}
     
 	public void launchForm() {
+		Scanner scanner = new Scanner(System.in);
 		System.out.println("Login Screen");
 		System.out.println("Would you like to close here? Yes - 1, No - 0");
-		int i = scanner.nextInt();
+		int i = 0;
+			i = Integer.parseInt(scanner.nextLine());
 		if(i == 1) {
 			System.out.println("Quit");
 	        System.exit(0);
 		}else if (i == 0){
 			dataRec = true;
 		}
-		username = scanner.nextLine();
 		System.out.println("Username: (Try \"clarkep\")");
-		username = scanner.nextLine();
+			username = scanner.nextLine();
 		System.out.println("Password:(Try \"12345\")");
-		password = scanner.nextLine();
+			password = scanner.nextLine();
 		System.out.println("End of Login Screen");
 	}
  
@@ -56,7 +60,7 @@ public class TestDriver {
 	public void launchFormMenu() {
 		System.out.println("In Main Menu");		
 		System.out.println("What would you like to do?\n1 - Edit Schedule\n2 - New Schedule\n3 - Logout");
-		int i = scanner.nextInt();
+		int i = Integer.parseInt(scanner.nextLine());
 		if(i == 3) {
 			dataRec2 = true;
 	        logout = true;
@@ -105,7 +109,7 @@ public class TestDriver {
         for (int i = 0; i < listCourses.length; i++) {
             System.out.println("[" + i + "] " + listCourses[i]);
         }	
-		int i = scanner.nextInt();
+		int i = Integer.parseInt(scanner.nextLine());
 		selection = i;
 		courseSelected = true;
 	}
@@ -166,11 +170,6 @@ public class TestDriver {
     
     static boolean dataReceived;
     
-    public boolean dataRec3()
-    {
-        System.out.println("Data received from schedule? " + dataReceived);
-        return dataReceived;
-    }
     public void setDataRecPre(boolean condition)
     {
         dataReceived = condition; 
@@ -202,7 +201,7 @@ public class TestDriver {
 		  printEdit(courseID, courseSubj, courseName, semester,
 		            startDate, endDate, startMon, endMon, startTue, endTue, 
 		            startWed, endWed, startThu, endThu, startFri, endFri, startSat, endSat);
-		  int i = scanner.nextInt();
+		  int i = Integer.parseInt(scanner.nextLine());
 		  while(i != 0) {
 			  Scanner sc = new Scanner(System.in);
 				if(i == 0) {
@@ -284,7 +283,7 @@ public class TestDriver {
 				printEdit(defCourseID, defSub, defCourseName, defSemester,
 			            defCourseStart, defCourseEnd, defMonStart, defMonEnd, defTueStart, defTueEnd, 
 			            defWedStart, defWedEnd, defThuStart, defThuEnd, defFriStart, defFriEnd, defSatStart, defSatEnd);
-				i = scanner.nextInt();
+				i = Integer.parseInt(scanner.nextLine());
 		  }
 		logout = false;
 		initSetup = false;
@@ -355,7 +354,7 @@ public class TestDriver {
     	printEdit(newCourseID, newSub, newCourseName, newSemester,
     			newCourseStart, newCourseEnd, newMonStart, newMonEnd, newTueStart, newTueEnd, 
     			newWedStart, newWedEnd, newThuStart, newThuEnd, newFriStart, newFriEnd, newSatStart, newSatEnd);
-		int i = scanner.nextInt();
+    	int i = Integer.parseInt(scanner.nextLine());
 		  while(i != 0) {
 				if(i == 0) {
 					dataReceived = true;
@@ -436,7 +435,7 @@ public class TestDriver {
 				printEdit(newCourseID, newSub, newCourseName, newSemester,
 		    			newCourseStart, newCourseEnd, newMonStart, newMonEnd, newTueStart, newTueEnd, 
 		    			newWedStart, newWedEnd, newThuStart, newThuEnd, newFriStart, newFriEnd, newSatStart, newSatEnd);
-				i = scanner.nextInt();
+				i = Integer.parseInt(scanner.nextLine());
 		  }
 		logout = false;
 		initSetup = false;
