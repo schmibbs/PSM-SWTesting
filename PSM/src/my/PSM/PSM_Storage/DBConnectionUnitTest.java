@@ -3,6 +3,7 @@ package my.PSM.PSM_Storage;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 import static org.mockito.plugins.MockMaker.*;
+import static java.lang.IllegalStateException.*;
 
 import org.junit.After;
 import org.junit.Before;
@@ -12,6 +13,9 @@ import org.junit.Rule;
 import org.mockito.*;
 import org.mockito.junit.*;
 
+import org.powermock.*;
+import org.*;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -19,7 +23,6 @@ import com.mysql.jdbc.*;
 import java.sql.SQLException;
 
 public class DBConnectionUnitTest {
-
 	
 	@Mock
 	Statement statementMock;
@@ -41,6 +44,7 @@ public class DBConnectionUnitTest {
 							"13:00","12:00", "13:00","12:00", "13:00"}};
 	int cid = Integer.parseInt(dbTable[0][0]);	//course id
 	
+	
 	@Before
 	public void setUp() throws Exception {
 		statementMock = mock(Statement.class);
@@ -51,14 +55,14 @@ public class DBConnectionUnitTest {
 		
 		db.setDependency(connectMock);
 		
-		MockitoAnnotations.initMocks(this);
+		MockitoAnnotations.initMocks(this);  //src: https://stackoverflow.com/questions/49284647/how-to-obtain-service-object-in-junit-test
 	}
 	
 	@After
 	public void tearDown() throws Exception {
 		db = null;
 	}
-
+	
 	/*
 	 * Test Id: DBC_DBConnection_001
 	 * Test Purpose: Use DBConnection to create a DBConnection object
@@ -973,5 +977,4 @@ public class DBConnectionUnitTest {
 		
 		assertFalse(db.createClassTable() == -1);
 	}
-
 }
