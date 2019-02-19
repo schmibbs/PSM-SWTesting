@@ -604,6 +604,37 @@ public class DBConnection
                        
     }
     
+    
+    ////////////////////////////////////////////////////////////////
+    //////////////////////// CODE ADDED ////////////////////////////
+    public void setDependency(Connection myConMock) 
+    {
+    	this.myCon = myConMock;
+    }
+    
+    public int connect(String user,String pw, Connection connectMock)
+    {
+        username = user;
+        password = pw;
+        
+        try{
+           // DriverManager.getDriver("com.mysql.jdbc.Driver");
+           //Class.forName("com.mysql.jdbc.Driver");
+           //myCon = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydatabase",username,password);
+           //myCon = DriverManager.getConnection(marcosDb,username,password);CHANGED
+        	myCon = connectMock;
+        } 
+        // Launch Message Window Here
+        catch (Exception e){
+            e.printStackTrace();
+            return -1;              // -1 = Fail State
+        }
+        
+        return 0;                              
+    }
+    
+////////////////////////////////////////////////////////////////
+    
 //    public void init()
 //    {
 //        try
