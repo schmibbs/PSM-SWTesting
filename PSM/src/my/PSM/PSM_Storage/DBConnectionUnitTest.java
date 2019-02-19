@@ -3,10 +3,8 @@ package my.PSM.PSM_Storage;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 import static org.mockito.plugins.MockMaker.*;
-<<<<<<< HEAD
-=======
+
 import static java.lang.IllegalStateException.*;
->>>>>>> ee3ff22ffec2967b657c3e8ad93ecfbabac57e5f
 
 import org.junit.After;
 import org.junit.Before;
@@ -40,7 +38,6 @@ public class DBConnectionUnitTest {
 	
 	private DBConnection db;
 	
-	//DBConnection db = mock(DBConnection.class);
 	String[][] dbCred = {{"jdbc:mysql://localhost:3306/mydb", "PeterClarke", "12345"}};
 	String[][] dbTable = {{"1234", "FOO", "BAR", "Spring", "01/01/1900", "07/08/1901", "am",
 							"12:00", "13:00", "12:00", "13:00","12:00", "13:00","12:00", 
@@ -72,6 +69,8 @@ public class DBConnectionUnitTest {
 	 * Setup: 
 	 * Input: none
 	 * Expected Output: new DBConnection object
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testDBConnection() {
@@ -85,6 +84,8 @@ public class DBConnectionUnitTest {
 	 * Setup: 
 	 * Input:
 	 * Expected Output: 
+	 * Actual Output: 
+	 * Pass/Fail:  
 	 */
 	@Test
 	public void testConnectDbUserPw1() {
@@ -99,6 +100,8 @@ public class DBConnectionUnitTest {
 	 * Setup: 
 	 * Input:
 	 * Expected Output: 
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testConnectDbUserPw2() {
@@ -127,6 +130,8 @@ public class DBConnectionUnitTest {
 	 * Setup: 
 	 * Input:
 	 * Expected Output: 
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testConnectUserPw2() {
@@ -141,6 +146,8 @@ public class DBConnectionUnitTest {
 	 * Setup: 
 	 * Input: none
 	 * Expected Output: user is disconnected from database
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testDisconnect1() {
@@ -154,6 +161,8 @@ public class DBConnectionUnitTest {
 	 * Setup: 
 	 * Input: none
 	 * Expected Output: user is connected from database
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testDisconnect2() {
@@ -166,6 +175,8 @@ public class DBConnectionUnitTest {
 	 * Setup: 
 	 * Input: course_id = 1234
 	 * Expected Output: the course associated with 1234
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testFetchCourseID1() {
@@ -180,6 +191,8 @@ public class DBConnectionUnitTest {
 	 * Setup: 
 	 * Input: course_id = 1
 	 * Expected Output: error message
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testFetchCourseID2() {
@@ -194,6 +207,8 @@ public class DBConnectionUnitTest {
 	 * Setup: 
 	 * Input: none
 	 * Expected Output: date when semester ends
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testGetEndDates1() {
@@ -209,8 +224,9 @@ public class DBConnectionUnitTest {
 	 * Setup: 
 	 * Input:
 	 * Expected Output: 
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
-	
 	public void testGetEndDates2() {
 		assertTrue(true);
 	}
@@ -221,6 +237,8 @@ public class DBConnectionUnitTest {
 	 * Setup: 
 	 * Input: none
 	 * Expected Output: courses for a summer semester
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testGetCourses1() {
@@ -237,6 +255,8 @@ public class DBConnectionUnitTest {
 	 * Setup: 
 	 * Input: none
 	 * Expected Output: error
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testGetCourses2() {
@@ -249,6 +269,8 @@ public class DBConnectionUnitTest {
 	 * Setup: 
 	 * Input:
 	 * Expected Output: 
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testFetchCourses1() {
@@ -264,6 +286,8 @@ public class DBConnectionUnitTest {
 	 * Setup: 
 	 * Input:
 	 * Expected Output: 
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testFetchCourses2() {
@@ -276,6 +300,8 @@ public class DBConnectionUnitTest {
 	 * Setup: dbTable
 	 * Input: dbTable[0][1], dbTable[0][0]
 	 * Expected Output: FOO
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testFetchCourseSubj1() {
@@ -291,6 +317,8 @@ public class DBConnectionUnitTest {
 	 * Setup: dbTable
 	 * Input: dbTable[0][1], dbTable[0][0]
 	 * Expected Output: BAR
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testFetchCourseSubj2() {
@@ -306,6 +334,8 @@ public class DBConnectionUnitTest {
 	 * Setup: dbTable
 	 * Input: dbTable[0][0]
 	 * Expected Output: FOO
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testFetchCourseName1() {
@@ -321,6 +351,8 @@ public class DBConnectionUnitTest {
 	 * Setup: dbTable
 	 * Input: 4
 	 * Expected Output: null
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testFetchCourseName2() {
@@ -336,6 +368,8 @@ public class DBConnectionUnitTest {
 	 * Setup: dbTable
 	 * Input: dbTable[0][0]
 	 * Expected Output: Spring
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testFetchCourseSemester1() {
@@ -351,6 +385,8 @@ public class DBConnectionUnitTest {
 	 * Setup: dbTable
 	 * Input: dbTable[0][3], dbTable[0][0]
 	 * Expected Output: null
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testFetchCourseSemester2() {
@@ -366,6 +402,8 @@ public class DBConnectionUnitTest {
 	 * Setup: dbTable
 	 * Input: dbTable[0][4], dbTable[0][0]
 	 * Expected Output: 01/01/1900
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testFetchCourseStart1() {
@@ -381,6 +419,8 @@ public class DBConnectionUnitTest {
 	 * Setup: dbTable
 	 * Input: 15
 	 * Expected Output: null
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testFetchCourseStart2() {
@@ -396,6 +436,8 @@ public class DBConnectionUnitTest {
 	 * Setup: dbTable
 	 * Input: dbTable[0][0]
 	 * Expected Output: 07/08/1901
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testFetchCourseEnd1() {
@@ -411,6 +453,8 @@ public class DBConnectionUnitTest {
 	 * Setup: dbTable
 	 * Input: 16
 	 * Expected Output: null
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testFetchCourseEnd2() {
@@ -426,6 +470,8 @@ public class DBConnectionUnitTest {
 	 * Setup: dbTable
 	 * Input:
 	 * Expected Output: 11:00 
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testFetchStartMon1() throws SQLException {
@@ -441,6 +487,8 @@ public class DBConnectionUnitTest {
 	 * Setup: dbTable
 	 * Input:
 	 * Expected Output: false
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testFetchStartMon2() throws SQLException {
@@ -457,6 +505,8 @@ public class DBConnectionUnitTest {
 	 * Setup: dbTable
 	 * Input:
 	 * Expected Output: 11:00 
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testFetchEndMon1() throws SQLException{
@@ -472,6 +522,8 @@ public class DBConnectionUnitTest {
 	 * Setup: dbTable
 	 * Input:
 	 * Expected Output: false
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testFetchEndMon2() throws SQLException{
@@ -488,6 +540,8 @@ public class DBConnectionUnitTest {
 	 * Setup: dbTable
 	 * Input:
 	 * Expected Output: 11:00  
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testFetchStartTue1() throws SQLException{
@@ -503,6 +557,8 @@ public class DBConnectionUnitTest {
 	 * Setup: dbTable
 	 * Input:
 	 * Expected Output: false
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testFetchStartTue2() throws SQLException{
@@ -519,6 +575,8 @@ public class DBConnectionUnitTest {
 	 * Setup: dbTable
 	 * Input:
 	 * Expected Output: 11:00 
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testFetchEndTue1() throws SQLException{
@@ -534,6 +592,8 @@ public class DBConnectionUnitTest {
 	 * Setup: dbTable
 	 * Input:
 	 * Expected Output: false
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testFetchEndTue2() throws SQLException{
@@ -550,6 +610,8 @@ public class DBConnectionUnitTest {
 	 * Setup: dbTable
 	 * Input:
 	 * Expected Output: 11:00 : 
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testFetchStartWed1() throws SQLException{
@@ -566,6 +628,8 @@ public class DBConnectionUnitTest {
 	 * Setup: dbTable
 	 * Input:
 	 * Expected Output: false
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testFetchStartWed2() throws SQLException{
@@ -582,6 +646,8 @@ public class DBConnectionUnitTest {
 	 * Setup: dbTable
 	 * Input:
 	 * Expected Output: 11:00 
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testFetchEndWed1() throws SQLException{
@@ -597,6 +663,8 @@ public class DBConnectionUnitTest {
 	 * Setup: dbTable
 	 * Input:
 	 * Expected Output: false
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testFetchEndWed2() throws SQLException{
@@ -613,6 +681,8 @@ public class DBConnectionUnitTest {
 	 * Setup: dbTable
 	 * Input:
 	 * Expected Output: 11:00 
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testFetchStartThu1() throws SQLException{
@@ -628,6 +698,8 @@ public class DBConnectionUnitTest {
 	 * Setup: dbTable
 	 * Input:
 	 * Expected Output: false
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testFetchStartThu2() throws SQLException{
@@ -644,6 +716,8 @@ public class DBConnectionUnitTest {
 	 * Setup: dbTable
 	 * Input:
 	 * Expected Output: 11:00 
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testFetchEndThu1() throws SQLException{
@@ -659,6 +733,8 @@ public class DBConnectionUnitTest {
 	 * Setup: dbTable
 	 * Input:
 	 * Expected Output: false
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testFetchEndThu2() throws SQLException{
@@ -675,6 +751,8 @@ public class DBConnectionUnitTest {
 	 * Setup: dbTable
 	 * Input:
 	 * Expected Output: 11:00 
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testFetchStartFri1() throws SQLException{
@@ -690,6 +768,8 @@ public class DBConnectionUnitTest {
 	 * Setup: dbTable
 	 * Input:
 	 * Expected Output: false
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testFetchStartFri2() throws SQLException{
@@ -706,6 +786,8 @@ public class DBConnectionUnitTest {
 	 * Setup: dbTable
 	 * Input:
 	 * Expected Output: 11:00 
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testFetchEndFri1() throws SQLException{
@@ -721,6 +803,8 @@ public class DBConnectionUnitTest {
 	 * Setup: dbTable
 	 * Input:
 	 * Expected Output: false
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testFetchEndFri2() throws SQLException{
@@ -737,6 +821,8 @@ public class DBConnectionUnitTest {
 	 * Setup: dbTable
 	 * Input:
 	 * Expected Output: 11:00 
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testFetchStartSat1() throws SQLException{
@@ -752,6 +838,8 @@ public class DBConnectionUnitTest {
 	 * Setup: dbTable
 	 * Input:
 	 * Expected Output: false
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testFetchStartSat2() throws SQLException {
@@ -768,6 +856,8 @@ public class DBConnectionUnitTest {
 	 * Setup: dbTable
 	 * Input:
 	 * Expected Output: 11:00 
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testFetchEndSat1() throws SQLException{
@@ -783,6 +873,8 @@ public class DBConnectionUnitTest {
 	 * Setup: dbTable
 	 * Input:
 	 * Expected Output: false
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testFetchEndSat2() throws SQLException{
@@ -799,6 +891,8 @@ public class DBConnectionUnitTest {
 	 * Setup: dbTable
 	 * Input: dbTable[0][0], dbTable[0][1], dbTable[0][2], dbTable[0][3]
 	 * Expected Output: 0
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testStoreClassInfo1() throws SQLException {
@@ -824,6 +918,8 @@ public class DBConnectionUnitTest {
 	 * Setup: dbTable
 	 * Input: 1, null, null, null,
 	 * Expected Output: -1
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testStoreClassInfo2() throws SQLException{
@@ -843,6 +939,8 @@ public class DBConnectionUnitTest {
 	 * Setup: dbTable
 	 * Input: dbTable[0][0..18], null
 	 * Expected Output: 0
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testStoreClassSched1() throws SQLException {
@@ -872,6 +970,8 @@ public class DBConnectionUnitTest {
 	 * Setup:
 	 * Input: null
 	 * Expected Output: -1
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testStoreClassSched2() throws SQLException {
@@ -894,6 +994,8 @@ public class DBConnectionUnitTest {
 	 * Setup: 
 	 * Input:
 	 * Expected Output: empty database
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testClearDatabase1() throws SQLException {
@@ -909,6 +1011,8 @@ public class DBConnectionUnitTest {
 	 * Setup: 
 	 * Input:
 	 * Expected Output: !success, exception
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testClearDatabase2() throws SQLException {
@@ -931,6 +1035,8 @@ public class DBConnectionUnitTest {
 	 * Setup: 
 	 * Input:
 	 * Expected Output: class100 table
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testCreateClassTable1() throws SQLException {
@@ -960,6 +1066,8 @@ public class DBConnectionUnitTest {
 	 * Setup: 
 	 * Input:
 	 * Expected Output: exception
+	 * Actual Output: 
+	 * Pass/Fail: 
 	 */
 	@Test
 	public void testCreateClassTable2() throws SQLException {
