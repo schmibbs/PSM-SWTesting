@@ -643,6 +643,15 @@ public class DBConnection
         return 0;                              
     }
     
+	public boolean isConnected() {
+		return (myCon != null)? true: false;
+	}
+	
+	//used in testing disconnect exception case
+	public void forceNullCon() {
+		this.myCon = null;
+	}
+    
 ////////////////////////////////////////////////////////////////
     
 }

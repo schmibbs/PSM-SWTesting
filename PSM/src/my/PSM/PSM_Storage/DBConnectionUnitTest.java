@@ -107,7 +107,7 @@ public class DBConnectionUnitTest {
 	public void testConnectDbUserPw2() {
 		DBConnection db = mock(DBConnection.class);
 		
-		assertEquals("DBConnection success", db.connect(dbCred[0][0], "notPeterClarke", dbCred[0][2]), -1);
+		assertEquals("DBConnection success", -1, db.connect(dbCred[0][0], "notPeterClarke", dbCred[0][2]));
 	}
 
 	/*
@@ -151,7 +151,7 @@ public class DBConnectionUnitTest {
 	 */
 	@Test
 	public void testDisconnect1() {
-		db.connect(dbCred[0][1], dbCred[0][1]);
+		db.connect(dbCred[0][1], dbCred[0][2]);
 		assertEquals("DC Successful", db.disconnect(), 0);
 	}
 
@@ -166,7 +166,9 @@ public class DBConnectionUnitTest {
 	 */
 	@Test
 	public void testDisconnect2() {
-		assertEquals("DC Successful", db.disconnect(), -1);	
+		db.connect(dbCred[0][1], dbCred[0][2], connectMock);
+		db.forceNullCon();
+		assertEquals("DC Successful", -1, db.disconnect());	
 	}
 	
 	/*
@@ -180,7 +182,7 @@ public class DBConnectionUnitTest {
 	 */
 	@Test
 	public void testFetchCourseID1() {
-		db.connect(dbCred[0][1], dbCred[0][2]);
+		db.connect(dbCred[0][1], dbCred[0][2], connectMock);
 		int testIDInt = db.fetchCourseID(Integer.parseInt(dbTable[0][0]));
 		assertEquals("Fetch Course ID Test success", testIDInt, 1234);
 	}
@@ -212,10 +214,11 @@ public class DBConnectionUnitTest {
 	 */
 	@Test
 	public void testGetEndDates1() {
+		db.connect(dbCred[0][1], dbCred[0][2]);
 		ArrayList<String> results = new ArrayList<>();
 		
 		results = db.getEndDates();
-		assertEquals("getEndDatesTest success", results, ArrayList.class);
+		assertEquals("getEndDatesTest success", ArrayList.class, results) ;
 	}
 	@Test
 	/*
@@ -946,9 +949,9 @@ public class DBConnectionUnitTest {
 		String startDate = dbTable[0][4];
 		String endDate = dbTable[0][5];
 		String startMon = dbTable[0][4];
-		String endMon = dbTable[0][4];
+		String endMon = dbTable[0][5];
 		String startWed = dbTable[0][4];
-		String endWed = dbTable[0][4];
+		String endWed = dbTable[0][5];
 		String testQuery = "UPDATE Class100 SET start_date = '" +startDate +"', end_date = '" +endDate +"', start_mon =  '" 
         +startMon +"', end_mon = '" +endMon + "', start_tue = '" + null +"', end_tue = '" + null 
         +"', start_wed = '" +startWed +"', end_wed = '" +endWed +"', start_thu =  '" + null 
