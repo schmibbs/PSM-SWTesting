@@ -324,7 +324,7 @@ public class TestDriver {
 		  System.out.println("[6]Course Name: " + courseName );
 		  System.out.println("---Class Times---");
 		  System.out.println("\t\tMonday\t\tTuesday\t\tWednesday\tThursday\tFriday\t\tSaturday");
-		  System.out.println("StartTime:\t[7]" + startMon + "\t[8]" + startTue + "\t[9]" + startWed + "\t[10]" + startThu + "\t[11]" + startFri + "\t[12]" + startSat);
+		  System.out.println("StartTime:\t[7]" + startMon + " \t[8]" + startTue + " \t[9]" + startWed + " \t[10]" + startThu + "\t[11]" + startFri + "\t[12]" + startSat);
 		  System.out.println("EndTime: \t[13]" + endMon + "\t[14]" + endTue + "\t[15]" + endWed + "\t[16]" + endThu + "\t[17]" + endFri + "\t[18]" + endSat);
 		  System.out.println("What would you like to edit? 0 to end");
 	}

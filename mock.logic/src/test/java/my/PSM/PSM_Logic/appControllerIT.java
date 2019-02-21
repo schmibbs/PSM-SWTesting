@@ -41,6 +41,7 @@ public class appControllerIT {
 	@Rule
 	public final TextFromStandardInputStream systemInMock2
 	  = emptyStandardInputStream();
+
 	@Mock
 	DBConnection db;
 	
@@ -89,7 +90,7 @@ public class appControllerIT {
                 ic.sched.newMonStart, ic.sched.newMonEnd, ic.sched.newTueStart, ic.sched.newTueEnd, 
                 ic.sched.newWedStart, ic.sched.newWedEnd, ic.sched.newThuStart, ic.sched.newThuEnd, 
                 ic.sched.newFriStart, ic.sched.newFriEnd, ic.sched.newSatStart, ic.sched.newSatEnd)).thenReturn(0);
-		systemInMock.provideLines("Software Testing", "0", "1", "0","3");
+		systemInMock.provideLines("English", "5", "400", "0","3");
 		ic.sched.launchInitial();
         while(!ic.sched.dataRec())
         {
@@ -123,7 +124,7 @@ public class appControllerIT {
 				"07:30", "07:31", "07:30", "07:31", 
 				"07:30", "07:31", "07:30", "07:31", 
 				"07:30", "07:31", "07:30", "07:31")).thenReturn(0);
-		systemInMock.provideLines("Software Testing", "0", "1", "0","3");
+		systemInMock.provideLines("Software Testing", "4", "CEN", "5", "2020", "0","3");
 		ic.sched.launchInitial();
         while(!ic.sched.dataRec())
         {
@@ -138,6 +139,8 @@ public class appControllerIT {
                 ic.sched.newWedStart, ic.sched.newWedEnd, ic.sched.newThuStart, ic.sched.newThuEnd, 
                 ic.sched.newFriStart, ic.sched.newFriEnd, ic.sched.newSatStart, ic.sched.newSatEnd));
         assertTrue(ic.sched.dataRec());
+        assertEquals("CEN", ic.sched.newSub);
+        assertEquals(2020, ic.sched.newCourseID);
 
 	}
 	/*
@@ -174,90 +177,7 @@ public class appControllerIT {
 
 	}
 	/*
-	 * Test Id: PSM_004-Schedule Setup_001
-	 * Test Purpose: Enter and leave edit menu
-	 * Setup: 
-	 * Input:
-	 * Expected Output: 
-	 */
-	@Test
-	public void editScheduleIT_usingAStub() {
-		InterfaceController ic = new InterfaceController();
-		DBConnection db = new DBConnection();
-		boolean dataReceived = false;
-		systemInMock.provideLines("0", "0", "3");
-		
-		String defSub = "";
-		String defSemester = "";
-		String defCourseName = "";
-		String defCourseStart = "";
-		String defCourseEnd = "";
-		String defMonStart = "";
-		String defMonEnd = "";
-		String defTueStart = "";
-		String defTueEnd = "";
-		String defWedStart = "";
-		String defWedEnd = "";
-		String defThuStart = "";
-		String defThuEnd = "";
-		String defFriStart = "";
-		String defFriEnd = "";
-		String defSatStart = "";
-		String defSatEnd = "";
-		
-        ic.Course_Select_Form();
-
-        while(!dataReceived)
-        {
-            dataReceived = ic.cs.courseSelected();
-        }
-        assertTrue(dataReceived);
-
-        ic.cs.setCourseSelected(false);
-        dataReceived = false;
-
-        int courseSel = ic.cs.getSelection();
-        int course = courseSel;     
-        
-        defSub = db.fetchCourseSubj(course);
-        defSemester = db.fetchCourseSemester(course);
-        defCourseName = db.fetchCourseName(course);
-        defCourseStart = db.fetchCourseStart(course);
-        defCourseEnd = db.fetchCourseEnd(course);
-        defMonStart = db.fetchStartMon(course);
-        defMonEnd = db.fetchEndMon(course);
-        defTueStart = db.fetchStartTue(course);
-        defTueEnd = db.fetchEndTue(course);
-        defWedStart = db.fetchStartWed(course);
-        defWedEnd = db.fetchEndWed(course);
-        defThuStart = db.fetchStartThu(course);
-        defThuEnd = db.fetchEndThu(course);
-        defFriStart = db.fetchStartFri(course);
-        defFriEnd = db.fetchEndFri(course);
-        defSatStart = db.fetchStartSat(course);
-        defSatEnd = db.fetchEndSat(course);     
-        
-        ic.Pre_Filled_Form(courseSel,defSub,defCourseName,defSemester,defCourseStart,
-                defCourseEnd,defMonStart,defMonEnd,defTueStart,defTueEnd,defWedStart,
-                defWedEnd,defThuStart,defThuEnd,defFriStart,defFriEnd,defSatStart,defSatEnd);
-        
-        while(!dataReceived)
-        {
-            dataReceived = ic.edSched.dataRec(); 
-        }
-        
-        dataReceived = false;
-        ic.edSched.setDataRec(false);
-        
-        assertEquals(0, db.storeClassSched(ic.sched.newCourseID, ic.sched.newCourseStart, ic.sched.newCourseEnd, 
-                ic.sched.newMonStart, ic.sched.newMonEnd, ic.sched.newTueStart, ic.sched.newTueEnd, 
-                ic.sched.newWedStart, ic.sched.newWedEnd, ic.sched.newThuStart, ic.sched.newThuEnd, 
-                ic.sched.newFriStart, ic.sched.newFriEnd, ic.sched.newSatStart, ic.sched.newSatEnd));
-        assertTrue(ic.sched.dataRec());
-
-	}
-	/*
-	 * Test Id: PSM_004-Schedule Setup_002
+	 * Test Id: PSM_004-Schedule Edit -01
 	 * Test Purpose: Enter, edit, and leave edit menu
 	 * Setup: 
 	 * Input:
@@ -369,7 +289,7 @@ public class appControllerIT {
 	}
 	
 	/*
-	 * Test Id: PSM_004-Schedule Setup_003
+	 * Test Id: PSM_004-Schedule Edit_002
 	 * Test Purpose: Enter, edit, and leave
 	 * Setup: 
 	 * Input:
@@ -474,8 +394,116 @@ public class appControllerIT {
         assertTrue(ic.sched.dataRec());
 
 	}
+	
 	/*
-	 * Test Id: PSM_004-Schedule Setup_002
+	 * Test Id: PSM_004-Schedule Edit_003
+	 * Test Purpose: Enter, edit, and leave
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
+	@Test
+	public void editScheduleIT_usingAMock3() {
+		InterfaceController ic = new InterfaceController();
+		db = mock(DBConnection.class);
+		when(db.storeClassSched(ic.sched.newCourseID, ic.sched.newCourseStart, ic.sched.newCourseEnd, 
+                ic.sched.newMonStart, ic.sched.newMonEnd, ic.sched.newTueStart, ic.sched.newTueEnd, 
+                ic.sched.newWedStart, ic.sched.newWedEnd, ic.sched.newThuStart, ic.sched.newThuEnd, 
+                ic.sched.newFriStart, ic.sched.newFriEnd, ic.sched.newSatStart, ic.sched.newSatEnd)).thenReturn(0);
+		boolean dataReceived = false;
+		systemInMock.provideLines("0", "4","English","0", "3");
+		String defSub = "";
+		String defSemester = "";
+		String defCourseName = "";
+		String defCourseStart = "";
+		String defCourseEnd = "";
+		String defMonStart = "";
+		String defMonEnd = "";
+		String defTueStart = "";
+		String defTueEnd = "";
+		String defWedStart = "";
+		String defWedEnd = "";
+		String defThuStart = "";
+		String defThuEnd = "";
+		String defFriStart = "";
+		String defFriEnd = "";
+		String defSatStart = "";
+		String defSatEnd = "";
+        int course = 0;
+        defSub = db.fetchCourseSubj(course);
+        defSemester = db.fetchCourseSemester(course);
+        defCourseName = db.fetchCourseName(course);
+        defCourseStart = db.fetchCourseStart(course);
+        defCourseEnd = db.fetchCourseEnd(course);
+        defMonStart = db.fetchStartMon(course);
+        defMonEnd = db.fetchEndMon(course);
+        defTueStart = db.fetchStartTue(course);
+        defTueEnd = db.fetchEndTue(course);
+        defWedStart = db.fetchStartWed(course);
+        defWedEnd = db.fetchEndWed(course);
+        defThuStart = db.fetchStartThu(course);
+        defThuEnd = db.fetchEndThu(course);
+        defFriStart = db.fetchStartFri(course);
+        defFriEnd = db.fetchEndFri(course);
+        defSatStart = db.fetchStartSat(course);
+        defSatEnd = db.fetchEndSat(course);     
+        //Setup End
+        
+        
+        ic.Course_Select_Form();
+
+        while(!dataReceived)
+        {
+            dataReceived = ic.cs.courseSelected();
+        }
+        assertTrue(dataReceived);
+
+        ic.cs.setCourseSelected(false);
+        dataReceived = false;
+
+        int courseSel = ic.cs.getSelection();
+        course = courseSel;     
+        
+        defSub = db.fetchCourseSubj(course);
+        defSemester = db.fetchCourseSemester(course);
+        defCourseName = db.fetchCourseName(course);
+        defCourseStart = db.fetchCourseStart(course);
+        defCourseEnd = db.fetchCourseEnd(course);
+        defMonStart = db.fetchStartMon(course);
+        defMonEnd = db.fetchEndMon(course);
+        defTueStart = db.fetchStartTue(course);
+        defTueEnd = db.fetchEndTue(course);
+        defWedStart = db.fetchStartWed(course);
+        defWedEnd = db.fetchEndWed(course);
+        defThuStart = db.fetchStartThu(course);
+        defThuEnd = db.fetchEndThu(course);
+        defFriStart = db.fetchStartFri(course);
+        defFriEnd = db.fetchEndFri(course);
+        defSatStart = db.fetchStartSat(course);
+        defSatEnd = db.fetchEndSat(course);     
+        
+        ic.Pre_Filled_Form(courseSel,defSub,defCourseName,defSemester,defCourseStart,
+                defCourseEnd,defMonStart,defMonEnd,defTueStart,defTueEnd,defWedStart,
+                defWedEnd,defThuStart,defThuEnd,defFriStart,defFriEnd,defSatStart,defSatEnd);
+        
+        while(!dataReceived)
+        {
+            dataReceived = ic.edSched.dataRec(); 
+        }
+        
+        dataReceived = false;
+        ic.edSched.setDataRec(false);
+        
+        assertEquals(0, db.storeClassSched(ic.sched.newCourseID, ic.sched.newCourseStart, ic.sched.newCourseEnd, 
+                ic.sched.newMonStart, ic.sched.newMonEnd, ic.sched.newTueStart, ic.sched.newTueEnd, 
+                ic.sched.newWedStart, ic.sched.newWedEnd, ic.sched.newThuStart, ic.sched.newThuEnd, 
+                ic.sched.newFriStart, ic.sched.newFriEnd, ic.sched.newSatStart, ic.sched.newSatEnd));
+        assertTrue(ic.sched.dataRec());
+
+	}
+	
+	/*
+	 * Test Id: PSM_004-Schedule Edit_04
 	 * Test Purpose: Testing login
 	 * Setup: 
 	 * Input:
@@ -572,6 +600,7 @@ public class appControllerIT {
 		assertEquals(-1, logAuth.logout());
 	}
 	
+	
 	/*
 	 * Test Id: PSM_017_PasswordConflict-001
 	 * Test Purpose: Test multiple password failures leading to quit
@@ -586,9 +615,36 @@ public class appControllerIT {
 		appController main = new appController();
 		main.main(new String[] {});
 	}
-	
 	/*
-	 * Test Id: PSM_017_PasswordConflict-002
+	 * Test Id: PSM_017_PasswordConflict-001
+	 * Test Purpose: Test multiple password failures leading to quit
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
+	@Test
+	public void passwordConflictIT2() {
+		exit.expectSystemExitWithStatus(0);
+		systemInMock.provideLines("0", "12345","12345","0","12345","12345","0","12345","12345");
+		appController main = new appController();
+		main.main(new String[] {});
+	}
+	/*
+	 * Test Id: PSM_017_PasswordConflict-001
+	 * Test Purpose: Test multiple password failures leading to quit
+	 * Setup: 
+	 * Input:
+	 * Expected Output: 
+	 */
+	@Test
+	public void passwordConflictIT3() {
+		exit.expectSystemExitWithStatus(0);
+		systemInMock.provideLines("0", "clarkep","clarkep","0","clarkep","clarkep","0","clarkep","clarkep");
+		appController main = new appController();
+		main.main(new String[] {});
+	}
+	/*
+	 * Test Id: PSM_017_PasswordConflict-004
 	 * Test Purpose: Test multiple password failures,but last password is correct
 	 * Setup: 
 	 * Input:
@@ -600,4 +656,5 @@ public class appControllerIT {
 		appController main = new appController();
 		main.main(new String[] {});
 	}
+
 }
