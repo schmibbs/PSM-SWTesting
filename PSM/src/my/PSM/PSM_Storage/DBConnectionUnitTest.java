@@ -206,32 +206,54 @@ public class DBConnectionUnitTest {
 	/*
 	 * Test Id: DBC_GetEndDates_010
 	 * Test Purpose: Test if users can get the end date of a semester
-	 * Setup: 
+	 * Setup: Run an SQL server
+	 * 		  Add the "Class100" table
+	 * 		  Add the columns
+	 * 			course_id, course_subject, course_name, semester,
+	 * 			start_date, end_date, am_or_pm, start_mon, end_mon,
+	 * 			start_tue, end_mon, start_wed, end_mon, start_thu, end_thu, 
+	 * 			start_fri, end_fri, start_sat, end_sat 
+	 * 		  Populate with data from dbTable
+	 * 		  Ensure there is a user: "PeterClarke" with password: "12345"  
 	 * Input: none
 	 * Expected Output: date when semester ends
-	 * Actual Output: 
-	 * Pass/Fail: 
+	 * Actual Output: date when semester ends
+	 * Pass/Fail: pass
 	 */
 	@Test
 	public void testGetEndDates1() {
 		db.connect(dbCred[0][1], dbCred[0][2]);
 		ArrayList<String> results = new ArrayList<>();
+		ArrayList<String> dateToCompare = new ArrayList<>();
 		
+		dateToCompare.add("07/08/1901");
 		results = db.getEndDates();
-		assertEquals("getEndDatesTest success", ArrayList.class, results) ;
+		assertEquals("getEndDatesTest success", dateToCompare, results) ;
 	}
 	@Test
 	/*
-	 * Test Id: DBC_011
-	 * Test Purpose: 
-	 * Setup: 
-	 * Input:
-	 * Expected Output: 
-	 * Actual Output: 
-	 * Pass/Fail: 
+	 * Test Id: DBC_GetEndDates_011
+	 * Test Purpose: Test if "PeterClarke" cannot get the end date of a semester
+	 * Setup: Run an SQL server
+	 * 		  Add the "Class100" table
+	 * 		  Add the columns
+	 * 			course_id, course_subject, course_name, semester,
+	 * 			start_date, end_date, am_or_pm, start_mon, end_mon,
+	 * 			start_tue, end_mon, start_wed, end_mon, start_thu, end_thu, 
+	 * 			start_fri, end_fri, start_sat, end_sat 
+	 * 		  Populate with data from dbTable
+	 * 		  Ensure there is a user: "PeterClarke" with password: "12345"  
+	 * Input: none
+	 * Expected Output:null
+	 * Actual Output: date when semester ends
+	 * Pass/Fail: pass
 	 */
 	public void testGetEndDates2() {
-		assertTrue(true);
+		//db.connect(dbCred[0][1], dbCred[0][2]);
+		ArrayList<String> results = new ArrayList<>();
+		
+		results = db.getEndDates();
+		assertEquals("getEndDatesTest success", null, results);
 	}
 
 	/*
