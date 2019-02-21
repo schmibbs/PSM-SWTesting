@@ -156,7 +156,7 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_Disconnect_006
+	 * Test Id: DBC_Disconnect_007
 	 * Test Purpose: Test if users cannot dc 
 	 * Setup: 
 	 * Input: none
@@ -312,7 +312,7 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_FetchCouseFubj_016
+	 * Test Id: DBC_FetchCouseSubj_016
 	 * Test Purpose: test if Peter Clarke can fail to retrieve a course with a specific int course ID
 	 * Setup: dbTable
 	 * Input: dbTable[0][1], dbTable[0][0]
@@ -609,7 +609,7 @@ public class DBConnectionUnitTest {
 	 * Test Purpose: Test if Peter Clarke can retrieve the start times of classes on Wednesday
 	 * Setup: dbTable
 	 * Input:
-	 * Expected Output: 11:00 : 
+	 * Expected Output: 11:00
 	 * Actual Output: 
 	 * Pass/Fail: 
 	 */
@@ -623,7 +623,6 @@ public class DBConnectionUnitTest {
 	
 	/*
 	 * Test Id: DBC_FetchEndWed_034
-	 * Test Purpose: 
 	 * Test Purpose: Test if Peter Clarke cannot retrieve the start times of classes on Wednesday
 	 * Setup: dbTable
 	 * Input:
