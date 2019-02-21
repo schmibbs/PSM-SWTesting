@@ -47,10 +47,6 @@ public class appControllerIT {
 	
 	/*
 	 * Test Id: PSM_004-Schedule Setup_001
-	 * Test Purpose: Enter Setup and leave
-	 * Setup: 
-	 * Input:
-	 * Expected Output: 
 	 */
 	@Test
 	public void scheduleSetupIT_usingAStub() {
@@ -76,10 +72,6 @@ public class appControllerIT {
 	}
 	/*
 	 * Test Id: PSM_004-Schedule Setup_002
-	 * Test Purpose: Enter setup, edit, and leave
-	 * Setup: 
-	 * Input:
-	 * Expected Output: 
 	 */
 	@Test
 	public void scheduleSetupIT_usingAMock() {
@@ -110,10 +102,6 @@ public class appControllerIT {
 	
 	/*
 	 * Test Id: PSM_004-Schedule Setup_003
-	 * Test Purpose: Enter setup, edit, and leave.
-	 * Setup: 
-	 * Input:
-	 * Expected Output: 
 	 */
 	@Test
 	public void scheduleSetupIT_usingAMock2() {
@@ -145,10 +133,6 @@ public class appControllerIT {
 	}
 	/*
 	 * Test Id: PSM_004-Schedule Setup_002
-	 * Test Purpose: Behavior on classStore when failed
-	 * Setup: 
-	 * Input:
-	 * Expected Output: 
 	 */
 	@Test
 	public void scheduleSetupIT_usingAMockwFail() {
@@ -178,10 +162,6 @@ public class appControllerIT {
 	}
 	/*
 	 * Test Id: PSM_004-Schedule Edit -01
-	 * Test Purpose: Enter, edit, and leave edit menu
-	 * Setup: 
-	 * Input:
-	 * Expected Output: 
 	 */
 	@Test
 	public void editScheduleIT_usingAMock() {
@@ -392,15 +372,13 @@ public class appControllerIT {
                 ic.sched.newWedStart, ic.sched.newWedEnd, ic.sched.newThuStart, ic.sched.newThuEnd, 
                 ic.sched.newFriStart, ic.sched.newFriEnd, ic.sched.newSatStart, ic.sched.newSatEnd));
         assertTrue(ic.sched.dataRec());
+        assertEquals(123, ic.sched.defCourseID);
 
 	}
 	
 	/*
 	 * Test Id: PSM_004-Schedule Edit_003
 	 * Test Purpose: Enter, edit, and leave
-	 * Setup: 
-	 * Input:
-	 * Expected Output: 
 	 */
 	@Test
 	public void editScheduleIT_usingAMock3() {
@@ -499,6 +477,7 @@ public class appControllerIT {
                 ic.sched.newWedStart, ic.sched.newWedEnd, ic.sched.newThuStart, ic.sched.newThuEnd, 
                 ic.sched.newFriStart, ic.sched.newFriEnd, ic.sched.newSatStart, ic.sched.newSatEnd));
         assertTrue(ic.sched.dataRec());
+        assertEquals("English", ic.sched.defSub);
 
 	}
 	
@@ -537,10 +516,6 @@ public class appControllerIT {
 	}
 	/*
 	 * Test Id: SS_DataReceived_001
-	 * Test Purpose: Testing login
-	 * Setup: 
-	 * Input:
-	 * Expected Output: 
 	 */
 	@Test
 	public void dataReceivedSetUpSchedIT_usingAStub() {
@@ -556,10 +531,6 @@ public class appControllerIT {
 	}
 	/*
 	 * Test Id: SS_DataReceived_002
-	 * Test Purpose: Testing login
-	 * Setup: 
-	 * Input:
-	 * Expected Output: 
 	 */
 	@Test
 	public void dataReceivedEditSchedIT_usingAStub() {
@@ -575,15 +546,13 @@ public class appControllerIT {
         }
         assertTrue(ic.cs.courseSelected());
 	}	
+	
 	@Rule
     public final ExpectedSystemExit exit = ExpectedSystemExit.none();
 	
 	/*
 	 * Test Id: PSM-002-Logout-001
 	 * Test Purpose: Testing login
-	 * Setup: 
-	 * Input:
-	 * Expected Output: 
 	 */
 	@Test
 	public void LogoutIT() {
@@ -600,13 +569,9 @@ public class appControllerIT {
 		assertEquals(-1, logAuth.logout());
 	}
 	
-	
 	/*
 	 * Test Id: PSM_017_PasswordConflict-001
 	 * Test Purpose: Test multiple password failures leading to quit
-	 * Setup: 
-	 * Input:
-	 * Expected Output: 
 	 */
 	@Test
 	public void passwordConflictIT() {
@@ -618,9 +583,6 @@ public class appControllerIT {
 	/*
 	 * Test Id: PSM_017_PasswordConflict-001
 	 * Test Purpose: Test multiple password failures leading to quit
-	 * Setup: 
-	 * Input:
-	 * Expected Output: 
 	 */
 	@Test
 	public void passwordConflictIT2() {
@@ -632,9 +594,6 @@ public class appControllerIT {
 	/*
 	 * Test Id: PSM_017_PasswordConflict-001
 	 * Test Purpose: Test multiple password failures leading to quit
-	 * Setup: 
-	 * Input:
-	 * Expected Output: 
 	 */
 	@Test
 	public void passwordConflictIT3() {
@@ -646,9 +605,6 @@ public class appControllerIT {
 	/*
 	 * Test Id: PSM_017_PasswordConflict-004
 	 * Test Purpose: Test multiple password failures,but last password is correct
-	 * Setup: 
-	 * Input:
-	 * Expected Output: 
 	 */
 	@Test(expected = NoSuchElementException.class)
 	public void passwordConflictITwPass() {
