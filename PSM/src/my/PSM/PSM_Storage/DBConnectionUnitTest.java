@@ -91,7 +91,7 @@ public class DBConnectionUnitTest {
 	public void testConnectDbUserPw1() {
 		DBConnection db = mock(DBConnection.class);
 		
-		assertEquals("DBConnection success", db.connect(dbCred[0][0], dbCred[0][1], dbCred[0][2]), 0);
+		assertEquals("DBConnection success", 0, db.connect(dbCred[0][0], dbCred[0][1], dbCred[0][2]));
 	}
 	
 	/*
@@ -121,7 +121,7 @@ public class DBConnectionUnitTest {
 	public void testConnectUserPw1() {
 		DBConnection db = mock(DBConnection.class);
 		
-		assertEquals("Local DBConnection success", db.connect(dbCred[0][1], dbCred[0][2]), 0);
+		assertEquals("Local DBConnection success", 0, db.connect(dbCred[0][1], dbCred[0][2]));
 	}
 	
 	/*
@@ -137,7 +137,7 @@ public class DBConnectionUnitTest {
 	public void testConnectUserPw2() {
 		DBConnection db = mock(DBConnection.class);
 		
-		assertEquals("Local DBConnection failure", db.connect("notPeterClarke", dbCred[0][2]), -1);
+		assertEquals("Local DBConnection failure", -1, db.connect("notPeterClarke", dbCred[0][2]));
 	}
 
 	/*
@@ -152,7 +152,7 @@ public class DBConnectionUnitTest {
 	@Test
 	public void testDisconnect1() {
 		db.connect(dbCred[0][1], dbCred[0][2]);
-		assertEquals("DC Successful", db.disconnect(), 0);
+		assertEquals("DC Successful", 0, db.disconnect());
 	}
 
 	/*
@@ -184,7 +184,7 @@ public class DBConnectionUnitTest {
 	public void testFetchCourseID1() {
 		db.connect(dbCred[0][1], dbCred[0][2], connectMock);
 		int testIDInt = db.fetchCourseID(Integer.parseInt(dbTable[0][0]));
-		assertEquals("Fetch Course ID Test success", testIDInt, 1234);
+		assertEquals("Fetch Course ID Test success", 1234, testIDInt);
 	}
 	
 	/*
@@ -200,7 +200,7 @@ public class DBConnectionUnitTest {
 	public void testFetchCourseID2() {
 		db.connect(dbCred[0][1], dbCred[0][2]);
 		int testIDInt = db.fetchCourseID(5);
-		assertEquals("Fetch Course ID Test success", testIDInt, -1);
+		assertEquals("Fetch Course ID Test success", -1, testIDInt);
 	}
 
 	/*
@@ -271,11 +271,11 @@ public class DBConnectionUnitTest {
 		int inputCourse = Integer.parseInt(dbTable[0][2]);
 		int firstCourse = results.get(0);
 		
-		assertEquals("getCourses success", firstCourse, inputCourse);
+		assertEquals("getCourses success", inputCourse, firstCourse);
 	}
 	
 	/*
-	 * Test Id: DBC_013
+	 * Test Id: DBC_GetCourses_013
 	 * Test Purpose: Test if Peter Clarke cannot get courses for a summer semester
 	 * Setup: 
 	 * Input: none
@@ -302,7 +302,7 @@ public class DBConnectionUnitTest {
 		String courses = db.fetchCourses();
 		String testInput = dbTable[0][1] + ",";
 		
-		assertEquals("Fetch Course Success", courses, testInput);
+		assertEquals("Fetch Course Success", testInput, courses);
 	}         
 	
 	/*
@@ -333,7 +333,7 @@ public class DBConnectionUnitTest {
 		int cid = Integer.parseInt(dbTable[0][0]);
 		String subj = db.fetchCourseSubj(cid);
 		
-		assertEquals("Couse subject fetch successful", subj, "FOO");
+		assertEquals("Couse subject fetch successful", "FOO", subj);
 	}
 	
 	/*
@@ -350,7 +350,7 @@ public class DBConnectionUnitTest {
 		int cid = 8;
 		String subj = db.fetchCourseSubj(cid);
 		
-		assertEquals("Couse subject failure to fetch, successful", subj, null);
+		assertEquals("Couse subject failure to fetch, successful", null, subj);
 	}
 
 	/*
@@ -367,7 +367,7 @@ public class DBConnectionUnitTest {
 		int cid = Integer.parseInt(dbTable[0][0]);
 		String name = db.fetchCourseSubj(cid);
 		
-		assertEquals("Couse name fetch successful", name, "BAR");
+		assertEquals("Couse name fetch successful", "BAR", name);
 	}
 	
 	/*
@@ -384,7 +384,7 @@ public class DBConnectionUnitTest {
 		cid = 4;
 		String name = db.fetchCourseSubj(cid);
 		
-		assertEquals("Couse name fetch unsuccessful", name, null);
+		assertEquals("Couse name fetch unsuccessful", null, name);
 	}
 
 	/*
@@ -401,7 +401,7 @@ public class DBConnectionUnitTest {
 		cid = Integer.parseInt(dbTable[0][0]);
 		String sem = db.fetchCourseSemester(cid);
 		
-		assertEquals("Couse semester fetch successful", sem, "Spring");
+		assertEquals("Couse semester fetch successful", "Spring", sem);
 	}
 	
 	/*
@@ -418,7 +418,7 @@ public class DBConnectionUnitTest {
 		cid = 8;
 		String sem = db.fetchCourseSemester(cid);
 		
-		assertEquals("Couse semester fetch successful", sem, null);
+		assertEquals("Couse semester fetch successful", null, sem);
 	}
 
 	/*
@@ -435,7 +435,7 @@ public class DBConnectionUnitTest {
 		cid = Integer.parseInt(dbTable[0][0]);
 		String sDate = db.fetchCourseStart(cid);
 		
-		assertEquals("Couse start date fetch successful", sDate, "01/01/1900");
+		assertEquals("Couse start date fetch successful", "01/01/1900", sDate);
 	}
 	
 	/*
@@ -452,7 +452,7 @@ public class DBConnectionUnitTest {
 		cid = 15;
 		String sDate = db.fetchCourseStart(cid);
 		
-		assertEquals("Couse start date fetch unsuccessful", sDate, null);
+		assertEquals("Couse start date fetch unsuccessful", null, sDate);
 	}
 
 	/*
@@ -469,7 +469,7 @@ public class DBConnectionUnitTest {
 		cid = Integer.parseInt(dbTable[0][0]);
 		String eDate = db.fetchCourseEnd(cid);
 		
-		assertEquals("Couse end date fetch successful", eDate, "07/08/1901");
+		assertEquals("Couse end date fetch successful", "07/08/1901", eDate);
 	}
 
 	/*
@@ -486,7 +486,7 @@ public class DBConnectionUnitTest {
 		cid = 16;
 		String eDate = db.fetchCourseEnd(cid);
 		
-		assertEquals("Couse end date fetch successful", eDate, null);
+		assertEquals("Couse end date fetch successful", null, eDate);
 	}
 	
 	/*
