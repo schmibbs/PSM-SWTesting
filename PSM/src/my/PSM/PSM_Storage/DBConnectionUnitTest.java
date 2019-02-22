@@ -67,10 +67,10 @@ public class DBConnectionUnitTest {
 	 * Test Id: DBC_DBConnection_022
 	 * Test Purpose: Use DBConnection to create a DBConnection object
 	 * Setup: DBConnection mock
-	 * Input: none
+	 * Input: DBConnection.class
 	 * Expected Output: new DBConnection object
-	 * Actual Output: 
-	 * Pass/Fail: 
+	 * Actual Output: new DBConnection object
+	 * Pass/Fail: pass
 	 */
 	@Test
 	public void testDBConnection() {
@@ -81,11 +81,11 @@ public class DBConnectionUnitTest {
 	/*
 	 * Test Id: DBC_Connect_023
 	 * Test Purpose: Test connection using a known database
-	 * Setup: 
-	 * Input:
+	 * Setup: DBConnection mock
+	 * Input: db.connect
 	 * Expected Output: none
 	 * Actual Output: new connection to a known database
-	 * Pass/Fail:  
+	 * Pass/Fail: pass 
 	 */
 	@Test
 	public void testConnectDbUserPw1() {
@@ -97,11 +97,11 @@ public class DBConnectionUnitTest {
 	/*
 	 * Test Id: DBC_Connect_024
 	 * Test Purpose: Test connection using a known database with incorrect credentials
-	 * Setup: 
-	 * Input:
+	 * Setup: DBConnection mock
+	 * Input: db.connect
 	 * Expected Output: none
-	 * Actual Output: -1; exception
-	 * Pass/Fail: 
+	 * Actual Output: 0
+	 * Pass/Fail: fail
 	 */
 	@Test
 	public void testConnectDbUserPw2() {
@@ -113,9 +113,11 @@ public class DBConnectionUnitTest {
 	/*
 	 * Test Id: DBC_ConnectLocal_025
 	 * Test Purpose: Test connection using localhost
-	 * Setup: 
-	 * Input: none
+	 * Setup: DBConnection mock
+	 * Input: db.connect
 	 * Expected Output: new connection to a known database
+	 * Actual Output: 0
+	 * Pass/Fail: pass
 	 */
 	@Test
 	public void testConnectUserPw1() {
@@ -127,11 +129,11 @@ public class DBConnectionUnitTest {
 	/*
 	 * Test Id: DBC_DontConnectLocal_026
 	 * Test Purpose: Test connection using localhost with incorrect credentials
-	 * Setup: 
-	 * Input: none
+	 * Setup: DBConnection mock
+	 * Input: db.connect
 	 * Expected Output: -1; exception
-	 * Actual Output: 
-	 * Pass/Fail: 
+	 * Actual Output: 0
+	 * Pass/Fail: fail
 	 */
 	@Test
 	public void testConnectUserPw2() {
@@ -140,14 +142,15 @@ public class DBConnectionUnitTest {
 		assertEquals("Local DBConnection failure", -1, db.connect("notPeterClarke", dbCred[0][2]));
 	}
 
+	
 	/*
 	 * Test Id: DBC_Disconnect_027
 	 * Test Purpose: Test if users can dc properly
 	 * Setup: 
-	 * Input: none
+	 * Input: db.connect, db.disconnect
 	 * Expected Output: user is disconnected from database
-	 * Actual Output: 
-	 * Pass/Fail: 
+	 * Actual Output: 0
+	 * Pass/Fail: pass
 	 */
 	@Test
 	public void testDisconnect1() {
@@ -158,11 +161,11 @@ public class DBConnectionUnitTest {
 	/*
 	 * Test Id: DBC_Disconnect_028
 	 * Test Purpose: Test if users cannot dc 
-	 * Setup: 
-	 * Input: none
+	 * Setup: DBConnection mock
+	 * Input: db.connect, db.disconnect
 	 * Expected Output: user is not connected from database
-	 * Actual Output: 
-	 * Pass/Fail: 
+	 * Actual Output: 0
+	 * Pass/Fail: fail
 	 */
 	@Test
 	public void testDisconnect2() {
@@ -174,8 +177,8 @@ public class DBConnectionUnitTest {
 	/*
 	 * Test Id: DBC_FetchCourseID_029
 	 * Test Purpose: retrieve the course associated with the four digit int supplied
-	 * Setup: 
-	 * Input: course_id = 1234
+	 * Setup: DBConnection mock
+	 * Input: course_id = 1234, db.connect, db.fetchCourseID
 	 * Expected Output: the course associated with 1234
 	 * Actual Output: 
 	 * Pass/Fail: 
