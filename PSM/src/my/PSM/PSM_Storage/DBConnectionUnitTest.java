@@ -264,7 +264,7 @@ public class DBConnectionUnitTest {
 	 * Test Purpose: Test if Peter Clarke can get courses for a summer semester
 	 * Setup: 
 	 * Input: none
-	 * Expected Output: courses for a summer semester
+	 * Expected Output: courses for a Spring semester
 	 * Actual Output: 
 	 * Pass/Fail: 
 	 */
@@ -302,14 +302,15 @@ public class DBConnectionUnitTest {
 	 */
 	@Test
 	public void testFetchCourses1() {
+		db.connect(dbCred[0][1], dbCred[0][2]);
 		String courses = db.fetchCourses();
-		String testInput = dbTable[0][1] + ",";
+		String testInput = dbTable[0][0] + ",";
 		
 		assertEquals("Fetch Course Success", testInput, courses);
 	}         
 	
 	/*
-	 * Test Id: DBC_036
+	 * Test Id: DBC_FetchCourses036
 	 * Test Purpose: 
 	 * Setup: 
 	 * Input:
@@ -421,7 +422,7 @@ public class DBConnectionUnitTest {
 		cid = 8;
 		String sem = db.fetchCourseSemester(cid);
 		
-		assertEquals("Couse semester fetch successful", null, sem);
+		assertEquals("Couse semester fetch unsuccessful", null, sem);
 	}
 
 	/*
@@ -531,7 +532,7 @@ public class DBConnectionUnitTest {
 	 * Test Id: DBC_FetchEndMon_049
 	 * Test Purpose: Test if Peter Clarke can retrieve the end times of classes on Monday
 	 * Setup: dbTable
-	 * Input:
+	 * Input: db.FetchEndThu
 	 * Expected Output: 11:00 
 	 * Actual Output: 
 	 * Pass/Fail: 
