@@ -1,5 +1,5 @@
 package my.PSM.PSM_Storage;
-
+//inputs are the calls and setup are the mocks involved in the test
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 import static org.mockito.plugins.MockMaker.*;
@@ -261,22 +261,23 @@ public class DBConnectionUnitTest {
 	 * Test Purpose: Test if Peter Clarke can get courses for a summer semester
 	 * Setup: 
 	 * Input: none
-	 * Expected Output: courses for a summer semester
+	 * Expected Output: courses for a Spring semester
 	 * Actual Output: 
 	 * Pass/Fail: 
 	 */
 	@Test
 	public void testGetCourses1() {
+		db.connect(dbCred[0][1], dbCred[0][2]);
 		ArrayList<Integer> results = db.getCourses();
 		int inputCourse = Integer.parseInt(dbTable[0][2]);
-		int firstCourse = results.get(0);
+		int firstCourse = results.get(inputCourse);
 		
 		assertEquals("getCourses success", inputCourse, firstCourse);
 	}
 	
 	/*
 	 * Test Id: DBC_GetCourses_013
-	 * Test Purpose: Test if Peter Clarke cannot get courses for a summer semester
+	 * Test Purpose: Test if Peter Clarke cannot get courses for a Spring semester
 	 * Setup: 
 	 * Input: none
 	 * Expected Output: error
@@ -285,7 +286,12 @@ public class DBConnectionUnitTest {
 	 */
 	@Test
 	public void testGetCourses2() {
-		fail("Not yet implemented");
+		db.connect(dbCred[0][1], dbCred[0][2]);
+		ArrayList<Integer> results = db.getCourses();
+		int inputCourse = Integer.parseInt(dbTable[0][2]);
+		int firstCourse = results.get(0);
+		
+		assertEquals("getCourses success", inputCourse, firstCourse);
 	}
 
 	/*
@@ -299,6 +305,7 @@ public class DBConnectionUnitTest {
 	 */
 	@Test
 	public void testFetchCourses1() {
+		db.connect(dbCred[0][1], dbCred[0][2]);
 		String courses = db.fetchCourses();
 		String testInput = dbTable[0][1] + ",";
 		
@@ -306,8 +313,8 @@ public class DBConnectionUnitTest {
 	}         
 	
 	/*
-	 * Test Id: DBC_015
-	 * Test Purpose: 
+	 * Test Id: DBC_FetchCourses_015
+	 * Test Purpose: test if Peter Clarke cannot retrieve a course's name
 	 * Setup: 
 	 * Input:
 	 * Expected Output: 
@@ -316,7 +323,10 @@ public class DBConnectionUnitTest {
 	 */
 	@Test
 	public void testFetchCourses2() {
-		fail("cannot implement");
+		String courses = db.fetchCourses();
+		String testInput = dbTable[0][1] + ",";
+		
+		assertEquals("Fetch Course Success", testInput, courses);
 	}
 
 	/*
@@ -330,6 +340,7 @@ public class DBConnectionUnitTest {
 	 */
 	@Test
 	public void testFetchCourseSubj1() {
+		db.connect(dbCred[0][1], dbCred[0][2]);
 		int cid = Integer.parseInt(dbTable[0][0]);
 		String subj = db.fetchCourseSubj(cid);
 		
@@ -347,6 +358,7 @@ public class DBConnectionUnitTest {
 	 */
 	@Test
 	public void testFetchCourseSubj2() {
+		db.connect(dbCred[0][1], dbCred[0][2]);
 		int cid = 8;
 		String subj = db.fetchCourseSubj(cid);
 		
@@ -364,6 +376,7 @@ public class DBConnectionUnitTest {
 	 */
 	@Test
 	public void testFetchCourseName1() {
+		db.connect(dbCred[0][1], dbCred[0][2]);
 		int cid = Integer.parseInt(dbTable[0][0]);
 		String name = db.fetchCourseSubj(cid);
 		
@@ -381,6 +394,7 @@ public class DBConnectionUnitTest {
 	 */
 	@Test
 	public void testFetchCourseName2() {
+		db.connect(dbCred[0][1], dbCred[0][2]);
 		cid = 4;
 		String name = db.fetchCourseSubj(cid);
 		
@@ -398,6 +412,7 @@ public class DBConnectionUnitTest {
 	 */
 	@Test
 	public void testFetchCourseSemester1() {
+		db.connect(dbCred[0][1], dbCred[0][2]);
 		cid = Integer.parseInt(dbTable[0][0]);
 		String sem = db.fetchCourseSemester(cid);
 		
@@ -415,6 +430,7 @@ public class DBConnectionUnitTest {
 	 */
 	@Test
 	public void testFetchCourseSemester2() {
+		db.connect(dbCred[0][1], dbCred[0][2]);
 		cid = 8;
 		String sem = db.fetchCourseSemester(cid);
 		
@@ -432,6 +448,7 @@ public class DBConnectionUnitTest {
 	 */
 	@Test
 	public void testFetchCourseStart1() {
+		db.connect(dbCred[0][1], dbCred[0][2]);
 		cid = Integer.parseInt(dbTable[0][0]);
 		String sDate = db.fetchCourseStart(cid);
 		
@@ -466,6 +483,7 @@ public class DBConnectionUnitTest {
 	 */
 	@Test
 	public void testFetchCourseEnd1() {
+		db.connect(dbCred[0][1], dbCred[0][2]);
 		cid = Integer.parseInt(dbTable[0][0]);
 		String eDate = db.fetchCourseEnd(cid);
 		
@@ -483,6 +501,7 @@ public class DBConnectionUnitTest {
 	 */
 	@Test
 	public void testFetchCourseEnd2() {
+		db.connect(dbCred[0][1], dbCred[0][2]);
 		cid = 16;
 		String eDate = db.fetchCourseEnd(cid);
 		
@@ -843,7 +862,7 @@ public class DBConnectionUnitTest {
 	 * Test Id: DBC_FetchStartSat_046
 	 * Test Purpose: Test if Peter Clarke can retrieve the start times of classes on Saturday
 	 * Setup: dbTable
-	 * Input:
+	 * Input: db.fetchStartSat(0)
 	 * Expected Output: 11:00 
 	 * Actual Output: 
 	 * Pass/Fail: 
