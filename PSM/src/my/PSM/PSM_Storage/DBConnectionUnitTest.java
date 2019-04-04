@@ -64,13 +64,13 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_DBConnection_001
+	 * Test Id: DBC_DBConnection_022
 	 * Test Purpose: Use DBConnection to create a DBConnection object
-	 * Setup: 
-	 * Input: none
+	 * Setup: DBConnection mock
+	 * Input: DBConnection.class
 	 * Expected Output: new DBConnection object
-	 * Actual Output: 
-	 * Pass/Fail: 
+	 * Actual Output: new DBConnection object
+	 * Pass/Fail: pass
 	 */
 	@Test
 	public void testDBConnection() {
@@ -79,13 +79,13 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_Connect_002
+	 * Test Id: DBC_Connect_023
 	 * Test Purpose: Test connection using a known database
-	 * Setup: 
-	 * Input:
+	 * Setup: DBConnection mock
+	 * Input: db.connect
 	 * Expected Output: none
 	 * Actual Output: new connection to a known database
-	 * Pass/Fail:  
+	 * Pass/Fail: pass 
 	 */
 	@Test
 	public void testConnectDbUserPw1() {
@@ -95,13 +95,13 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_Connect_003
+	 * Test Id: DBC_Connect_024
 	 * Test Purpose: Test connection using a known database with incorrect credentials
-	 * Setup: 
-	 * Input:
+	 * Setup: DBConnection mock
+	 * Input: db.connect
 	 * Expected Output: none
-	 * Actual Output: -1; exception
-	 * Pass/Fail: 
+	 * Actual Output: 0
+	 * Pass/Fail: fail
 	 */
 	@Test
 	public void testConnectDbUserPw2() {
@@ -111,11 +111,13 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_ConnectLocal_004
+	 * Test Id: DBC_ConnectLocal_025
 	 * Test Purpose: Test connection using localhost
-	 * Setup: 
-	 * Input: none
+	 * Setup: DBConnection mock
+	 * Input: db.connect
 	 * Expected Output: new connection to a known database
+	 * Actual Output: 0
+	 * Pass/Fail: pass
 	 */
 	@Test
 	public void testConnectUserPw1() {
@@ -125,13 +127,13 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_DontConnectLocal_005
+	 * Test Id: DBC_DontConnectLocal_026
 	 * Test Purpose: Test connection using localhost with incorrect credentials
-	 * Setup: 
-	 * Input: none
+	 * Setup: DBConnection mock
+	 * Input: db.connect
 	 * Expected Output: -1; exception
-	 * Actual Output: 
-	 * Pass/Fail: 
+	 * Actual Output: 0
+	 * Pass/Fail: fail
 	 */
 	@Test
 	public void testConnectUserPw2() {
@@ -140,14 +142,15 @@ public class DBConnectionUnitTest {
 		assertEquals("Local DBConnection failure", -1, db.connect("notPeterClarke", dbCred[0][2]));
 	}
 
+	
 	/*
-	 * Test Id: DBC_Disconnect_006
+	 * Test Id: DBC_Disconnect_027
 	 * Test Purpose: Test if users can dc properly
 	 * Setup: 
-	 * Input: none
+	 * Input: db.connect, db.disconnect
 	 * Expected Output: user is disconnected from database
-	 * Actual Output: 
-	 * Pass/Fail: 
+	 * Actual Output: 0
+	 * Pass/Fail: pass
 	 */
 	@Test
 	public void testDisconnect1() {
@@ -156,13 +159,13 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_Disconnect_007
+	 * Test Id: DBC_Disconnect_028
 	 * Test Purpose: Test if users cannot dc 
-	 * Setup: 
-	 * Input: none
+	 * Setup: DBConnection mock
+	 * Input: db.connect, db.disconnect
 	 * Expected Output: user is not connected from database
-	 * Actual Output: 
-	 * Pass/Fail: 
+	 * Actual Output: 0
+	 * Pass/Fail: fail
 	 */
 	@Test
 	public void testDisconnect2() {
@@ -172,10 +175,10 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_FetchCourseID_008
+	 * Test Id: DBC_FetchCourseID_029
 	 * Test Purpose: retrieve the course associated with the four digit int supplied
-	 * Setup: 
-	 * Input: course_id = 1234
+	 * Setup: DBConnection mock
+	 * Input: course_id = 1234, db.connect, db.fetchCourseID
 	 * Expected Output: the course associated with 1234
 	 * Actual Output: 
 	 * Pass/Fail: 
@@ -188,7 +191,7 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_FetchCourseID_009
+	 * Test Id: DBC_FetchCourseID_030
 	 * Test Purpose: attempt to retrieve a course with a 1 digit int
 	 * Setup: 
 	 * Input: course_id = 1
@@ -204,7 +207,7 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_GetEndDates_010
+	 * Test Id: DBC_GetEndDates_031
 	 * Test Purpose: Test if users can get the end date of a semester
 	 * Setup: Run an SQL server
 	 * 		  Add the "Class100" table
@@ -232,7 +235,7 @@ public class DBConnectionUnitTest {
 	}
 	@Test
 	/*
-	 * Test Id: DBC_GetEndDates_011
+	 * Test Id: DBC_GetEndDates_032
 	 * Test Purpose: Test if "PeterClarke" cannot get the end date of a semester
 	 * Setup: Run an SQL server
 	 * 		  Add the "Class100" table
@@ -257,7 +260,7 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_GetCourses_012
+	 * Test Id: DBC_GetCourses_033
 	 * Test Purpose: Test if Peter Clarke can get courses for a summer semester
 	 * Setup: 
 	 * Input: none
@@ -276,8 +279,13 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
+<<<<<<< HEAD
 	 * Test Id: DBC_GetCourses_013
 	 * Test Purpose: Test if Peter Clarke cannot get courses for a Spring semester
+=======
+	 * Test Id: DBC_GetCourses_034
+	 * Test Purpose: Test if Peter Clarke cannot get courses for a summer semester
+>>>>>>> 4cc8fffbc93dc483a3e75f39466040ec5a8a0ac7
 	 * Setup: 
 	 * Input: none
 	 * Expected Output: error
@@ -295,7 +303,7 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_FetchCourses_014
+	 * Test Id: DBC_FetchCourses_035
 	 * Test Purpose: test if Peter Clarke can retrieve a course's name
 	 * Setup: 
 	 * Input:
@@ -307,14 +315,19 @@ public class DBConnectionUnitTest {
 	public void testFetchCourses1() {
 		db.connect(dbCred[0][1], dbCred[0][2]);
 		String courses = db.fetchCourses();
-		String testInput = dbTable[0][1] + ",";
+		String testInput = dbTable[0][0] + ",";
 		
 		assertEquals("Fetch Course Success", testInput, courses);
 	}         
 	
 	/*
+<<<<<<< HEAD
 	 * Test Id: DBC_FetchCourses_015
 	 * Test Purpose: test if Peter Clarke cannot retrieve a course's name
+=======
+	 * Test Id: DBC_FetchCourses036
+	 * Test Purpose: 
+>>>>>>> 4cc8fffbc93dc483a3e75f39466040ec5a8a0ac7
 	 * Setup: 
 	 * Input:
 	 * Expected Output: 
@@ -330,7 +343,7 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_FetchCourseSubj_016
+	 * Test Id: DBC_FetchCourseSubj_037
 	 * Test Purpose: test if Peter Clarke can retrieve a course's subject with a specific int course ID
 	 * Setup: dbTable
 	 * Input: dbTable[0][1], dbTable[0][0]
@@ -348,7 +361,7 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_FetchCouseSubj_017
+	 * Test Id: DBC_FetchCouseSubj_038
 	 * Test Purpose: test if Peter Clarke can fail to retrieve a course with a specific int course ID
 	 * Setup: dbTable
 	 * Input: dbTable[0][1], dbTable[0][0]
@@ -366,7 +379,7 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_FetchCourseName_018
+	 * Test Id: DBC_FetchCourseName_039
 	 * Test Purpose: test if Peter Clarke can retrieve a course's name with a specific int course ID
 	 * Setup: dbTable
 	 * Input: dbTable[0][0]
@@ -384,7 +397,7 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC__FetchCourseName_019
+	 * Test Id: DBC__FetchCourseName_040
 	 * Test Purpose: test if Peter Clarke cannot retrieve a course's name with an incorrect int course ID
 	 * Setup: dbTable
 	 * Input: 4
@@ -402,7 +415,7 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_FetchCourseSemester_020
+	 * Test Id: DBC_FetchCourseSemester_041
 	 * Test Purpose: test if Peter Clarke can retrieve the semester a course takes place in with an int course ID
 	 * Setup: dbTable
 	 * Input: dbTable[0][0]
@@ -420,7 +433,7 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_FetchCourseSemester_021
+	 * Test Id: DBC_FetchCourseSemester_042
 	 * Test Purpose: test if Peter Clarke cannot retrieve the semester a course takes place in with an incorrect int course ID
 	 * Setup: dbTable
 	 * Input: dbTable[0][3], dbTable[0][0]
@@ -434,11 +447,11 @@ public class DBConnectionUnitTest {
 		cid = 8;
 		String sem = db.fetchCourseSemester(cid);
 		
-		assertEquals("Couse semester fetch successful", null, sem);
+		assertEquals("Couse semester fetch unsuccessful", null, sem);
 	}
 
 	/*
-	 * Test Id: DBC_FetchCourseStart_022
+	 * Test Id: DBC_FetchCourseStart_043
 	 * Test Purpose: test if Peter Clarke can retrieve the starting data a semester takes place in with an int course ID
 	 * Setup: dbTable
 	 * Input: dbTable[0][4], dbTable[0][0]
@@ -456,7 +469,7 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_FetchCourseStart_023
+	 * Test Id: DBC_FetchCourseStart_044
 	 * Test Purpose: test if Peter Clarke cannot retrieve the starting date a semester takes place in with an incorrect int course ID
 	 * Setup: dbTable
 	 * Input: 15
@@ -473,7 +486,7 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_FetchCourseEnd_024
+	 * Test Id: DBC_FetchCourseEnd_045
 	 * Test Purpose: test if Peter Clarke can retrieve the ending date of a semester with a correct int course ID
 	 * Setup: dbTable
 	 * Input: dbTable[0][0]
@@ -491,7 +504,7 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_FetchCourseEnd_025
+	 * Test Id: DBC_FetchCourseEnd_046
 	 * Test Purpose: test if Peter Clarke cannot retrieve the ending date of a semester with an incorrect int course ID
 	 * Setup: dbTable
 	 * Input: 16
@@ -509,7 +522,7 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_FetchStartMon_026
+	 * Test Id: DBC_FetchStartMon_047
 	 * Test Purpose: Test if Peter Clarke can retrieve the start times of classes on Monday
 	 * Setup: dbTable
 	 * Input:
@@ -526,7 +539,7 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_FetchStartMon_027
+	 * Test Id: DBC_FetchStartMon_048
 	 * Test Purpose: Test if Peter Clarke cannot retrieve the start times of classes on Monday
 	 * Setup: dbTable
 	 * Input:
@@ -544,10 +557,10 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_FetchEndMon_028
+	 * Test Id: DBC_FetchEndMon_049
 	 * Test Purpose: Test if Peter Clarke can retrieve the end times of classes on Monday
 	 * Setup: dbTable
-	 * Input:
+	 * Input: db.FetchEndThu
 	 * Expected Output: 11:00 
 	 * Actual Output: 
 	 * Pass/Fail: 
@@ -561,7 +574,7 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_FetchEndMon_029
+	 * Test Id: DBC_FetchEndMon_050
 	 * Test Purpose: Test if Peter Clarke cannot retrieve the start times of classes on Monday
 	 * Setup: dbTable
 	 * Input:
@@ -579,7 +592,7 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_FetchStartTue_030
+	 * Test Id: DBC_FetchStartTue_051
 	 * Test Purpose: Test if Peter Clarke can retrieve the start times of classes on Tuesday 
 	 * Setup: dbTable
 	 * Input:
@@ -596,7 +609,7 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_FetchStartTue_031
+	 * Test Id: DBC_FetchStartTue_052
 	 * Test Purpose: Test if Peter Clarke cannot retrieve the start times of classes on Tuesday
 	 * Setup: dbTable
 	 * Input:
@@ -614,7 +627,7 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_FetchEndTue_032
+	 * Test Id: DBC_FetchEndTue_053
 	 * Test Purpose: Test if Peter Clarke can retrieve the end times of classes on Tuesday
 	 * Setup: dbTable
 	 * Input:
@@ -631,7 +644,7 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_FetchEndTue_033
+	 * Test Id: DBC_FetchEndTue_054
 	 * Test Purpose: Test if Peter Clarke cannot retrieve the end times of classes on Tuesday
 	 * Setup: dbTable
 	 * Input:
@@ -649,7 +662,7 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_FetchStartWed_034
+	 * Test Id: DBC_FetchStartWed_055
 	 * Test Purpose: Test if Peter Clarke can retrieve the start times of classes on Wednesday
 	 * Setup: dbTable
 	 * Input:
@@ -666,7 +679,7 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_FetchStartWed_035
+	 * Test Id: DBC_FetchStartWed_056
 	 * Test Purpose: Test if Peter Clarke cannot retrieve the start times of classes on Wednesday
 	 * Setup: dbTable
 	 * Input:
@@ -684,7 +697,7 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_FetchEndWed_036
+	 * Test Id: DBC_FetchEndWed_057
 	 * Test Purpose: Test if Peter Clarke can retrieve the end times of classes on Wednesday
 	 * Setup: dbTable
 	 * Input:
@@ -701,7 +714,7 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_FetchEndWed_037
+	 * Test Id: DBC_FetchEndWed_058
 	 * Test Purpose: Test if Peter Clarke cannot retrieve the end times of classes on Wednesday
 	 * Setup: dbTable
 	 * Input:
@@ -719,7 +732,7 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_FetchStartThu_038
+	 * Test Id: DBC_FetchStartThu_059
 	 * Test Purpose: Test if Peter Clarke can retrieve the start times of classes on Thursday
 	 * Setup: dbTable
 	 * Input:
@@ -736,7 +749,7 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_FetchStartThu_039
+	 * Test Id: DBC_FetchStartThu_060
 	 * Test Purpose: Test if Peter Clarke cannot retrieve the start times of classes on Thursday
 	 * Setup: dbTable
 	 * Input:
@@ -754,7 +767,7 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_FetchEndThu_040
+	 * Test Id: DBC_FetchEndThu_061
 	 * Test Purpose: Test if Peter Clarke can retrieve the end times of classes on Thursday
 	 * Setup: dbTable
 	 * Input:
@@ -771,7 +784,7 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_FetchEndThu_041
+	 * Test Id: DBC_FetchEndThu_062
 	 * Test Purpose: Test if Peter Clarke cannot retrieve the end times of classes on Thursday
 	 * Setup: dbTable
 	 * Input:
@@ -789,7 +802,7 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_FetchStartFri_042
+	 * Test Id: DBC_FetchStartFri_063
 	 * Test Purpose: Test if Peter Clarke can retrieve the start times of classes on Friday
 	 * Setup: dbTable
 	 * Input:
@@ -806,7 +819,7 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_FetchStartFri_043
+	 * Test Id: DBC_FetchStartFri_064
 	 * Test Purpose: Test if Peter Clarke cannot retrieve the start times of classes on Friday
 	 * Setup: dbTable
 	 * Input:
@@ -824,7 +837,7 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_FetchEndFri_044
+	 * Test Id: DBC_FetchEndFri_065
 	 * Test Purpose: Test if Peter Clarke can retrieve the end times of classes on Friday
 	 * Setup: dbTable
 	 * Input:
@@ -841,7 +854,7 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_FetchEndFri_045
+	 * Test Id: DBC_FetchEndFri_066
 	 * Test Purpose: Test if Peter Clarke cannot retrieve the end times of classes on Friday
 	 * Setup: dbTable
 	 * Input:
@@ -859,7 +872,7 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_FetchStartSat_046
+	 * Test Id: DBC_FetchStartSat_067
 	 * Test Purpose: Test if Peter Clarke can retrieve the start times of classes on Saturday
 	 * Setup: dbTable
 	 * Input: db.fetchStartSat(0)
@@ -876,7 +889,7 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_FetchStartSat_047
+	 * Test Id: DBC_FetchStartSat_068
 	 * Test Purpose: Test if Peter Clarke cannot retrieve the start times of classes on Saturday
 	 * Setup: dbTable
 	 * Input:
@@ -894,7 +907,7 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_FetchEndSat_048
+	 * Test Id: DBC_FetchEndSat_069
 	 * Test Purpose: Test if Peter Clarke can retrieve the end times of classes on Saturday
 	 * Setup: dbTable
 	 * Input:
@@ -911,7 +924,7 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_FetchEndSat_049
+	 * Test Id: DBC_FetchEndSat_070
 	 * Test Purpose: Test if Peter Clarke cannot retrieve the end times of classes on Saturday
 	 * Setup: dbTable
 	 * Input:
@@ -929,7 +942,7 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_StoreClassInfo_050
+	 * Test Id: DBC_StoreClassInfo_071
 	 * Test Purpose: Test if Peter Clarke can save a course's info into a db with a legal course id, subject, name and semester
 	 * Setup: dbTable
 	 * Input: dbTable[0][0], dbTable[0][1], dbTable[0][2], dbTable[0][3]
@@ -956,7 +969,7 @@ public class DBConnectionUnitTest {
 	
 	
 	/*
-	 * Test Id: DBC_StoreClassInfo_051
+	 * Test Id: DBC_StoreClassInfo_072
 	 * Test Purpose: Test if Peter Clarke cannot save a course's info into a db with an illegal parameter                                     
 	 * Setup: dbTable
 	 * Input: 1, null, null, null,
@@ -977,7 +990,7 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_StoreClassSched_052
+	 * Test Id: DBC_StoreClassSched_073
 	 * Test Purpose: Test if Peter Clarke can store a class's schedule given proper inputs
 	 * Setup: dbTable
 	 * Input: dbTable[0][0..18], null
@@ -1008,7 +1021,7 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_StoreClassSched_053
+	 * Test Id: DBC_StoreClassSched_074
 	 * Test Purpose: Test if Peter Clarke cannot store a class's schedule providing null inputs
 	 * Setup:
 	 * Input: null
@@ -1032,7 +1045,7 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_ClearDatabase_054
+	 * Test Id: DBC_ClearDatabase_075
 	 * Test Purpose: Test if Peter Clarke can clear the database of entries
 	 * Setup: 
 	 * Input:
@@ -1049,7 +1062,7 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_ClearDatabase_055
+	 * Test Id: DBC_ClearDatabase_076
 	 * Test Purpose: Test if Peter Clarke cannot clear the database of entries
 	 * Setup: 
 	 * Input:
@@ -1073,7 +1086,7 @@ public class DBConnectionUnitTest {
 	}
 
 	/*
-	 * Test Id: DBC_CreateClassTable_056
+	 * Test Id: DBC_CreateClassTable_077
 	 * Test Purpose: Test if Peter Clarke can create the the database tables
 	 * Setup: 
 	 * Input:
@@ -1104,7 +1117,7 @@ public class DBConnectionUnitTest {
 	}
 	
 	/*
-	 * Test Id: DBC_CreateClassTable_057
+	 * Test Id: DBC_CreateClassTable_078
 	 * Test Purpose: Test if Peter Clarke cannot create the database tables
 	 * Setup: 
 	 * Input:
