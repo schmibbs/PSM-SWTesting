@@ -67,14 +67,12 @@ public class SubsystemTestDriver {
 							"13:00","12:00", "13:00","12:00", "13:00"}};
 
     /**
-    * Test ID: PSM_<ClassesTested>_Subsystem_001
-    * Test purpose: Test <things from class>
+    * Test ID: PSM_Logic_Subsystem_001
+    * Test purpose: Test <ServicesGoingThroughClassesBeingTested> WRITE IN REGULAR ENGLISH AND MUST BE SIMILAR TO WHAT IS IN DOCUMENT
     * Setup: 1. Create necessary mocks
              2. Create instances of classes to test
              3. See what it does
     * Input: Methods that are called on input
     * Expected output: 
-    * Actual output: 
-    * Pass/fail: fail
     */
 }
