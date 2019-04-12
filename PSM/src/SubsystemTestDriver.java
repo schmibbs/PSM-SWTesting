@@ -79,7 +79,6 @@ public class SubsystemTestDriver {
     //====================================================================
     /**
     ADVICE FROM DAVID
-
     Re-create the main method
         if it calls DBConnection or ANYthing in other packages, stub the classes from the package that calls it
         create tests for main to see if it is doing what yuo expect it to do
@@ -370,7 +369,7 @@ long classEnded = 0;
                 
     }
 
- public static void checkTimes()
+    public static void checkTimes()
     {
         ArrayList<Integer> courseList = db.getCourses();
         
@@ -434,13 +433,135 @@ long classEnded = 0;
        
 }
 
-/**
- * method that is used to control logic after a branch is entered in the usual main
- * Done since you have control when the branch is entered vs the regular main doing it whenver*/
-public static void branchLogicOne() {
+	/**
+	 * method that is used to control logic after a branch is entered in the usual main
+	 * Done since you have control when the branch is entered vs the regular main doing it whenver
+	 * 
+	 * This is after while(!datarecieved) on line 99
+	 * */
+	public static void branchLogic_1() {
+		ic.log.setDataRec(false);
+		dataRecieved = false;
+		
+		username = ic.log.getUsername();
+		password = ic.log.getPassword();
+		
+		auth = new Authenticate(username, password);
+	}
+	
+	/**
+	 * auth.validate_Login() == true on line 108
+	 */
+	public static void branchLogic_2() {
+        loggedin = true;
+        auth.logout();
+        db.connect(username,password);
+	}
+	
+	/**
+	 * !loggedIn == true on line 114
+	 */
+	public static void branchLogic_3() {
+        ic.Initiate_IncorrectLogin();
+        counter++;
+        
+        while(!dataReceived)
+        {
+            dataReceived = ic.msg.ack;
+        }
+        dataReceived = false;
+        ic.msg.ack = false;
+	}
+	
+	/**
+	 * counter >= 3 line 125
+	 */
+	public static void branchLogic_4() {
+        ic.passwordLock();
+        while(!dataReceived)
+        {
+            dataReceived = ic.msg.ack;
+            
+        }
+        System.exit(0);
+	}	
+	
+	/**
+	 * !dataRcv== true on line 149
+	 */
+	public static void branchLogic_5() {
+        dataReceived = ic.mm.dataRec();
+        edSchedSel = ic.mm.editSchedSelected();
+        schedSetupSel = ic.mm.InitSetupSelected();
+        logoutSel = ic.mm.logoutSelected();
+	}	
 
+	/**
+	 * !logoutSelected == true on line 144 
+	 */
+	public static void branchLogic_6() {
+        newCurrentTime = 0;
+        ic.mm.setdataRec(false);
+        dataReceived = false;
+	}	
+	
+	/**
+	 * logoutSel on line 171
+	 */
+	public static void branchLogic_7() {
+        auth.logout();
+        ic.Initiate_Logout();
+	}	
+	
+	/**
+	 * edit sched on line 178
+	 */
+	public static void branchLogic_8() {
+		ic.Course_Select_Form();
+		
+        ic.cs.setCourseSelected(false);
+        dataReceived = false;
+
+        courseSel = ic.cs.getSelection();
+        getData(courseSel);
+        
+        ic.Pre_Filled_Form(courseSel,defSub,defCourseName,defSemester,defCourseStart,
+                defCourseEnd,defMonStart,defMonEnd,defTueStart,defTueEnd,defWedStart,
+                defWedEnd,defThuStart,defThuEnd,defFriStart,defFriEnd,defSatStart,defSatEnd);
+        
+        dataReceived = false;
+        ic.edSched.setDataRec(false);
+
+        //System.out.println("Save has been pressed" +ic.edSched.newMonStart);
+
+        db.storeClassSched(ic.edSched.defCourseID, ic.edSched.newCourseStart, ic.edSched.newCourseEnd, 
+                ic.edSched.newMonStart, ic.edSched.newMonEnd, ic.edSched.newTueStart, ic.edSched.newTueEnd, 
+                ic.edSched.newWedStart, ic.edSched.newWedEnd, ic.edSched.newThuStart, ic.edSched.newThuEnd, 
+                ic.edSched.newFriStart, ic.edSched.newFriEnd, ic.edSched.newSatStart, ic.edSched.newSatEnd);        
+	}	
+	
+	/**
+	 * auth.validate_Login() == true on line 220
+	 */
+	public static void branchLogic_9() {
+        ic.sched.launchInitial();
+        //Initial Schedule Setup
+
+        dataReceived = false;
+        ic.sched.setDataRec(false);
+        
+        db.storeClassInfo(ic.sched.newCourseID, ic.sched.newSub, ic.sched.newCourseName,ic.sched.newSemester);
+        db.storeClassSched(ic.sched.newCourseID, ic.sched.newCourseStart, ic.sched.newCourseEnd, 
+                ic.sched.newMonStart, ic.sched.newMonEnd, ic.sched.newTueStart, ic.sched.newTueEnd, 
+                ic.sched.newWedStart, ic.sched.newWedEnd, ic.sched.newThuStart, ic.sched.newThuEnd, 
+                ic.sched.newFriStart, ic.sched.newFriEnd, ic.sched.newSatStart, ic.sched.newSatEnd);
+	}	
+	
+	/**
+	 * auth.validate_Login() == true on line 224
+	 */
+	public static void branchLogic_10() {
+        dataReceived = ic.sched.dataRec();
+        sleep(300);
+	}		
 }
-
-}
-
-

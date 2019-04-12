@@ -19,7 +19,11 @@ import java.util.ArrayList;
  * @author Luis
  */
 public class DBConnection
+<<<<<<< HEAD
 {	
+=======
+{
+>>>>>>> e1e5596772841c5a4cee9efa5af3a10d37ff2189
     private Connection myCon;
     private String username;
     private String password;
@@ -688,4 +692,11 @@ public class DBConnection
 
 //    INSERT INTO class1
 //        VALUES(4010,'CEN','Software Engineering','Spring 2008','01-02-08','04-20-08','am','12:00','12:50','null','null',
+<<<<<<< HEAD
 //               '12:00','12:50','null','null','12:00','12:50','null','null')
+=======
+//               '12:00','12:50','null','null','12:00','12:50','null','null')
+
+
+
+>>>>>>> e1e5596772841c5a4cee9efa5af3a10d37ff2189
