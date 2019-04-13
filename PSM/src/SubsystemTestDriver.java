@@ -3,7 +3,6 @@
 * developed by Esteban . This version will have a preference on 
 * testing coverage 
 */
-<<<<<<< HEAD
 
 
 import static org.junit.Assert.*;
@@ -74,9 +73,7 @@ public class SubsystemTestDriver {
 		db = null;
 	}	
 	
-=======
 public class SubsystemTestDriver {
->>>>>>> 3fdf319a83a735fecc6d2daa1ed1291ffb2e1c60
     //begin Esteban's variables
     private static boolean dataRec = false;
     private static String username;
@@ -134,19 +131,8 @@ public class SubsystemTestDriver {
     public static boolean ack;
     //end Esteban's variables
 
-<<<<<<< HEAD
     /** <TEMPLATE> 
     * Test ID: PSM_Logic_Subsystem_000
-=======
->>>>>>> 3fdf319a83a735fecc6d2daa1ed1291ffb2e1c60
-	final String[][] DB_CRED = {{"jdbc:mysql://localhost:3306/mydb", "PeterClarke", "12345"}}; //control variables used for connecting/testing connections to a local db called "mydb"
-	final String[][] DB_TEST_VALS = {{"1234", "FOO", "BAR", "Spring", "01/01/1900", "07/08/1901", "am",//control variables that are used for testing entry into the class100 table in "mydb"
-							"12:00", "13:00", "12:00", "13:00","12:00", "13:00","12:00", 
-							"13:00","12:00", "13:00","12:00", "13:00"}};
-
-    /**
-    * Test ID: PSM_Logic_Subsystem_001
-<<<<<<< HEAD
     * Test purpose: Test ServicesGoingThroughClassesBeingTested> WRITE IN REGULAR ENGLISH AND MUST BE SIMILAR TO WHAT IS IN DOCUMENT
     * Setup: 1. Create necessary mocks
              2. Create instances of classes to test
@@ -210,14 +196,6 @@ public class SubsystemTestDriver {
     	assertTrue(true);
     }
 }
-=======
-    * Test purpose: Test <ServicesGoingThroughClassesBeingTested> WRITE IN REGULAR ENGLISH AND MUST BE SIMILAR TO WHAT IS IN DOCUMENT
-    * Setup: 1. Create necessary mocks
-             2. Create instances of classes to test
-             3. See what it does
-    * Input: Methods that are called on input
-    * Expected output: 
-    */
 
     //====================================================================
     /**
@@ -708,4 +686,3 @@ long classEnded = 0;
         sleep(300);
 	}		
 }
->>>>>>> 3fdf319a83a735fecc6d2daa1ed1291ffb2e1c60
