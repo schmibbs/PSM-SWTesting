@@ -19,7 +19,7 @@ import java.util.ArrayList;
  * @author Luis
  */
 public class DBConnection
-{
+{	
     private Connection myCon;
     private String username;
     private String password;
@@ -689,6 +689,4 @@ public class DBConnection
 //    INSERT INTO class1
 //        VALUES(4010,'CEN','Software Engineering','Spring 2008','01-02-08','04-20-08','am','12:00','12:50','null','null',
 //               '12:00','12:50','null','null','12:00','12:50','null','null')
-
-
 
