@@ -1,1 +1,101 @@
+<?xml version="1.0"?>
+<project name="Simple-Java-Cobertura" default="main" basedir=".">
+	<description>Builds, tests, and runs the project Simple Java</description>
+	
+    <!-- Sets variables which can later be used. -->
+    <!-- The value of a property is accessed via ${} -->
+    <property name="src.dir" location="src" />
+    <property name="build.dir" location="bin" />
+    <property name="dist.dir" location="dist" />
+    <property name="docs.dir" location="docs" />
+	<property name="cobertura.dir" location="cobertura" />
+	<property name="instrumented.dir" location="instrumented" />
+	<property name="report.dir" location="report" />
+	
+	  <!-- Adding Cobertura classPath-->
+	<path id="cobertura.classpath">
+			<fileset dir="${cobertura.dir}">
+				<include name="cobertura-2.1.1.jar" />
+				<include name="lib/**/*.jar" />
+			</fileset>
+		
+	 </path>
+	
+	<taskdef classpathref="cobertura.classpath" resource="tasks.properties" />
 
+
+    <!-- Deletes the existing build, docs and dist directory-->
+    <target name="clean">
+        <delete dir="${build.dir}" />
+        <delete dir="${docs.dir}" />
+        <delete dir="${dist.dir}" />
+    	<delete dir="${instrumented.dir}" />
+    	<delete dir="${report.dir}" />
+    	<delete file="cobertura.ser" />
+    </target>
+
+    <!-- Creates the  build, docs and dist directory-->
+    <target name="makedir" depends="clean">
+        <mkdir dir="${build.dir}" />
+        <mkdir dir="${docs.dir}" />
+        <mkdir dir="${dist.dir}" />
+    	<mkdir dir="${instrumented.dir}" />
+    	<mkdir dir="${report.dir}" />
+    </target>
+	
+	<target name="instrument-File" depends="compile">
+		<!--Cobertura instrumented -->
+		<cobertura-instrument todir="$(instrumented.dir)">
+				<fileset dir="${build.dir}">
+					<include name="**/*.class"/>
+				</fileset>
+		</cobertura-instrument>
+	  </target>
+	
+	
+	<!-- Cobertura test report -->
+		<target name="show-report" depends="jar">
+			<delete dir="${report.dir}" />
+			<mkdir dir="${report.dir}" />
+			<cobertura-report format="html" srcdir="$(src.dir)" destdir="$(report.dir)"/>
+			 <fileset dir="${src.dir}">
+			    <include name="**/*.java" />
+			  </fileset>
+		</target>
+
+    <!-- Compiles the java code (including the usage of library for JUnit -->
+    <target name="compile" depends="clean, makedir">
+        <javac srcdir="${src.dir}" destdir="${build.dir}" includeantruntime="false"  classpathref="cobertura.classpath"></javac>
+    </target>
+
+    <!-- Creates Javadoc -->
+    <target name="docs" depends="compile">
+        <javadoc packagenames="src" sourcepath="${src.dir}" destdir="${docs.dir}">
+            <!-- Define which files / directory should get included, we include all -->
+             <fileset dir="${src.dir}">
+                <include name="**" />
+             </fileset>
+        </javadoc>
+    </target>
+	
+	 
+
+    <!--Creates the deployable jar file  -->
+    <target name="jar" depends="compile">
+        <jar destfile="${dist.dir}\SimpleJavaApp.jar" basedir="${build.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="my.PSM.PSM_Logic.appController" />
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="main" depends="clean, makedir, compile, instrument-File, jar, docs, show-paths, show-report">
+        <description>Main target</description>
+    </target>
+	
+	
+	 <target name="show-paths">
+	      <pathconvert property="echo.path" refid="cobertura.classpath" />
+	      <echo message="classpath = ${echo.path}" />
+	   </target>
+</project>
