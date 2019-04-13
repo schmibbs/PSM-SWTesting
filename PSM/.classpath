@@ -22,5 +22,12 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	<classpathentry kind="lib" path="C:/Users/adams/Downloads/codecover_1.0.0.0.jar"/>
+>>>>>>> e1e5596772841c5a4cee9efa5af3a10d37ff2189
+>>>>>>> 3fdf319a83a735fecc6d2daa1ed1291ffb2e1c60
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
