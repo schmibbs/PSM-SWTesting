@@ -36,19 +36,19 @@ import java.sql.SQLException;
 
 
 public class SubsystemTestDriver {
-	private static final long TENMIN = 60000;
-	//I think jesse made these; ask later
+	private static final long TENMIN = 600000;
+	//jesse's mocks
 	@Mock
 	Statement statementMock;
 	@Mock
 	ResultSet resultMock;
 	@Mock
 	Connection connectMock;
+	
 	//my mocks
 	@Mock
 	static
 	InterfaceController ic;
-	
 	@Mock
 	static
 	Authenticate auth;
@@ -142,6 +142,10 @@ public class SubsystemTestDriver {
 
     public static boolean ack;
     //end Esteban's variables
+    private static int clearDate, clearMonth, clearYear;
+    private static int hr = 0;
+    private static int min = 0;
+    private static boolean dbCleared = false;
 
     /** <TEMPLATE> 
     * Test ID: PSM_Logic_Subsystem_000
@@ -174,7 +178,7 @@ public class SubsystemTestDriver {
 		String luggagePW = DB_CRED[0][2];
 		
 		try {
-		connectMock = (Connection) DriverManager.getConnection(localHost, clarkE, luggagePW);
+			connectMock = (Connection) DriverManager.getConnection(localHost, clarkE, luggagePW);
 		}
 		catch (Exception e){
 			e.getStackTrace();
@@ -279,7 +283,7 @@ static long classEnded = 0;
     }
     
     
-    public static void dummyMain(String args[]) {   //rename appRunner
+    public static void appRunner(String args[]) {   
         //TEST value: loggedin
        while(!loggedin)
        {     
@@ -296,7 +300,7 @@ static long classEnded = 0;
                 //sleep(300); //Sleep isn't needed in testing
                 
             }while(!dataReceived);
-
+            //branchLogic_1
             //Mock a IC for setDataRec
             ic.log.setDataRec(false);
             dataReceived = false;
@@ -307,6 +311,7 @@ static long classEnded = 0;
             //TEST values: auth method check user,pw
             auth = new Authenticate(username,password);
             if(auth.validate_Login()){
+            	//branchLogic_2
                 loggedin = true;
                 //Check state change 
                 auth.logout();
@@ -316,6 +321,7 @@ static long classEnded = 0;
             
               //Change state change: loggedin
             if(!loggedin){
+            	////branchLogic_3
                 //ic.Initiate_IncorrectLogin();
                 counter++;
                 //Check state change
@@ -332,6 +338,7 @@ static long classEnded = 0;
             }
             //Check state change: counter
             if(counter >= 3){
+            ////branchLogic_4
                 //Do not call ic.passwordLock()
                 //ic.passwordLock();
                 //Check state change: dataReceived
@@ -358,12 +365,13 @@ static long classEnded = 0;
        //Check state change in logoutSel
        while(!logoutSel)
        {
-           
+    	////branchLogic_5
            
            long newCurrentTime;
            //Check state dataReceived
            while(!dataReceived)
            {
+        	////branchLogic_6 LOOK UP MIGHT BE SWAPPED WITH 5
                //MUST MOCK dataReceived, edSchedSel, schedSetupSel, logoutSel
                //Don't call anything from ic.mm.*
                dataReceived = ic.mm.dataRec();
@@ -394,6 +402,7 @@ static long classEnded = 0;
             //Get status for logoutSet
            if(logoutSel)
            {
+        	////branchLogic_7
                //Get status of auth
                auth.logout();
 
@@ -404,6 +413,7 @@ static long classEnded = 0;
            //Get edSchedSel status
            else if(edSchedSel)
            {
+        	////branchLogic_8
                //Edit Schedule 
                //ic.Course_Select_Form();
 
@@ -456,13 +466,14 @@ static long classEnded = 0;
            //Expected status of schedSetupSel
            else if(schedSetupSel)
            {
+        	////branchLogic_9
                 //Mock this VVV, you know the drill
                ic.sched.launchInitial();
 
                //Initial Schedule Setup
                //VVV This uses the same mock as above.
                while(!ic.sched.dataRec())
-               {
+               {////branchLogic_10
                    //Mock again
                    dataReceived = ic.sched.dataRec();
                    //sleep(300);
@@ -492,11 +503,80 @@ static long classEnded = 0;
     //Used Methods Below outside of main
     //
 
+    //TODO: Make these stubs do something
     private static void getData(int courseSel2) {
 		// TODO Auto-generated method stub
 		
 	}
 
+    private static void dateParser(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+    
+	private static Date getEndTime(int hr, int min) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private static Date get5BeforeEnd(int hr, int min) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private static Date get15BeforeEnd(int hr, int min) {
+		// TODO Auto-generated method stub
+		return null;
+	}	
+	
+	private static void timerParser(String defMonEnd2) {
+		// TODO Auto-generated method stub
+		
+	}
+    
+    private static TimerTask dbClear = new TimerTask()
+    {//TODO 
+        public void run()
+        {
+           db.clearDatabase();
+        }
+    };
+    
+    private static TimerTask popup15min = new TimerTask()
+    {//TODO 
+        public void run()
+        {
+            //ic.msg.FifteenMinWarning();
+        }
+    };
+	
+    private static TimerTask popup5min = new TimerTask()
+    {//TODO 
+        public void run()
+        {
+            //ic.msg.FiveMinWarning();
+    	}
+    };
+    
+    
+    private static TimerTask endofclass = new TimerTask()
+    {//TODO 
+        public void run()
+        {
+            //ic.msg.endClassWarning();
+            classEnded = System.currentTimeMillis();
+        }
+    };
+    
+    
+    private static TimerTask systemExit = new TimerTask()
+    {//TODO 
+        public void run()
+        {
+            System.exit(0);
+        }
+    };
+	
 	public static boolean checkClear()
     {
         ArrayList<String> endDates = db.getEndDates();
@@ -511,9 +591,6 @@ static long classEnded = 0;
             //System.out.println("Month : " +clearMonth);
             //System.out.println("Year : " +clearYear);
 
-            int clearYear = 0;//HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
-            int clearMonth = 2;
-            int clearDate = 2;
 			endCal.set(clearYear + 2000, clearMonth-1, clearDate);
             if(now.compareTo(endCal) <= 0)
                return false;
@@ -522,11 +599,6 @@ static long classEnded = 0;
         return true;
                 
     }
-
-    private static void dateParser(String string) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	public static void checkTimes()
     {
@@ -579,12 +651,12 @@ static long classEnded = 0;
                 isNull = false;
             }
             
-            int hr = 1;
-            int min = 0;
+//            int hr = 1;
+//            int min = 0;
             if(!isNull){
-            	TimerTask popup5min = null;
-            	TimerTask popup15min = null;
-            	TimerTask endofclass = null;
+//            	TimerTask popup5min = null;
+//            	TimerTask popup15min = null;
+//            	TimerTask endofclass = null;
             	
                 fiveMin = get5BeforeEnd(hr, min);
 				newTimer.schedule(popup5min, fiveMin);
@@ -596,26 +668,6 @@ static long classEnded = 0;
         }   
        
 }
-
-	private static Date getEndTime(int hr, int min) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	private static Date get5BeforeEnd(int hr, int min) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	private static Date get15BeforeEnd(int hr, int min) {
-		// TODO Auto-generated method stub
-		return null;
-	}	
-	
-	private static void timerParser(String defMonEnd2) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	/**
 	 * method that is used to control logic after a branch is entered in the usual main
