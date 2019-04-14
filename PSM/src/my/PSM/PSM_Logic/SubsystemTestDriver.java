@@ -29,6 +29,7 @@ import java.util.logging.Logger;
 
 import com.mysql.jdbc.*;
 
+import my.PSM.LoginForm;
 import my.PSM.PSM_Storage.DBConnection;
 
 import java.sql.DriverManager;
@@ -52,6 +53,9 @@ public class SubsystemTestDriver {
 	@Mock
 	static
 	Authenticate auth;
+	@Mock
+	static
+	LoginForm mockLogin;
 	
 	@Rule 
 	public MockitoRule mockitoRule = MockitoJUnit.rule();
@@ -62,7 +66,7 @@ public class SubsystemTestDriver {
 	final String[][] DB_TEST_VALS = {{"1234", "FOO", "BAR", "Spring", "01/01/1900", "07/08/1901", "am",//control variables that are used for testing entry into the class100 table in "mydb"
 							"12:00", "13:00", "12:00", "13:00","12:00", "13:00","12:00", 
 							"13:00","12:00", "13:00","12:00", "13:00"}};
-	int cid = Integer.parseInt(DB_CRED[0][0]);	//course id
+	int cid = Integer.parseInt(DB_TEST_VALS[0][0]);	//course id
 	
     //end Esteban's variables
 	
@@ -71,8 +75,10 @@ public class SubsystemTestDriver {
 		statementMock = mock(Statement.class);
 		resultMock = mock(ResultSet.class);
 		connectMock = mock(Connection.class);
+		
 		ic = mock(InterfaceController.class);
 		auth = mock(Authenticate.class);
+		mockLogin = mock(LoginForm.class);
 		
 		db = new DBConnection();		
 		
@@ -169,7 +175,7 @@ public class SubsystemTestDriver {
 			 luggagePW = DB_CRED[0][2];
     * Expected output: Peter Clarke is logged into the PSM system.
     */	
-    public void subSystem_testClassEntry() throws Exception {
+    public void subSystem_testLogin() throws Exception {
 		connectMock = mock(Connection.class);
 		
 		//pass login info here
@@ -183,7 +189,8 @@ public class SubsystemTestDriver {
 		catch (Exception e){
 			e.getStackTrace();
 		}
-		//logged in(?)
+		assertTrue(getLoggedIn());
+		
     }
     
     @Test
@@ -208,11 +215,16 @@ public class SubsystemTestDriver {
     * 		 defWedEnd = DB_TEST_VALS[0][12]
     * Expected output: A new class is added to the database 
     */		
-	public void subSystem_nameLater() {
+	public void subSystem_addNewClass() {
     	assertTrue(true);
     }
-
-    
+  
+  
+    @Test
+    public void goofus() throws Exception {
+    	String[] args = {""};
+    	appRunner(args);
+    }
     //====================================================================
     /**
     ADVICE FROM DAVID
@@ -281,35 +293,39 @@ static long classEnded = 0;
            Logger.getLogger(appController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     
-    
-    public static void appRunner(String args[]) {   
-        //TEST value: loggedin
+    public void appRunner(String args[]) throws Exception {
+    	boolean dataRcv1 = false;
+        //TEST value: loggedin [X]
+    	assertFalse(getLoggedIn());
+    	
        while(!loggedin)
        {     
-           //Mock the IC, but don't call the UI     
-           ic.Initiate_Login_Form();            
+           //Mock the IC, but don't call the UI [X]     
+           ic.Initiate_Login_Form();
            
-           
-            //Check if log-in has been entered.
+            //Check if log-in has been entered. [X]
+           //subSystem_testLogin();
             do
             {
-                //TEST values: dataReceived
+                //TEST values: dataReceived [X]
                 //Mock dataRecieved, do not call ic.log.dataReceived
-                dataReceived = ic.log.dataReceived();
-                //sleep(300); //Sleep isn't needed in testing
+            	mockLogin = mock(LoginForm.class);
+            	mockLogin.dataReceived();
+                
+                assertTrue(dataRcv1);
+               
                 
             }while(!dataReceived);
-            //branchLogic_1
-            //Mock a IC for setDataRec
-            ic.log.setDataRec(false);
-            dataReceived = false;
-            //UI info, needs a Mock for ic.log.*
-            username = ic.log.getUsername();
-            password = ic.log.getPassword();
-
+//            //Mock a IC for setDataRec
+//            //UI info, needs a Mock for ic.log.*
+            branchLogic_1();
+            
             //TEST values: auth method check user,pw
             auth = new Authenticate(username,password);
+            assertEquals("Proper username", DB_CRED[0][1], auth.username);
+            assertEquals("Proper password", DB_CRED[0][2], auth.username);
             if(auth.validate_Login()){
             	//branchLogic_2
                 loggedin = true;
