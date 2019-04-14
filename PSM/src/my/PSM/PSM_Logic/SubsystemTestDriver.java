@@ -1,3 +1,4 @@
+package my.PSM.PSM_Logic;
 /*
 * class that is to be used for sub-system testing. Based on code 
 * developed by Esteban . This version will have a preference on 
@@ -22,11 +23,13 @@ import org.mockito.junit.*;
 import org.powermock.*;
 import org.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.mysql.jdbc.*;
 
+import my.PSM.LoginForm;
 import my.PSM.PSM_Storage.DBConnection;
 
 import java.sql.DriverManager;
@@ -34,7 +37,8 @@ import java.sql.SQLException;
 
 
 public class SubsystemTestDriver {
-	//I think jesse made these; ask later
+	private static final long TENMIN = 600000;
+	//jesse's mocks
 	@Mock
 	Statement statementMock;
 	@Mock
@@ -42,16 +46,27 @@ public class SubsystemTestDriver {
 	@Mock
 	Connection connectMock;
 	
+	//my mocks
+	@Mock
+	static
+	InterfaceController ic;
+	@Mock
+	static
+	Authenticate auth;
+	@Mock
+	static
+	LoginForm mockLogin;
+	
 	@Rule 
 	public MockitoRule mockitoRule = MockitoJUnit.rule();
 	
-	private DBConnection db;
+	private static DBConnection db;
 	
 	final String[][] DB_CRED = {{"jdbc:mysql://localhost:3306/mydb", "PeterClarke", "12345"}}; //control variables used for connecting/testing connections to a local db called "mydb"
 	final String[][] DB_TEST_VALS = {{"1234", "FOO", "BAR", "Spring", "01/01/1900", "07/08/1901", "am",//control variables that are used for testing entry into the class100 table in "mydb"
 							"12:00", "13:00", "12:00", "13:00","12:00", "13:00","12:00", 
 							"13:00","12:00", "13:00","12:00", "13:00"}};
-	int cid = Integer.parseInt(DB_CRED[0][0]);	//course id
+	int cid = Integer.parseInt(DB_TEST_VALS[0][0]);	//course id
 	
     //end Esteban's variables
 	
@@ -60,6 +75,10 @@ public class SubsystemTestDriver {
 		statementMock = mock(Statement.class);
 		resultMock = mock(ResultSet.class);
 		connectMock = mock(Connection.class);
+		
+		ic = mock(InterfaceController.class);
+		auth = mock(Authenticate.class);
+		mockLogin = mock(LoginForm.class);
 		
 		db = new DBConnection();		
 		
@@ -73,7 +92,6 @@ public class SubsystemTestDriver {
 		db = null;
 	}	
 	
-public class SubsystemTestDriver {
     //begin Esteban's variables
     private static boolean dataRec = false;
     private static String username;
@@ -130,6 +148,10 @@ public class SubsystemTestDriver {
 
     public static boolean ack;
     //end Esteban's variables
+    private static int clearDate, clearMonth, clearYear;
+    private static int hr = 0;
+    private static int min = 0;
+    private static boolean dbCleared = false;
 
     /** <TEMPLATE> 
     * Test ID: PSM_Logic_Subsystem_000
@@ -153,7 +175,7 @@ public class SubsystemTestDriver {
 			 luggagePW = DB_CRED[0][2];
     * Expected output: Peter Clarke is logged into the PSM system.
     */	
-    public void subSystem_testClassEntry() throws Exception {
+    public void subSystem_testLogin() throws Exception {
 		connectMock = mock(Connection.class);
 		
 		//pass login info here
@@ -162,12 +184,13 @@ public class SubsystemTestDriver {
 		String luggagePW = DB_CRED[0][2];
 		
 		try {
-		connectMock = (Connection) DriverManager.getConnection(localHost, clarkE, luggagePW);
+			connectMock = (Connection) DriverManager.getConnection(localHost, clarkE, luggagePW);
 		}
 		catch (Exception e){
 			e.getStackTrace();
 		}
-		//logged in(?)
+		assertTrue(getLoggedIn());
+		
     }
     
     @Test
@@ -192,11 +215,16 @@ public class SubsystemTestDriver {
     * 		 defWedEnd = DB_TEST_VALS[0][12]
     * Expected output: A new class is added to the database 
     */		
-	public void subSystem_nameLater() {
+	public void subSystem_addNewClass() {
     	assertTrue(true);
     }
-}
-
+  
+  
+    @Test
+    public void goofus() throws Exception {
+    	String[] args = {""};
+    	appRunner(args);
+    }
     //====================================================================
     /**
     ADVICE FROM DAVID
@@ -209,13 +237,15 @@ public class SubsystemTestDriver {
         it wont call but it is in the db ... logic->db so you need to create something in the db ot test that for you
      */
 
-boolean loggin;
-boolean dataReceived;
-boolean logoutSel;
-boolean schedSetupSel;
-int counter = 0;
-int courseSel;
-long classEnded = 0;
+static boolean loggin;
+boolean dataReceived2;	//non static version of data received. 
+static boolean loggedin;
+static boolean edSchedSel;
+static boolean logoutSel;
+static boolean schedSetupSel;
+static int counter = 0;
+static int courseSel;
+static long classEnded = 0;
 
     //Tester-Created Get(s)
     public boolean getDataReceived(){
@@ -254,34 +284,50 @@ long classEnded = 0;
             loggedin = false;        
     }
 
-    public static void dummyMain(String args[]) {   //rename appRunner
-        //TEST value: loggedin
+    //From original code
+    public static void sleep(int milli)
+    {
+          try { 
+           Thread.sleep(milli);
+        } catch (InterruptedException ex) {
+           Logger.getLogger(appController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    
+    public void appRunner(String args[]) throws Exception {
+    	boolean dataRcv1 = false;
+        //TEST value: loggedin [X]
+    	assertFalse(getLoggedIn());
+    	
        while(!loggedin)
        {     
-           //Mock the IC, but don't call the UI     
-           ic.Initiate_Login_Form();            
+           //Mock the IC, but don't call the UI [X]     
+           ic.Initiate_Login_Form();
            
-           
-            //Check if log-in has been entered.
+            //Check if log-in has been entered. [X]
+           //subSystem_testLogin();
             do
             {
-                //TEST values: dataReceived
+                //TEST values: dataReceived [X]
                 //Mock dataRecieved, do not call ic.log.dataReceived
-                dataReceived = ic.log.dataReceived();
-                //sleep(300); //Sleep isn't needed in testing
+            	mockLogin = mock(LoginForm.class);
+            	mockLogin.dataReceived();
+                
+                assertTrue(dataRcv1);
+               
                 
             }while(!dataReceived);
-
-            //Mock a IC for setDataRec
-            ic.log.setDataRec(false);
-            dataReceived = false;
-            //UI info, needs a Mock for ic.log.*
-            username = ic.log.getUsername();
-            password = ic.log.getPassword();
-
+//            //Mock a IC for setDataRec
+//            //UI info, needs a Mock for ic.log.*
+            branchLogic_1();
+            
             //TEST values: auth method check user,pw
             auth = new Authenticate(username,password);
+            assertEquals("Proper username", DB_CRED[0][1], auth.username);
+            assertEquals("Proper password", DB_CRED[0][2], auth.username);
             if(auth.validate_Login()){
+            	//branchLogic_2
                 loggedin = true;
                 //Check state change 
                 auth.logout();
@@ -291,6 +337,7 @@ long classEnded = 0;
             
               //Change state change: loggedin
             if(!loggedin){
+            	////branchLogic_3
                 //ic.Initiate_IncorrectLogin();
                 counter++;
                 //Check state change
@@ -307,6 +354,7 @@ long classEnded = 0;
             }
             //Check state change: counter
             if(counter >= 3){
+            ////branchLogic_4
                 //Do not call ic.passwordLock()
                 //ic.passwordLock();
                 //Check state change: dataReceived
@@ -333,12 +381,13 @@ long classEnded = 0;
        //Check state change in logoutSel
        while(!logoutSel)
        {
-           
+    	////branchLogic_5
            
            long newCurrentTime;
            //Check state dataReceived
            while(!dataReceived)
            {
+        	////branchLogic_6 LOOK UP MIGHT BE SWAPPED WITH 5
                //MUST MOCK dataReceived, edSchedSel, schedSetupSel, logoutSel
                //Don't call anything from ic.mm.*
                dataReceived = ic.mm.dataRec();
@@ -369,6 +418,7 @@ long classEnded = 0;
             //Get status for logoutSet
            if(logoutSel)
            {
+        	////branchLogic_7
                //Get status of auth
                auth.logout();
 
@@ -379,6 +429,7 @@ long classEnded = 0;
            //Get edSchedSel status
            else if(edSchedSel)
            {
+        	////branchLogic_8
                //Edit Schedule 
                //ic.Course_Select_Form();
 
@@ -431,13 +482,14 @@ long classEnded = 0;
            //Expected status of schedSetupSel
            else if(schedSetupSel)
            {
+        	////branchLogic_9
                 //Mock this VVV, you know the drill
                ic.sched.launchInitial();
 
                //Initial Schedule Setup
                //VVV This uses the same mock as above.
                while(!ic.sched.dataRec())
-               {
+               {////branchLogic_10
                    //Mock again
                    dataReceived = ic.sched.dataRec();
                    //sleep(300);
@@ -467,7 +519,81 @@ long classEnded = 0;
     //Used Methods Below outside of main
     //
 
-    public static boolean checkClear()
+    //TODO: Make these stubs do something
+    private static void getData(int courseSel2) {
+		// TODO Auto-generated method stub
+		
+	}
+
+    private static void dateParser(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+    
+	private static Date getEndTime(int hr, int min) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private static Date get5BeforeEnd(int hr, int min) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private static Date get15BeforeEnd(int hr, int min) {
+		// TODO Auto-generated method stub
+		return null;
+	}	
+	
+	private static void timerParser(String defMonEnd2) {
+		// TODO Auto-generated method stub
+		
+	}
+    
+    private static TimerTask dbClear = new TimerTask()
+    {//TODO 
+        public void run()
+        {
+           db.clearDatabase();
+        }
+    };
+    
+    private static TimerTask popup15min = new TimerTask()
+    {//TODO 
+        public void run()
+        {
+            //ic.msg.FifteenMinWarning();
+        }
+    };
+	
+    private static TimerTask popup5min = new TimerTask()
+    {//TODO 
+        public void run()
+        {
+            //ic.msg.FiveMinWarning();
+    	}
+    };
+    
+    
+    private static TimerTask endofclass = new TimerTask()
+    {//TODO 
+        public void run()
+        {
+            //ic.msg.endClassWarning();
+            classEnded = System.currentTimeMillis();
+        }
+    };
+    
+    
+    private static TimerTask systemExit = new TimerTask()
+    {//TODO 
+        public void run()
+        {
+            System.exit(0);
+        }
+    };
+	
+	public static boolean checkClear()
     {
         ArrayList<String> endDates = db.getEndDates();
         Calendar endCal = new GregorianCalendar();
@@ -481,7 +607,7 @@ long classEnded = 0;
             //System.out.println("Month : " +clearMonth);
             //System.out.println("Year : " +clearYear);
 
-            endCal.set(clearYear + 2000, clearMonth-1, clearDate);
+			endCal.set(clearYear + 2000, clearMonth-1, clearDate);
             if(now.compareTo(endCal) <= 0)
                return false;
                 
@@ -490,7 +616,7 @@ long classEnded = 0;
                 
     }
 
-    public static void checkTimes()
+	public static void checkTimes()
     {
         ArrayList<Integer> courseList = db.getCourses();
         
@@ -541,10 +667,15 @@ long classEnded = 0;
                 isNull = false;
             }
             
-            
+//            int hr = 1;
+//            int min = 0;
             if(!isNull){
+//            	TimerTask popup5min = null;
+//            	TimerTask popup15min = null;
+//            	TimerTask endofclass = null;
+            	
                 fiveMin = get5BeforeEnd(hr, min);
-                newTimer.schedule(popup5min, fiveMin);
+				newTimer.schedule(popup5min, fiveMin);
                 fifteenMin = get15BeforeEnd(hr, min);              
                 newTimer.schedule(popup15min, fifteenMin);
                 endClass = getEndTime(hr, min);
@@ -561,6 +692,8 @@ long classEnded = 0;
 	 * This is after while(!datarecieved) on line 99
 	 * */
 	public static void branchLogic_1() {
+		ic = mock(InterfaceController.class);
+		boolean dataRecieved;
 		ic.log.setDataRec(false);
 		dataRecieved = false;
 		
@@ -621,7 +754,7 @@ long classEnded = 0;
 	 * !logoutSelected == true on line 144 
 	 */
 	public static void branchLogic_6() {
-        newCurrentTime = 0;
+        long newCurrentTime = 0;
         ic.mm.setdataRec(false);
         dataReceived = false;
 	}	
